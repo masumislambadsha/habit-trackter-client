@@ -55,7 +55,7 @@ const slides = [
 
 const HeroBanner = () => {
   return (
-    <section className="relative h-[98vh] overflow-hidden bg-gradient-to-br from-[#016B61] via-[#70B2B2] to-[#9ECFD4] -mt-20">
+    <section className="relative h-[70vh] md:h-[98vh] overflow-hidden bg-gradient-to-br from-[#016B61] via-[#70B2B2] to-[#9ECFD4] -mt-20">
       <div className="absolute inset-0 bg-black/20 dark:bg-black/40 z-0" />
 
       <div className="absolute inset-0 opacity-10">
@@ -103,7 +103,7 @@ const HeroBanner = () => {
                   {slide.quote}
                 </motion.p>
                 <motion.h1
-                  className="text-5xl md:text-7xl font-extrabold text-white mb-5 leading-tight"
+                  className="text-5xl md:text-7xl font-extrabold text-white mt-10 mb-5 leading-tight"
                   initial={{ scale: 0.9 }}
                   whileInView={{ scale: 1 }}
                   viewport={{ once: true }}
@@ -143,8 +143,8 @@ const HeroBanner = () => {
         ))}
       </Swiper>
 
-      <div className="swiper-button-prev !text-white !bg-black/30 dark:!bg-black/50 !w-12 !h-12 !rounded-full !left-6 after:!text-2xl hover:!bg-[#016B61]/70 transition-all" />
-      <div className="swiper-button-next !text-white !bg-black/30 dark:!bg-black/50 !w-12 !h-12 !rounded-full !right-6 after:!text-2xl hover:!bg-[#016B61]/70 transition-all" />
+      <div className="swiper-button-prev !text-white !bg-black/30 dark:!bg-black/50 !w-8 !h-8 md:!w-12 md:!h-12 !rounded-full !left-6 after:!text-2xl hover:!bg-[#016B61]/70 transition-all" />
+      <div className="swiper-button-next !text-white !bg-black/30 dark:!bg-black/50 !w-8 !h-8 md:!w-12 md:!h-12 !rounded-full !right-6 after:!text-2xl hover:!bg-[#016B61]/70 transition-all " />
 
       <motion.div
         className="absolute top-20 left-12 w-20 h-20 bg-[#E5E9C5]/10 backdrop-blur-sm rounded-full"

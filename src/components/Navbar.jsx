@@ -45,7 +45,7 @@ const Navbar = ({ mobileMenuOpen, setMobileMenuOpen }) => {
         <div className="flex justify-between items-center h-16 lg:h-20">
           <Link
             to="/"
-            className="flex items-center gap-3 md:pr-5 pr-1 group ml-3"
+            className="flex items-center gap-3 md:pr-5 pr-1 group ml-7"
           >
             <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-linear-to-br from-[#016B61] to-[#70B2B2] flex items-center justify-center text-white font-bold text-xl sm:text-2xl shadow-lg group-hover:scale-110 transition-all duration-300">
               H
@@ -174,7 +174,7 @@ const Navbar = ({ mobileMenuOpen, setMobileMenuOpen }) => {
             onClick={() =>
               setMobileMenuOpen && setMobileMenuOpen(!mobileMenuOpen)
             }
-            className="md:hidden px-3 md:p-2 rounded-xl hover:bg-base-200/50 dark:hover:bg-base-200/30 transition-all"
+            className="md:hidden px-7 md:p-2 rounded-xl hover:bg-base-200/50 dark:hover:bg-base-200/30 transition-all"
           >
             <svg
               className="w-6 h-6"
