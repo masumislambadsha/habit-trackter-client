@@ -45,7 +45,7 @@ const Navbar = ({ mobileMenuOpen, setMobileMenuOpen }) => {
         <div className="flex justify-between items-center h-16 lg:h-20">
           <Link
             to="/"
-            className="flex items-center gap-3 md:pr-5 pr-1 group ml-7"
+            className="flex items-center gap-3 md:pr-5 pr-1 group ml-5"
           >
             <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-linear-to-br from-[#016B61] to-[#70B2B2] flex items-center justify-center text-white font-bold text-xl sm:text-2xl shadow-lg group-hover:scale-110 transition-all duration-300">
               H
