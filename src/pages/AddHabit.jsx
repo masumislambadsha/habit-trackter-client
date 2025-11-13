@@ -209,7 +209,6 @@ const AddHabit = () => {
                 <option value="Study">Study & Learning</option>
                 <option value="Work">Work & Productivity</option>
                 <option value="Evening">Evening Wind Down</option>
-                <option value="Mindfulness">Mindfulness</option>
               </select>
             </div>
             <div>

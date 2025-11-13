@@ -1,7 +1,6 @@
 import axios from "axios";
 import { auth } from "../config/firebase";
 
-
 const API_BASE =
   import.meta.env.VITE_API_URL ||
   "https://habit-tracker-server-liart.vercel.app";
@@ -17,13 +16,12 @@ axiosInstance.interceptors.request.use(
     try {
       const currentUser = auth.currentUser;
       if (currentUser) {
-        const token = await currentUser.getIdToken(  false);
+        const token = await currentUser.getIdToken(false);
         if (token) {
           config.headers.Authorization = `Bearer ${token}`;
         }
       }
     } catch (err) {
-   
       console.warn("Failed to attach token to request:", err.message || err);
     }
     return config;
