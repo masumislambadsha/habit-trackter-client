@@ -7,7 +7,7 @@ import { useTheme } from "../context/ThemeProvider";
 
 const Navbar = ({ mobileMenuOpen, setMobileMenuOpen }) => {
   const { user, signOutUser } = useContext(AuthContext);
-  
+
   const { isDark, toggleTheme } = useTheme();
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const location = useLocation();
@@ -42,7 +42,7 @@ const Navbar = ({ mobileMenuOpen, setMobileMenuOpen }) => {
 
   return (
     <nav className="glass fixed top-0 z-50 w-full border-b transition-all duration-300 bg-base-100 border-neutral/20 dark:bg-base-300 dark:border-base-200">
-      <div className="max-w-7xl mx-auto px- sm:px-6 lg:px-8">
+      <div className="max-w-[1400px] mx-auto    sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16 lg:h-20">
           <Link
             to="/"
