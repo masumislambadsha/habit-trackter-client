@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import api from "../utils/Api";
 import toast from "react-hot-toast";
@@ -7,6 +7,9 @@ import { AuthContext } from "../context/AuthContext";
 import { useTheme } from "../context/ThemeProvider";
 
 const AddHabit = () => {
+  useEffect(() => {
+      document.title = "Habit Tracker | Add Habit";
+    }, []);
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
   const { isDark } = useTheme();

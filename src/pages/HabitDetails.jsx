@@ -9,6 +9,9 @@ import toast from "react-hot-toast";
 import { useTheme } from "../context/ThemeProvider";
 
 const HabitDetails = () => {
+  useEffect(() => {
+      document.title = "Habit Tracker | Details";
+    }, []);
   const { id } = useParams();
   const navigate = useNavigate();
   const { isDark } = useTheme();

@@ -1,8 +1,12 @@
 import { Link } from "react-router";
 import { motion } from "framer-motion";
 import { useTheme } from "../context/ThemeProvider";
+import { useEffect } from "react";
 
 const NotFound = () => {
+  useEffect(() => {
+      document.title = "Habit Tracker | Error Page";
+    }, []);
   const { isDark } = useTheme();
 
   return (

@@ -8,6 +8,9 @@ import { useTheme } from "../context/ThemeProvider";
 import { FcGoogle } from "react-icons/fc";
 
 const Register = () => {
+  useEffect(() => {
+      document.title = "Habit Tracker | Register";
+    }, []);
   const { createUser, signInWithGoogle } = useContext(AuthContext);
   const navigate = useNavigate();
   const { isDark } = useTheme();

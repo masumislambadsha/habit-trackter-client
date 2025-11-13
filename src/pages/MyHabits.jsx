@@ -10,6 +10,9 @@ import LoadingSpinner from "../components/LoadingSpinner";
 import { useTheme } from "../context/ThemeProvider";
 
 const MyHabits = () => {
+  useEffect(() => {
+      document.title = "Habit Tracker | My Habit";
+    }, []);
   const [habits, setHabits] = useState([]);
   const [loading, setLoading] = useState(true);
   const [completingId, setCompletingId] = useState(null);

@@ -13,6 +13,9 @@ const Explore = () => {
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("All");
   const { isDark } = useTheme();
+  useEffect(() => {
+      document.title = "Habit Tracker | Public Habits";
+    }, []);
 
   useEffect(() => {
     const fetchPublicHabits = async () => {

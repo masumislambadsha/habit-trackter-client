@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useTheme } from "../context/ThemeProvider";
 import HeroBanner from "../components/HeroBanner";
 import WhyBuildHabits from "../components/WhyBuildHabits";
@@ -8,7 +8,9 @@ import ExtraSectionTwo from "../components/ExtraSectionTwo";
 
 const Home = () => {
   const { isDark } = useTheme();
-
+  useEffect(() => {
+    document.title = "Habit Tracker | Home";
+  }, []);
   return (
     <div
       className={`min-h-screen transition-colors duration-300 ${

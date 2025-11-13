@@ -22,6 +22,9 @@ import { useTheme } from "../context/ThemeProvider";
 const COLORS = ["#016B61", "#70B2B2", "#9ECFD4", "#E5E9C5"];
 
 const Analytics = () => {
+  useEffect(() => {
+      document.title = "Habit Tracker | Analytics";
+    }, []);
   const { user } = useContext(AuthContext);
   const { isDark } = useTheme();
   const [stats, setStats] = useState(null);

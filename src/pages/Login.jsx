@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { AuthContext } from "../context/AuthContext";
 import toast from "react-hot-toast";
@@ -8,6 +8,9 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 
 const Login = () => {
+  useEffect(() => {
+      document.title = "Habit Tracker | Login";
+    }, []);
   const { signInUser, signInWithGoogle } = useContext(AuthContext);
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);

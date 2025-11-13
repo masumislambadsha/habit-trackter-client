@@ -7,6 +7,9 @@ import { AuthContext } from "../context/AuthContext";
 import { useTheme } from "../context/ThemeProvider";
 
 const UpdateHabit = () => {
+  useEffect(() => {
+      document.title = "Habit Tracker | Update Habit";
+    }, []);
   const { user } = useContext(AuthContext);
   const { id } = useParams();
   const navigate = useNavigate();

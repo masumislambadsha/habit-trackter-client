@@ -7,6 +7,7 @@ import { useTheme } from "../context/ThemeProvider";
 
 const Navbar = ({ mobileMenuOpen, setMobileMenuOpen }) => {
   const { user, signOutUser } = useContext(AuthContext);
+  
   const { isDark, toggleTheme } = useTheme();
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const location = useLocation();
