@@ -210,15 +210,15 @@ const MyHabits = () => {
                     </p>
                   )}
                 </div>
-                <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center justify-between gap-10 mb-4">
                   <span
-                    className={`inline-flex items-center px-3 py-2 rounded-full text-sm font-bold ${
+                    className={`inline-flex items-center px-3 py-2 rounded-full text-sm font-bold text-center ${
                       isDark
                         ? "bg-gray-700 text-[#9ECFD4]"
                         : "bg-[#E5E9C5] text-[#016B61]"
                     }`}
                   >
-                    {habit.streak || 0} day streak
+                    {habit.streak} day streak
                   </span>
                   <button
                     onClick={() => handleComplete(habit._id)}
