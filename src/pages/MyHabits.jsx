@@ -118,7 +118,7 @@ const MyHabits = () => {
           </h1>
           <button
             onClick={() => navigate("/add-habit")}
-            className="px-6 py-3 bg-linear-to-r from-[#016B61] to-[#70B2B2] text-white rounded-2xl font-bold shadow-lg hover:shadow-xl transition-all"
+            className="px-6 py-3 bg-linear-to-r from-[#016B61] to-[#70B2B2] text-white rounded-2xl font-bold shadow-lg hover:shadow-xl transition-all cursor-pointer"
           >
             + Add New Habit
           </button>
@@ -223,7 +223,7 @@ const MyHabits = () => {
                   <button
                     onClick={() => handleComplete(habit._id)}
                     disabled={completingId === habit._id}
-                    className={`px-4 py-2 rounded-lg font-medium text-sm transition-all flex items-center gap-1.5 ${
+                    className={`cursor-pointer px-4 py-2 rounded-lg font-medium text-sm transition-all flex items-center gap-1.5 ${
                       completingId === habit._id
                         ? "bg-green-400 text-white cursor-not-allowed"
                         : "bg-linear-to-r from-[#016B61] to-[#70B2B2] text-white hover:shadow-md active:scale-95"
@@ -255,7 +255,7 @@ const MyHabits = () => {
                   </Link>
                   <button
                     onClick={() => handleDelete(habit._id, habit.title)}
-                    className="flex-1 bg-red-500 text-white py-2 rounded-lg font-medium hover:bg-red-600 transition"
+                    className="cursor-pointer flex-1 bg-red-500 text-white py-2 rounded-lg font-medium hover:bg-red-600 transition"
                   >
                     Delete
                   </button>

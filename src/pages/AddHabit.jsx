@@ -186,7 +186,7 @@ const AddHabit = () => {
                 {formData.description.length}/200
               </p>
             </div>
-            <div>
+            <div className="">
               <label
                 className={`block text-sm font-semibold mb-2 ${
                   isDark ? "text-gray-300" : "text-gray-700"
@@ -198,7 +198,7 @@ const AddHabit = () => {
                 name="category"
                 value={formData.category}
                 onChange={handleChange}
-                className={`outline-0 w-full px-4 py-3 border rounded-xl focus:ring-2 transition-colors duration-300 ${
+                className={`outline-0 w-full px-4 py-3 border rounded-xl focus:ring-2 transition-colors duration-300 cursor-pointer ${
                   isDark
                     ? "bg-gray-700 border-gray-600 text-white focus:ring-[#9ECFD4] focus:border-[#9ECFD4]"
                     : "border-[#9ECFD4] focus:ring-[#016B61] focus:border-transparent"
@@ -211,7 +211,7 @@ const AddHabit = () => {
                 <option value="Evening">Evening Wind Down</option>
               </select>
             </div>
-            <div>
+            <div className="cursor-pointer">
               <label
                 className={`block text-sm font-semibold mb-2 ${
                   isDark ? "text-gray-300" : "text-gray-700"
@@ -311,7 +311,7 @@ const AddHabit = () => {
             <button
               type="submit"
               disabled={loading}
-              className={`w-full py-4 rounded-xl font-bold text-white text-lg transition-all transform hover:scale-105 ${
+              className={`w-full py-4 rounded-xl font-bold text-white text-lg transition-all transform hover:scale-105 cursor-pointer ${
                 loading
                   ? "bg-gray-400 cursor-not-allowed"
                   : "bg-linear-to-r from-[#016B61] to-[#70B2B2] hover:from-[#70B2B2] hover:to-[#9ECFD4] shadow-lg"
@@ -348,7 +348,7 @@ const AddHabit = () => {
           </form>
           <button
             onClick={() => navigate(-1)}
-            className={`w-full mt-4 py-3 font-medium hover:underline transition ${
+            className={`w-full mt-4 py-3 font-medium hover:underline transition cursor-pointer ${
               isDark
                 ? "text-gray-400 hover:text-gray-300"
                 : "text-gray-600 hover:text-gray-800"

@@ -75,7 +75,7 @@ const Navbar = ({ mobileMenuOpen, setMobileMenuOpen }) => {
           <div className="flex items-center gap-2 lg:gap-3">
             <button
               onClick={toggleTheme}
-              className="p-2 lg:p-3 rounded-2xl hover:bg-base-200/50 dark:hover:bg-base-200/30 transition-all duration-300"
+              className="cursor-pointer p-2 lg:p-3 rounded-2xl hover:bg-base-200/50 dark:hover:bg-base-200/30 transition-all duration-300"
               aria-label="Toggle theme"
             >
               {isDark ? (

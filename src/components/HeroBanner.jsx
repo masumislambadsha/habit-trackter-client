@@ -132,7 +132,7 @@ const HeroBanner = () => {
                     }}
                     className="group relative inline-flex items-center px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-[#016B61] to-[#70B2B2] rounded-full shadow-2xl hover:shadow-[#9ECFD4]/50 transition-all duration-300 overflow-hidden"
                   >
-                    <span className="relative z-10">Start This Habit</span>
+                    <span className="relative z-10 cursor-pointer">Start This Habit</span>
                     <ChevronRight className="ml-2 h-6 w-6 group-hover:translate-x-1 transition-transform" />
                     <div className="absolute inset-0 bg-gradient-to-r from-[#70B2B2] to-[#9ECFD4] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   </button>

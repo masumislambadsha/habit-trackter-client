@@ -1,6 +1,7 @@
 import axios from "axios";
 import { auth } from "../config/firebase";
 
+
 const API_BASE =
   import.meta.env.VITE_API_URL ||
   "https://habit-tracker-server-liart.vercel.app";

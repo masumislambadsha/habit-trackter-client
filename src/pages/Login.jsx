@@ -107,7 +107,7 @@ const Login = () => {
               <button
                 type="button"
                 onClick={() => setShow(!show)}
-                className={`absolute right-3 top-1/2 transform -translate-y-1/2  ${
+                className={`cursor-pointer absolute right-3 top-1/2 transform -translate-y-1/2  ${
                   isDark ? "text-[#9ECFD4]" : "text-[#016b61]"
                 }`}
               >
@@ -118,7 +118,7 @@ const Login = () => {
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-4  text-white font-bold rounded-xl hover:shadow-lg disabled:opacity-70 transition-all duration-300 bg-linear-to-r from-[#016B61] to-[#70B2B2] hover:from-[#70B2B2] hover:to-[#9ECFD4] shadow-lg"
+              className="cursor-pointer w-full py-4  text-white font-bold rounded-xl hover:shadow-lg disabled:opacity-70 transition-all duration-300 bg-linear-to-r from-[#016B61] to-[#70B2B2] hover:from-[#70B2B2] hover:to-[#9ECFD4] shadow-lg"
             >
               {loading ? "Logging in..." : "Login"}
             </button>
@@ -127,7 +127,7 @@ const Login = () => {
             <button
               onClick={handleGoogle}
               disabled={loading}
-              className={`w-full flex justify-center items-center gap-2 py-3 border-2 rounded-xl font-semibold transition-colors duration-300 ${
+              className={`cursor-pointer w-full flex justify-center items-center gap-2 py-3 border-2 rounded-xl font-semibold transition-colors duration-300 ${
                 isDark
                   ? "border-[#70B2B2] text-[#9ECFD4] hover:bg-gray-700"
                   : "border-[#9ECFD4] text-[#016B61] hover:bg-[#E5E9C5]"

@@ -31,7 +31,7 @@ const ExtraSectionOne = () => {
 
   return (
     <section
-      className={`py-20 transition-colors duration-300 ${
+      className={`py-20 transition-colors duration-300${
         isDark
           ? "bg-linear-to-b from-gray-800 to-gray-900"
           : "bg-linear-to-b from-[#E5E9C5] to-white"
@@ -41,7 +41,7 @@ const ExtraSectionOne = () => {
         <motion.h2
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          className="text-4xl md:text-5xl font-bold text-center mb-16 bg-clip-text text-transparent bg-linear-to-r from-[#016B61] to-[#70B2B2]"
+          className="text-4xl md:text-5xl font-bold text-center mb-16 bg-clip-text text-transparent bg-linear-to-r from-[#016B61] to-[#70B2B2] "
         >
           Success Stories
         </motion.h2>
@@ -55,7 +55,7 @@ const ExtraSectionOne = () => {
             768: { slidesPerView: 2 },
             1024: { slidesPerView: 3 },
           }}
-          className="pb-12"
+          className="pb-12 cursor-pointer"
         >
           {testimonials.map((t, i) => (
             <SwiperSlide key={i}>

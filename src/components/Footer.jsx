@@ -30,19 +30,25 @@ const Footer = () => {
             Get daily habit tips, streak challenges, and exclusive progress
             insights. Build better habits — one day at a time.
           </p>
-          <button className="bg-emerald-600 text-white px-6 py-3 rounded-md font-semibold hover:bg-emerald-700 transition shadow-md">
-            Subscribe Now
-          </button>
+          <a href="/login">
+            <button className="bg-emerald-600 text-white px-6 py-3 rounded-md font-semibold hover:bg-emerald-700 transition shadow-md cursor-pointer">
+              Subscribe Now
+            </button>
+          </a>
         </div>
-        <div
-          className={`w-full md:w-80 h-48 rounded-xl shadow-lg flex items-center justify-center ${
-            isDark
-              ? "bg-linear-to-br from-gray-700 to-gray-600"
-              : "bg-linear-to-br from-emerald-300 to-teal-400"
-          }`}
-        >
-          <span className="text-white text-lg font-medium">Build Habits</span>
-        </div>
+        <a href="/add-habit">
+          <div
+            className={`w-full md:w-80 cursor-pointer h-48 rounded-xl shadow-lg flex items-center justify-center ${
+              isDark
+                ? "bg-linear-to-br from-gray-700 to-gray-600"
+                : "bg-linear-to-br from-emerald-300 to-teal-400"
+            }`}
+          >
+            <span className="text-white text-lg font-medium ">
+              Build Habits
+            </span>
+          </div>
+        </a>
       </div>
       <div
         className={`py-12 px-6 md:px-12 transition-colors duration-300 ${
@@ -102,7 +108,7 @@ const Footer = () => {
               </p>
             </div>
             <div className="flex md:justify-end">
-              <button className="border border-emerald-500 text-emerald-400 px-5 py-2 rounded-md text-sm font-medium hover:bg-emerald-500 hover:text-white transition">
+              <button className="border border-emerald-500 text-emerald-400 px-5 py-2 rounded-md text-sm font-medium hover:bg-emerald-500 hover:text-white transition cursor-pointer">
                 Give Feedback
               </button>
             </div>

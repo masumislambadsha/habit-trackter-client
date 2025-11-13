@@ -210,7 +210,7 @@ const Register = () => {
               <button
                 type="button"
                 onClick={() => setShow(!show)}
-                className={`absolute right-3 top-1/2 transform -translate-y-1/2 ${
+                className={`cursor-pointer absolute right-3 top-1/2 transform -translate-y-1/2 ${
                   isDark ? "text-[#9ECFD4]" : "text-[#016b61]"
                 }`}
               >
@@ -235,7 +235,7 @@ const Register = () => {
               <button
                 type="button"
                 onClick={() => setShow(!show)}
-                className={`absolute right-3 top-1/2 transform -translate-y-1/2 ${
+                className={`cursor-pointer absolute right-3 top-1/2 transform -translate-y-1/2 ${
                   isDark ? "text-[#9ECFD4]" : "text-[#016b61]"
                 }`}
               >
@@ -250,7 +250,7 @@ const Register = () => {
             <button
               type="submit"
               disabled={!isReady}
-              className={`w-full py-3 font-bold rounded-xl text-white transition-all bg-linear-to-r from-[#016B61] to-[#70B2B2] hover:from-[#70B2B2] hover:to-[#9ECFD4] shadow-lg ${
+              className={`cursor-pointer w-full py-3 font-bold rounded-xl text-white transition-all bg-linear-to-r from-[#016B61] to-[#70B2B2] hover:from-[#70B2B2] hover:to-[#9ECFD4] shadow-lg ${
                 isReady
                   ? "bg-linear-to-r from-[#016B61] to-[#70B2B2] hover:shadow-lg hover:scale-105"
                   : "bg-gray-400 cursor-not-allowed"
@@ -309,7 +309,7 @@ const Register = () => {
           <button
             onClick={handleGoogle}
             disabled={loading}
-            className={`w-full py-3 flex justify-center items-center gap-2 border-2 rounded-xl font-semibold transition-colors duration-300 ${
+            className={`cursor-pointer w-full py-3 flex justify-center items-center gap-2 border-2 rounded-xl font-semibold transition-colors duration-300 ${
               isDark
                 ? "border-[#70B2B2] text-[#9ECFD4] hover:bg-gray-700"
                 : "border-[#9ECFD4] text-[#016B61] hover:bg-[#E5E9C5]"
@@ -326,7 +326,7 @@ const Register = () => {
             Already have an account?{" "}
             <Link
               to="/login"
-              className={`font-semibold hover:underline ${
+              className={`cursor-pointer font-semibold hover:underline ${
                 isDark ? "text-[#9ECFD4]" : "text-[#016B61]"
               }`}
             >
