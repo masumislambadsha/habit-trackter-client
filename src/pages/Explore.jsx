@@ -12,17 +12,18 @@ const Explore = () => {
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("All");
+  const [sortOrder,] = useState("none");
   const { isDark } = useTheme();
+
   useEffect(() => {
-      document.title = "Habit Tracker | Public Habits";
-    }, []);
+    document.title = "Habit Tracker | Public Habits";
+  }, []);
 
   useEffect(() => {
     const fetchPublicHabits = async () => {
       try {
         const res = await api.get("/habits/public");
         const data = Array.isArray(res?.data) ? res.data : [];
-        console.log("Fetched public habits:", data);
         setHabits(data);
       } catch (err) {
         console.error("Failed to fetch public habits:", err);
@@ -34,17 +35,26 @@ const Explore = () => {
     fetchPublicHabits();
   }, []);
 
-  const filteredHabits = useMemo(() => {
+  const filteredAndSortedHabits = useMemo(() => {
     const query = search.trim().toLowerCase();
     const selected = category.toLowerCase();
-    return habits.filter((habit) => {
+
+    let filtered = habits.filter((habit) => {
       const title = (habit?.title || "").toString().trim().toLowerCase();
       const cat = (habit?.category || "").toString().trim().toLowerCase();
       const matchesSearch = !query || title.includes(query);
       const matchesCategory = selected === "all" || cat === selected;
       return matchesSearch && matchesCategory;
     });
-  }, [habits, search, category]);
+
+    const sorted = [...filtered];
+    if (sortOrder === "small") {
+      return sorted.sort((a, b) => (a.downloads || 0) - (b.downloads || 0));
+    } else if (sortOrder === "large") {
+      return sorted.sort((a, b) => (b.downloads || 0) - (a.downloads || 0));
+    }
+    return sorted;
+  }, [habits, search, category, sortOrder]);
 
   if (loading) return <LoadingSpinner />;
 
@@ -52,8 +62,8 @@ const Explore = () => {
     <div
       className={`min-h-screen py-12 px-4 transition-colors duration-300 ${
         isDark
-          ? "bg-linear-to-br from-gray-900 to-gray-800"
-          : "bg-linear-to-br from-[#E5E9C5] to-[#9ECFD4]"
+          ? "bg-gradient-to-br from-gray-900 to-gray-800"
+          : "bg-gradient-to-br from-[#E5E9C5] to-[#9ECFD4]"
       }`}
     >
       <div className="max-w-7xl mx-auto">
@@ -66,35 +76,66 @@ const Explore = () => {
         >
           Explore Public Habits
         </motion.h1>
-        <div className="flex flex-col md:flex-row gap-4 mb-10">
-          <input
-            type="text"
-            placeholder="Search habits..."
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            className={`flex-1 px-5 py-3.5 border rounded-xl focus:outline-none focus:ring-2 transition-colors duration-300 placeholder-gray-500 ${
-              isDark
-                ? "bg-gray-700 border-gray-600 text-white placeholder-gray-400 focus:ring-[#9ECFD4] focus:border-[#9ECFD4]"
-                : "border-[#9ECFD4] focus:ring-[#016B61] focus:border-[#016B61]"
-            }`}
-          />
-          <select
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-            className={`px-5 py-3.5 border rounded-xl focus:outline-none focus:ring-2 transition-colors duration-300 ${
-              isDark
-                ? "bg-gray-700 border-gray-600 text-white focus:ring-[#9ECFD4] focus:border-[#9ECFD4]"
-                : "border-[#9ECFD4] focus:ring-[#016B61] focus:border-[#016B61]"
-            }`}
-          >
-            {categories.map((c) => (
-              <option key={c} value={c}>
-                {c}
-              </option>
-            ))}
-          </select>
+
+        <div className="flex flex-col items-start md:items-center md:flex-row justify-between gap-6 mb-10">
+          <div className="flex items-center gap-4">
+            <div className="w-2 h-12 bg-gradient-to-b from-[#016B61] to-[#70B2B2] rounded-full"></div>
+            <div>
+              <h2 className={`text-4xl font-bold ${isDark ? "text-white" : "text-gray-800"}`}>
+                {filteredAndSortedHabits.length}
+              </h2>
+              <p className={`text-sm font-medium ${isDark ? "text-gray-300" : "text-gray-500"}`}>
+                Habits Found
+              </p>
+            </div>
+          </div>
+
+          <div className="flex flex-col md:flex-row gap-4 w-full md:w-auto">
+            <input
+              type="text"
+              placeholder="Search habits..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className={`flex-1 px-5 py-3.5 border rounded-xl focus:outline-none focus:ring-2 transition-colors duration-300 placeholder-gray-500 ${
+                isDark
+                  ? "border-gray-600 text-white placeholder-gray-400 focus:ring-[#9ECFD4] focus:border-[#9ECFD4]"
+                  : "border-[#9ECFD4] focus:ring-[#016B61] focus:border-[#016B61]"
+              }`}
+            />
+
+            <div className="relative w-full md:w-auto">
+              <select
+                value={category}
+                onChange={(e) => setCategory(e.target.value)}
+                className={`appearance-none w-full md:w-auto bg-transparent px-5 py-3.5 pr-12 border rounded-xl text-base font-medium focus:outline-none focus:ring-2 transition-all duration-300 cursor-pointer min-w-[140px] ${
+                  isDark
+                    ? "border-gray-600 text-white focus:ring-[#9ECFD4] focus:border-[#9ECFD4]"
+                    : "border-[#9ECFD4] text-[#016B61] focus:ring-[#016B61] focus:border-[#016B61]"
+                }`}
+                style={{
+                  backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='${
+                    isDark ? "%23e5e7eb" : "%236b7280"
+                  }' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e")`,
+                  backgroundPosition: "right 1rem center",
+                  backgroundRepeat: "no-repeat",
+                  backgroundSize: "1.2em",
+                }}
+              >
+                {categories.map((c) => (
+                  <option
+                    key={c}
+                    value={c}
+                    className="bg-white dark:bg-gray-800"
+                  >
+                    {c}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
         </div>
-        {filteredHabits.length === 0 ? (
+
+        {filteredAndSortedHabits.length === 0 ? (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -108,13 +149,12 @@ const Explore = () => {
               No habits found matching your filters.
             </p>
             <p className={`mt-2 ${isDark ? "text-gray-400" : "text-gray-600"}`}>
-              Try adjusting your search or category. (Total loaded:{" "}
-              {habits.length})
+              Try adjusting your search or category. (Total loaded: {habits.length})
             </p>
           </motion.div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredHabits.map((habit, i) => (
+            {filteredAndSortedHabits.map((habit, i) => (
               <motion.div
                 key={habit._id}
                 initial={{ opacity: 0, y: 20 }}
@@ -140,8 +180,8 @@ const Explore = () => {
                   <div
                     className={`h-48 flex items-center justify-center ${
                       isDark
-                        ? "bg-linear-to-br from-gray-700 to-gray-600"
-                        : "bg-linear-to-br from-[#E5E9C5] to-[#9ECFD4]"
+                        ? "bg-gradient-to-br from-gray-700 to-gray-600"
+                        : "bg-gradient-to-br from-[#E5E9C5] to-[#9ECFD4]"
                     }`}
                   >
                     <span
