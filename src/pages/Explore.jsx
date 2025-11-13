@@ -60,7 +60,7 @@ const Explore = () => {
 
   return (
     <div
-      className={`min-h-screen py-12 px-4 transition-colors duration-300 ${
+      className={`min-h-screen py-12 px-4 transition-colors duration-300 pt-25 ${
         isDark
           ? "bg-gradient-to-br from-gray-900 to-gray-800"
           : "bg-gradient-to-br from-[#E5E9C5] to-[#9ECFD4]"

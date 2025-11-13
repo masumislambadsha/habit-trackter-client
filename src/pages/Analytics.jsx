@@ -51,7 +51,7 @@ const Analytics = () => {
   if (!stats) {
     return (
       <div
-        className={`min-h-screen flex items-center justify-center transition-colors duration-300 ${
+        className={`min-h-screen flex items-center justify-center transition-colors duration-300  ${
           isDark
             ? "bg-linear-to-br from-gray-900 to-gray-800"
             : "bg-linear-to-br from-[#E5E9C5] to-[#9ECFD4]"
@@ -99,7 +99,7 @@ const Analytics = () => {
           : "bg-linear-to-br from-[#E5E9C5] to-[#9ECFD4]"
       }`}
     >
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto pt-20">
         <motion.h1
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}

@@ -21,7 +21,7 @@ const Layout = () => {
         setMobileMenuOpen={setMobileMenuOpen}
       />
 
-      <main className="flex-1 min-h-screen pt-20">
+      <main className="flex-1 min-h-screen">
         <Outlet />
       </main>
 
@@ -30,7 +30,7 @@ const Layout = () => {
       <Toaster
         position="bottom-center"
         toastOptions={{
-          duration: 1300,
+          duration: 2000,
           style: {
             background: isDark ? "#9ECFD4" : "#016B61",
             color: "#fff",

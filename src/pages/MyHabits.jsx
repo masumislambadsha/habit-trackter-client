@@ -107,7 +107,7 @@ const MyHabits = () => {
           : "bg-linear-to-br from-[#E5E9C5] to-[#9ECFD4]"
       }`}
     >
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-6xl mx-auto pt-15">
         <div className="flex justify-between items-center mb-10">
           <h1
             className={`text-4xl font-bold ${
