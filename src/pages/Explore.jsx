@@ -125,7 +125,7 @@ const Explore = () => {
                   <option
                     key={c}
                     value={c}
-                    className="bg-white dark:bg-gray-800"
+                    className="bg-white dark:bg-base-300"
                   >
                     {c}
                   </option>
