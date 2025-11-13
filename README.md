@@ -70,33 +70,67 @@ You’ll need your own Firebase set up (`src/config/firebase.js`). If you can’
 # 💣 Full Expanded Folder Structure: Habit Tracker Client
 
 ```
-.
+HABIT-TRACKER-CLIENT
 ├── .firebase/
-│   └── hosting.ZGlzdA.cache
-├── .firebaserc
-├── .gitignore
-├── README.md
-├── eslint.config.js
-├── firebase.json
-├── index.html
-├── package-lock.json
-├── package.json
+├── dist/
+├── node_modules/
 ├── public/
+│   ├── favicon.svg
 │   ├── FooterImg.jpg
 │   └── vite.svg
 ├── src/
+│   ├── assets/
+│   │   ├── complete-animation.json
+│   │   ├── FooterImg.jpg
+│   │   └── react.svg
+│   ├── components/
+│   │   ├── ExtraSectionOne.jsx
+│   │   ├── ExtraSectionTwo.jsx
+│   │   ├── FeaturedHabits.jsx
+│   │   ├── Footer.jsx
+│   │   ├── HabitCard.jsx
+│   │   ├── HeroBanner.jsx
+│   │   ├── LoadingSpinner.jsx
+│   │   ├── Navbar.jsx
+│   │   └── WhyBuildHabits.jsx
+│   ├── config/
+│   │   └── firebase.js
+│   ├── context/
+│   │   ├── AuthContext.jsx
+│   │   ├── AuthProvider.jsx
+│   │   ├── ThemeProvider.jsx
+│   ├── layout/
+│   │   └── Layout.jsx
+│   ├── pages/
+│   │   ├── AddHabit.jsx
+│   │   ├── Analytics.jsx
+│   │   ├── Explore.jsx
+│   │   ├── HabitDetails.jsx
+│   │   ├── Home.jsx
+│   │   ├── Login.jsx
+│   │   ├── MyHabits.jsx
+│   │   ├── NotFound.jsx
+│   │   ├── Register.jsx
+│   │   └── UpdateHabit.jsx
+│   ├── routes/
+│   │   ├── PrivateRoute.jsx
+│   │   └── Routes.jsx
+│   ├── utils/
+│   │   ├── Api.jsx
+│   │   └── Axios.jsx
 │   ├── App.css
 │   ├── App.jsx
-│   ├── assets/
-│   ├── components/
-│   ├── config/
-│   ├── context/
 │   ├── index.css
-│   ├── layout/
-│   ├── main.jsx
-│   ├── pages/
-│   ├── routes/
-│   └── utils/
+│   └── main.jsx
+├── .env
+├── .firebaserc
+├── .gitignore
+├── eslint.config.js
+├── firebase.json
+├── index.html
+├── package.json
+├── package-lock.json
+├── README.md
 ├── tailwind.config.js
 └── vite.config.js
 ```
