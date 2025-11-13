@@ -139,10 +139,20 @@ Leave pull requests better than you found them. Half-measures are discarded with
 ---
 
 ## ⚔️ CONTACT
-
 - GitHub: [masumislambadsha](https://github.com/masumislambadsha)
-- Web: [habittracker.app](https://habit-tracker-54432.web.app/)
+
+- Facebook: [@masum.badsha.420](https://facebook.com/masum.badsha.420/)
+
 - Email: [nkfhhdndjdh@email.com](mailto:nkfhhdndjdh@email.com)
+---
+
+> “Success is the sum of small efforts, repeated day in and day out.” – Robert Collier
+
+---
+
+<div align="center">
+    <strong>⭐ If you like this project, give it a star! ⭐</strong>
+</div>
 
 ---
 
