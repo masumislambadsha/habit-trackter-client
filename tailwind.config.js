@@ -9,9 +9,6 @@ export default {
         secondary: "#8b5cf6",
         accent: "#ec4899",
       },
-      backdropBlur: {
-        xs: "2px",
-      },
       boxShadow: {
         glass: "0 8px 32px 0 rgba(31, 38, 135, 0.37)",
         card: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
