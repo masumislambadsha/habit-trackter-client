@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Dashboard = () => {
+const Profile = () => {
   return (
     <div>
-      
+      Profile
     </div>
   );
 };
 
-export default Dashboard;
+export default Profile;
