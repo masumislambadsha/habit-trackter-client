@@ -4,13 +4,11 @@ import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Explore from "../pages/Explore";
-import MyHabits from "../pages/MyHabits";
-import AddHabit from "../pages/AddHabit";
-import HabitDetails from "../pages/HabitDetails";
-import NotFound from "../pages/NotFound";
+import DashboardLayout from "../components/DashboardLayout";
+import Dashboard from "../pages/Dashboard"; // নতুন
+import Profile from "../pages/Profile"; // নতুন
 import PrivateRoute from "./PrivateRoute";
 import Analytics from "../pages/Analytics";
-import UpdateHabit from "../pages/UpdateHabit";
 import AboutUs from "../pages/AboutUs";
 
 export const router = createBrowserRouter([
@@ -39,44 +37,61 @@ export const router = createBrowserRouter([
         path: "browse",
         element: <Explore />,
       },
-
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: <PrivateRoute />,
+    errorElement: <NotFound />,
+    children: [
       {
-        path: "my-habits",
+        index: true,
         element: (
-          <PrivateRoute>
+          <DashboardLayout>
+            <Dashboard />
+          </DashboardLayout>
+        ),
+      },
+      {
+        path: "habits",
+        element: (
+          <DashboardLayout>
             <MyHabits />
-          </PrivateRoute>
+          </DashboardLayout>
         ),
       },
       {
         path: "add-habit",
         element: (
-          <PrivateRoute>
+          <DashboardLayout>
             <AddHabit />
-          </PrivateRoute>
+          </DashboardLayout>
         ),
       },
       {
-        path: "habit/:id",
-        element: <HabitDetails />,
+        path: "profile",
+        element: (
+          <DashboardLayout>
+            <Profile />
+          </DashboardLayout>
+        ),
+      },
+      {
+        path: "analytics",
+        element: (
+          <DashboardLayout>
+            <Analytics />
+          </DashboardLayout>
+        ),
       },
       {
         path: "update-habit/:id",
         element: (
-          <PrivateRoute>
+          <DashboardLayout>
             <UpdateHabit />
-          </PrivateRoute>
+          </DashboardLayout>
         ),
       },
-      {
-        path: "/analytics",
-        element: (
-          <PrivateRoute>
-            <Analytics />
-          </PrivateRoute>
-        ),
-      },
-      { path: "*", element: <NotFound /> },
     ],
   },
 ]);
