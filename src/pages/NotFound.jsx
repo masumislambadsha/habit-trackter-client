@@ -2,7 +2,7 @@ import { Link } from "react-router";
 import { motion } from "framer-motion";
 import { useTheme } from "../context/ThemeProvider";
 import { useEffect } from "react";
-
+motion;
 const NotFound = () => {
   useEffect(() => {
       document.title = "Habit Tracker | Error Page";

@@ -11,6 +11,7 @@ import NotFound from "../pages/NotFound";
 import PrivateRoute from "./PrivateRoute";
 import Analytics from "../pages/Analytics";
 import UpdateHabit from "../pages/UpdateHabit";
+import AboutUs from "../pages/AboutUs";
 
 export const router = createBrowserRouter([
   {
@@ -27,16 +28,16 @@ export const router = createBrowserRouter([
         element: <Login />,
       },
       {
+        path: "about-us",
+        element: <AboutUs />,
+      },
+      {
         path: "register",
         element: <Register />,
       },
       {
         path: "browse",
-        element: (
-          <PrivateRoute>
-            <Explore />
-          </PrivateRoute>
-        ),
+        element: <Explore />,
       },
 
       {

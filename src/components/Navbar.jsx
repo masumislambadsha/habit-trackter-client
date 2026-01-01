@@ -31,6 +31,7 @@ const Navbar = ({ mobileMenuOpen, setMobileMenuOpen }) => {
   const navLinks = [
     { to: "/", label: "Home" },
     { to: "/browse", label: "Public Habits" },
+    { to: "/about-us", label: "About Us" },
     ...(user
       ? [
           { to: "/add-habit", label: "Add Habit" },
