@@ -58,11 +58,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "habit/:id",
-        element: (
-          <PrivateRoute>
-            <HabitDetails />
-          </PrivateRoute>
-        ),
+        element: <HabitDetails />,
       },
       {
         path: "update-habit/:id",

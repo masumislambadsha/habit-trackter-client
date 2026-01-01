@@ -118,21 +118,21 @@ const Footer = () => {
           </div>
           <div className="flex gap-4 mb-10">
             <a
-              href="#"
+              href="https://facebook.com/masumbadsha.420"
               aria-label="Facebook"
               className="w-10 h-10 bg-[#016B61] rounded-full flex items-center justify-center text-white hover:shadow-lg hover:scale-110 transition"
             >
               <Facebook className="w-5 h-5" />
             </a>
             <a
-              href="#"
+              href="https://linkedin.com/in/masum-islam-badsha"
               aria-label="LinkedIn"
               className="w-10 h-10 bg-[#016B61] rounded-full flex items-center justify-center text-white hover:shadow-lg hover:scale-110 transition"
             >
               <Linkedin className="w-5 h-5" />
             </a>
             <a
-              href="#"
+              href="https://youtube.com"
               aria-label="YouTube"
               className="w-10 h-10 bg-[#016B61] rounded-full flex items-center justify-center text-white hover:shadow-lg hover:scale-110 transition"
             >
