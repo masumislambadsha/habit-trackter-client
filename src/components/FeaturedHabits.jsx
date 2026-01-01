@@ -5,7 +5,8 @@ import { motion } from "framer-motion";
 import LoadingSpinner from "./LoadingSpinner";
 import { FaFire } from "react-icons/fa";
 import { useTheme } from "../context/ThemeProvider";
-
+import HabitCardSkeleton from "./HabitCardSkeleton";
+motion;
 const FeaturedHabits = () => {
   const [habits, setHabits] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -32,7 +33,30 @@ const FeaturedHabits = () => {
     };
   }, []);
 
-  if (loading) return <LoadingSpinner />;
+if (loading) {
+  return (
+    <section
+      className={`py-20 transition-colors duration-300 ${
+        isDark
+          ? "bg-linear-to-b from-gray-800 to-gray-900"
+          : "bg-linear-to-b from-[#E5E9C5] to-white"
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-4">
+        <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 bg-clip-text text-transparent bg-linear-to-r from-[#016B61] to-[#70B2B2]">
+          Featured Habits
+        </h2>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {Array.from({ length: 6 }).map((_, i) => (
+            <HabitCardSkeleton key={i} />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 
   return (
     <section

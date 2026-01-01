@@ -6,11 +6,12 @@ import { motion } from "framer-motion";
 import { useTheme } from "../context/ThemeProvider";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
-
+motion;
 const Login = () => {
   useEffect(() => {
-      document.title = "Habit Tracker | Login";
-    }, []);
+    document.title = "Habit Tracker | Login";
+  }, []);
+
   const { signInUser, signInWithGoogle } = useContext(AuthContext);
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
@@ -49,6 +50,13 @@ const Login = () => {
     }
   };
 
+  const handleDemoFill = () => {
+    setFormData({
+      email: "john@doe.com",
+      password: "123Aa!",
+    });
+  };
+
   return (
     <div
       className={`min-h-screen flex items-center justify-center px-4 transition-colors duration-300 ${
@@ -76,6 +84,7 @@ const Login = () => {
           >
             Welcome Back
           </h2>
+
           <form onSubmit={handleSubmit} className="space-y-5">
             <input
               type="email"
@@ -90,10 +99,12 @@ const Login = () => {
                   : "border-[#9ECFD4] focus:ring-[#016B61] focus:border-[#016B61]"
               }`}
             />
+
             <div className="relative">
               <input
                 type={show ? "text" : "password"}
                 name="password"
+                value={formData.password}
                 onChange={handleChange}
                 placeholder="Password"
                 required
@@ -102,12 +113,12 @@ const Login = () => {
                   isDark
                     ? "bg-gray-700 border-gray-600 text-white placeholder-gray-400 focus:ring-[#9ECFD4] focus:border-[#9ECFD4]"
                     : "border-[#9ECFD4] text-gray-700 focus:ring-[#016B61] focus:border-[#016B61]"
-                } `}
+                }`}
               />
               <button
                 type="button"
                 onClick={() => setShow(!show)}
-                className={`cursor-pointer absolute right-3 top-1/2 transform -translate-y-1/2  ${
+                className={`cursor-pointer absolute right-3 top-1/2 transform -translate-y-1/2 ${
                   isDark ? "text-[#9ECFD4]" : "text-[#016b61]"
                 }`}
               >
@@ -115,14 +126,30 @@ const Login = () => {
               </button>
             </div>
 
-            <button
-              type="submit"
-              disabled={loading}
-              className="cursor-pointer w-full py-4  text-white font-bold rounded-xl hover:shadow-lg disabled:opacity-70 transition-all duration-300 bg-linear-to-r from-[#016B61] to-[#70B2B2] hover:from-[#70B2B2] hover:to-[#9ECFD4] shadow-lg"
-            >
-              {loading ? "Logging in..." : "Login"}
-            </button>
+            <div className="flex gap-3">
+              <button
+                type="submit"
+                disabled={loading}
+                className="flex-1 cursor-pointer py-3.5 text-white font-bold rounded-xl hover:shadow-lg disabled:opacity-70 transition-all duration-300 bg-linear-to-r from-[#016B61] to-[#70B2B2] hover:from-[#70B2B2] hover:to-[#9ECFD4] shadow-lg"
+              >
+                {loading ? "Logging in..." : "Login"}
+              </button>
+
+              <button
+                type="button"
+                onClick={handleDemoFill}
+                disabled={loading}
+                className={`px-4 whitespace-nowrap text-sm font-semibold rounded-xl border transition-colors duration-300 ${
+                  isDark
+                    ? "border-[#70B2B2] text-[#9ECFD4] hover:bg-gray-700"
+                    : "border-[#9ECFD4] text-[#016B61] hover:bg-[#E5E9C5]"
+                }`}
+              >
+                Demo user
+              </button>
+            </div>
           </form>
+
           <div className="mt-6">
             <button
               onClick={handleGoogle}
@@ -136,6 +163,7 @@ const Login = () => {
               <FcGoogle size={22} /> Continue with Google
             </button>
           </div>
+
           <p
             className={`text-center mt-6 ${
               isDark ? "text-gray-400" : "text-gray-600"

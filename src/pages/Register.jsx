@@ -9,8 +9,9 @@ import { FcGoogle } from "react-icons/fc";
 motion;
 const Register = () => {
   useEffect(() => {
-      document.title = "Habit Tracker | Register";
-    }, []);
+    document.title = "Habit Tracker | Register";
+  }, []);
+
   const { createUser, signInWithGoogle } = useContext(AuthContext);
   const navigate = useNavigate();
   const { isDark } = useTheme();
@@ -107,6 +108,17 @@ const Register = () => {
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleDemoFill = () => {
+    setForm({
+      name: "Demo User",
+      email: "demo.user@example.com",
+      password: "Demo123!",
+      confirmPassword: "Demo123!",
+      photoURL:
+        "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg",
+    });
   };
 
   const isReady =
@@ -247,43 +259,58 @@ const Register = () => {
               <p className="text-sm text-red-500 mt-1">{passwordMsg}</p>
             )}
 
-            <button
-              type="submit"
-              disabled={!isReady}
-              className={`cursor-pointer w-full py-3 font-bold rounded-xl text-white transition-all bg-linear-to-r from-[#016B61] to-[#70B2B2] hover:from-[#70B2B2] hover:to-[#9ECFD4] shadow-lg ${
-                isReady
-                  ? "bg-linear-to-r from-[#016B61] to-[#70B2B2] hover:shadow-lg hover:scale-105"
-                  : "bg-gray-400 cursor-not-allowed"
-              }`}
-            >
-              {loading ? (
-                <span className="flex items-center justify-center">
-                  <svg
-                    className="animate-spin -ml-1 mr-3 h-5 w-5 text-white "
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                  >
-                    <circle
-                      className="opacity-25"
-                      cx="12"
-                      cy="12"
-                      r="10"
-                      stroke="currentColor"
-                      strokeWidth="4"
-                    ></circle>
-                    <path
-                      className="opacity-75"
-                      fill="currentColor"
-                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                    ></path>
-                  </svg>
-                  Creating Account...
-                </span>
-              ) : (
-                "Sign Up"
-              )}
-            </button>
+            <div className="flex gap-3">
+              <button
+                type="submit"
+                disabled={!isReady}
+                className={`flex-1 cursor-pointer py-3 font-bold rounded-xl text-white transition-all bg-linear-to-r from-[#016B61] to-[#70B2B2] hover:from-[#70B2B2] hover:to-[#9ECFD4] shadow-lg ${
+                  isReady
+                    ? "hover:shadow-lg hover:scale-105"
+                    : "bg-gray-400 cursor-not-allowed"
+                }`}
+              >
+                {loading ? (
+                  <span className="flex items-center justify-center">
+                    <svg
+                      className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    >
+                      <circle
+                        className="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                      ></circle>
+                      <path
+                        className="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                      ></path>
+                    </svg>
+                    Creating Account...
+                  </span>
+                ) : (
+                  "Sign Up"
+                )}
+              </button>
+
+              <button
+                type="button"
+                onClick={handleDemoFill}
+                disabled={loading}
+                className={`px-4 whitespace-nowrap text-sm font-semibold rounded-xl border transition-colors duration-300 ${
+                  isDark
+                    ? "border-[#70B2B2] text-[#9ECFD4] hover:bg-gray-700"
+                    : "border-[#9ECFD4] text-[#016B61] hover:bg-[#E5E9C5]"
+                }`}
+              >
+                Demo user
+              </button>
+            </div>
           </form>
 
           <div className="flex items-center my-6">

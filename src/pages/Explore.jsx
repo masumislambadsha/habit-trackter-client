@@ -2,8 +2,8 @@ import { useState, useEffect, useMemo } from "react";
 import api from "../utils/Api";
 import { Link } from "react-router";
 import { motion } from "framer-motion";
-import LoadingSpinner from "../components/LoadingSpinner";
 import { useTheme } from "../context/ThemeProvider";
+import HabitCardSkeleton from "../components/HabitCardSkeleton";
 
 const categories = ["All", "Morning", "Fitness", "Study", "Work", "Evening"];
 
@@ -12,7 +12,11 @@ const Explore = () => {
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("All");
-  const [sortOrder,] = useState("none");
+  const [sortOrder, setSortOrder] = useState("none");
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 9;
+
   const { isDark } = useTheme();
 
   useEffect(() => {
@@ -35,6 +39,10 @@ const Explore = () => {
     fetchPublicHabits();
   }, []);
 
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [search, category, sortOrder]);
+
   const filteredAndSortedHabits = useMemo(() => {
     const query = search.trim().toLowerCase();
     const selected = category.toLowerCase();
@@ -48,15 +56,57 @@ const Explore = () => {
     });
 
     const sorted = [...filtered];
-    if (sortOrder === "small") {
-      return sorted.sort((a, b) => (a.downloads || 0) - (b.downloads || 0));
-    } else if (sortOrder === "large") {
-      return sorted.sort((a, b) => (b.downloads || 0) - (a.downloads || 0));
+
+    if (sortOrder === "newest") {
+      return sorted.sort(
+        (a, b) =>
+          new Date(b.createdAt || 0).getTime() -
+          new Date(a.createdAt || 0).getTime()
+      );
+    } else if (sortOrder === "oldest") {
+      return sorted.sort(
+        (a, b) =>
+          new Date(a.createdAt || 0).getTime() -
+          new Date(b.createdAt || 0).getTime()
+      );
     }
+
     return sorted;
   }, [habits, search, category, sortOrder]);
 
-  if (loading) return <LoadingSpinner />;
+  const totalItems = filteredAndSortedHabits.length;
+  const totalPages = Math.max(1, Math.ceil(totalItems / itemsPerPage));
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const currentHabits = filteredAndSortedHabits.slice(
+    startIndex,
+    startIndex + itemsPerPage
+  );
+
+  const handlePageChange = (page) => {
+    if (page < 1 || page > totalPages) return;
+    setCurrentPage(page);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  if (loading) {
+    return (
+      <section
+        className={`py-20 transition-colors duration-300 ${
+          isDark
+            ? "bg-linear-to-b from-gray-800 to-gray-900"
+            : "bg-linear-to-b from-[#E5E9C5] to-white"
+        }`}
+      >
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="mt-40 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {Array.from({ length: 12 }).map((_, i) => (
+              <HabitCardSkeleton key={i} />
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <div
@@ -79,12 +129,20 @@ const Explore = () => {
 
         <div className="flex flex-col items-start md:items-center md:flex-row justify-between gap-6 mb-10">
           <div className="flex items-center gap-4">
-            <div className="w-2 h-12 bg-gradient-to-b from-[#016B61] to-[#70B2B2] rounded-full"></div>
+            <div className="w-2 h-12 bg-gradient-to-b from-[#016B61] to-[#70B2B2] rounded-full" />
             <div>
-              <h2 className={`text-4xl font-bold ${isDark ? "text-white" : "text-gray-800"}`}>
-                {filteredAndSortedHabits.length}
+              <h2
+                className={`text-4xl font-bold ${
+                  isDark ? "text-white" : "text-gray-800"
+                }`}
+              >
+                {totalItems}
               </h2>
-              <p className={`text-sm font-medium ${isDark ? "text-gray-300" : "text-gray-500"}`}>
+              <p
+                className={`text-sm font-medium ${
+                  isDark ? "text-gray-300" : "text-gray-500"
+                }`}
+              >
                 Habits Found
               </p>
             </div>
@@ -132,10 +190,40 @@ const Explore = () => {
                 ))}
               </select>
             </div>
+
+            <div className="relative w-full md:w-auto">
+              <select
+                value={sortOrder}
+                onChange={(e) => setSortOrder(e.target.value)}
+                className={`appearance-none w-full md:w-auto bg-transparent px-5 py-3.5 pr-12 border rounded-xl text-base font-medium focus:outline-none focus:ring-2 transition-all duration-300 cursor-pointer min-w-[170px] ${
+                  isDark
+                    ? "border-gray-600 text-white focus:ring-[#9ECFD4] focus:border-[#9ECFD4]"
+                    : "border-[#9ECFD4] text-[#016B61] focus:ring-[#016B61] focus:border-[#016B61]"
+                }`}
+                style={{
+                  backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='${
+                    isDark ? "%23e5e7eb" : "%236b7280"
+                  }' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e")`,
+                  backgroundPosition: "right 1rem center",
+                  backgroundRepeat: "no-repeat",
+                  backgroundSize: "1.2em",
+                }}
+              >
+                <option value="none" className="bg-white dark:bg-base-300">
+                  Sort: Default
+                </option>
+                <option value="newest" className="bg-white dark:bg-base-300">
+                  Newest first
+                </option>
+                <option value="oldest" className="bg-white dark:bg-base-300">
+                  Oldest first
+                </option>
+              </select>
+            </div>
           </div>
         </div>
 
-        {filteredAndSortedHabits.length === 0 ? (
+        {totalItems === 0 ? (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -148,102 +236,155 @@ const Explore = () => {
             >
               No habits found matching your filters.
             </p>
-            <p className={`mt-2 ${isDark ? "text-gray-400" : "text-gray-600"}`}>
-              Try adjusting your search or category. (Total loaded: {habits.length})
+            <p
+              className={`mt-2 ${
+                isDark ? "text-gray-400" : "text-gray-600"
+              }`}
+            >
+              Try adjusting your search or category. (Total loaded: {habits.length}
+              )
             </p>
           </motion.div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredAndSortedHabits.map((habit, i) => (
-              <motion.div
-                key={habit._id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.05 }}
-                className={`rounded-2xl shadow-lg overflow-hidden border hover:shadow-xl hover:scale-[1.02] transition-all duration-300 ${
+          <>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {currentHabits.map((habit, i) => (
+                <motion.div
+                  key={habit._id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.05 }}
+                  className={`rounded-2xl shadow-lg overflow-hidden border hover:shadow-xl hover:scale-[1.02] transition-all duration-300 ${
+                    isDark
+                      ? "bg-gray-800 border-gray-600 hover:bg-gray-700"
+                      : "bg-white border-[#9ECFD4] hover:bg-gray-50"
+                  }`}
+                >
+                  {habit.image ? (
+                    <img
+                      src={habit.image}
+                      alt={habit.title}
+                      className="w-full h-48 object-cover"
+                      onError={(e) => {
+                        e.currentTarget.src =
+                          "https://via.placeholder.com/400x200/016B61/FFFFFF?text=No+Image";
+                      }}
+                    />
+                  ) : (
+                    <div
+                      className={`h-48 flex items-center justify-center ${
+                        isDark
+                          ? "bg-gradient-to-br from-gray-700 to-gray-600"
+                          : "bg-gradient-to-br from-[#E5E9C5] to-[#9ECFD4]"
+                      }`}
+                    >
+                      <span
+                        className={`font-medium ${
+                          isDark ? "text-[#9ECFD4]" : "text-[#016B61]"
+                        }`}
+                      >
+                        No Image
+                      </span>
+                    </div>
+                  )}
+                  <div className="p-5">
+                    <h3
+                      className={`text-xl font-bold mb-2 line-clamp-1 ${
+                        isDark ? "text-[#9ECFD4]" : "text-[#016B61]"
+                      }`}
+                    >
+                      {habit.title || "Untitled"}
+                    </h3>
+                    <p
+                      className={`text-sm mb-3 line-clamp-2 ${
+                        isDark ? "text-gray-300" : "text-gray-600"
+                      }`}
+                    >
+                      {habit.description || "No description"}
+                    </p>
+                    <div className="flex justify-between items-center">
+                      <span
+                        className={`text-xs px-3 py-1 rounded-full font-medium border ${
+                          isDark
+                            ? "bg-gray-700 text-[#9ECFD4] border-gray-600"
+                            : "bg-[#E5E9C5] text-[#016B61] border-[#016B61]/20"
+                        }`}
+                      >
+                        {habit.category || "Uncategorized"}
+                      </span>
+                      <Link
+                        to={`/habit/${habit._id}`}
+                        className={`text-sm font-semibold hover:underline flex items-center gap-1 ${
+                          isDark ? "text-[#9ECFD4]" : "text-[#016B61]"
+                        }`}
+                      >
+                        View Details
+                        <svg
+                          className="w-4 h-4"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M9 5l7 7-7 7"
+                          />
+                        </svg>
+                      </Link>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+
+            <div className="mt-10 flex flex-wrap items-center justify-center gap-2">
+              <button
+                onClick={() => handlePageChange(currentPage - 1)}
+                disabled={currentPage === 1}
+                className={`px-3 py-1.5 rounded-full text-sm font-medium border ${
                   isDark
-                    ? "bg-gray-800 border-gray-600 hover:bg-gray-700"
-                    : "bg-white border-[#9ECFD4] hover:bg-gray-50"
+                    ? "border-gray-600 text-gray-200 disabled:opacity-40"
+                    : "border-[#9ECFD4] text-[#016B61] disabled:opacity-40"
                 }`}
               >
-                {habit.image ? (
-                  <img
-                    src={habit.image}
-                    alt={habit.title}
-                    className="w-full h-48 object-cover"
-                    onError={(e) => {
-                      e.currentTarget.src =
-                        "https://via.placeholder.com/400x200/016B61/FFFFFF?text=No+Image";
-                    }}
-                  />
-                ) : (
-                  <div
-                    className={`h-48 flex items-center justify-center ${
-                      isDark
-                        ? "bg-gradient-to-br from-gray-700 to-gray-600"
-                        : "bg-gradient-to-br from-[#E5E9C5] to-[#9ECFD4]"
+                Prev
+              </button>
+
+              {Array.from({ length: totalPages }).map((_, idx) => {
+                const page = idx + 1;
+                const isActive = page === currentPage;
+                return (
+                  <button
+                    key={page}
+                    onClick={() => handlePageChange(page)}
+                    className={`w-8 h-8 rounded-full text-sm font-medium border flex items-center justify-center ${
+                      isActive
+                        ? "bg-gradient-to-r from-[#016B61] to-[#70B2B2] text-white border-transparent"
+                        : isDark
+                        ? "border-gray-600 text-gray-200 hover:bg-gray-800"
+                        : "border-[#9ECFD4] text-[#016B61] hover:bg-[#E5E9C5]"
                     }`}
                   >
-                    <span
-                      className={`font-medium ${
-                        isDark ? "text-[#9ECFD4]" : "text-[#016B61]"
-                      }`}
-                    >
-                      No Image
-                    </span>
-                  </div>
-                )}
-                <div className="p-5">
-                  <h3
-                    className={`text-xl font-bold mb-2 line-clamp-1 ${
-                      isDark ? "text-[#9ECFD4]" : "text-[#016B61]"
-                    }`}
-                  >
-                    {habit.title || "Untitled"}
-                  </h3>
-                  <p
-                    className={`text-sm mb-3 line-clamp-2 ${
-                      isDark ? "text-gray-300" : "text-gray-600"
-                    }`}
-                  >
-                    {habit.description || "No description"}
-                  </p>
-                  <div className="flex justify-between items-center">
-                    <span
-                      className={`text-xs px-3 py-1 rounded-full font-medium border ${
-                        isDark
-                          ? "bg-gray-700 text-[#9ECFD4] border-gray-600"
-                          : "bg-[#E5E9C5] text-[#016B61] border-[#016B61]/20"
-                      }`}
-                    >
-                      {habit.category || "Uncategorized"}
-                    </span>
-                    <Link
-                      to={`/habit/${habit._id}`}
-                      className={`text-sm font-semibold hover:underline flex items-center gap-1 ${
-                        isDark ? "text-[#9ECFD4]" : "text-[#016B61]"
-                      }`}
-                    >
-                      View Details
-                      <svg
-                        className="w-4 h-4"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M9 5l7 7-7 7"
-                        />
-                      </svg>
-                    </Link>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+                    {page}
+                  </button>
+                );
+              })}
+
+              <button
+                onClick={() => handlePageChange(currentPage + 1)}
+                disabled={currentPage === totalPages}
+                className={`px-3 py-1.5 rounded-full text-sm font-medium border ${
+                  isDark
+                    ? "border-gray-600 text-gray-200 disabled:opacity-40"
+                    : "border-[#9ECFD4] text-[#016B61] disabled:opacity-40"
+                }`}
+              >
+                Next
+              </button>
+            </div>
+          </>
         )}
       </div>
     </div>
