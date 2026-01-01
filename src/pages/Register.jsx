@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useTheme } from "../context/ThemeProvider";
 import { FcGoogle } from "react-icons/fc";
-
+motion;
 const Register = () => {
   useEffect(() => {
       document.title = "Habit Tracker | Register";

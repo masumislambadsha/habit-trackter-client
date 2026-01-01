@@ -1,24 +1,64 @@
 import React from "react";
-
+import { motion } from "framer-motion";
+motion;
 const AboutUs = () => {
+  const containerVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
+  };
+
+  const staggerContainer = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.15 },
+    },
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 25 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+  };
+
   return (
     <section className="min-h-screen bg-gray-50 mt-15">
       <div className="max-w-5xl mx-auto px-4 py-16">
-        {/* Heading */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+
+        <motion.div
+          className="text-center mb-12"
+          initial="hidden"
+          animate="visible"
+          variants={containerVariants}
+        >
+          <motion.h1
+            className="text-4xl md:text-5xl font-bold text-gray-900 mb-4"
+            whileHover={{ scale: 1.02 }}
+          >
             About <span className="text-[#016B61]">HabitTracker</span>
-          </h1>
+          </motion.h1>
           <p className="text-gray-600 max-w-2xl mx-auto">
             HabitTracker is a daily companion that helps you build small,
             consistent actions into lifelong habits so you can stay focused,
             motivated, and accountable.
           </p>
-        </div>
+        </motion.div>
 
         {/* Mission & Vision */}
-        <div className="grid md:grid-cols-2 gap-8 mb-12">
-          <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+        <motion.div
+          className="grid md:grid-cols-2 gap-8 mb-12"
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+        >
+          <motion.div
+            className="bg-white rounded-xl shadow-sm p-6 border border-gray-100"
+            variants={cardVariants}
+          >
             <h2 className="text-2xl font-semibold text-gray-900 mb-3">
               Our Mission
             </h2>
@@ -27,9 +67,12 @@ const AboutUs = () => {
               We design tools that remove friction, highlight progress, and help
               you stick to the routines that matter most in your life.
             </p>
-          </div>
+          </motion.div>
 
-          <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+          <motion.div
+            className="bg-white rounded-xl shadow-sm p-6 border border-gray-100"
+            variants={cardVariants}
+          >
             <h2 className="text-2xl font-semibold text-gray-900 mb-3">
               Our Vision
             </h2>
@@ -38,24 +81,45 @@ const AboutUs = () => {
               everyone—where tracking habits is less about pressure and more
               about clear feedback, gentle nudges, and celebrating small wins.
             </p>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
         {/* What We Offer */}
-        <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-100 mb-12">
+        <motion.div
+          className="bg-white rounded-xl shadow-sm p-6 border border-gray-100 mb-12"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.25 }}
+        >
           <h2 className="text-2xl font-semibold text-gray-900 mb-4">
             What We Offer
           </h2>
-          <ul className="space-y-3 text-gray-600 list-disc list-inside">
-            <li>Simple habit creation with flexible reminders.</li>
-            <li>Visual streaks that show how consistent you’ve been.</li>
-            <li>Public habits to get inspired by the community.</li>
-            <li>Private dashboards to track your own progress over time.</li>
-          </ul>
-        </div>
+          <motion.ul
+            className="space-y-3 text-gray-600 list-disc list-inside"
+            variants={staggerContainer}
+          >
+            {[
+              "Simple habit creation with flexible reminders.",
+              "Visual streaks that show how consistent you’ve been.",
+              "Public habits to get inspired by the community.",
+              "Private dashboards to track your own progress over time.",
+            ].map((item, index) => (
+              <motion.li key={index} variants={cardVariants}>
+                {item}
+              </motion.li>
+            ))}
+          </motion.ul>
+        </motion.div>
 
-        {/* Team / Closing */}
-        <div className="text-center">
+        {/* Closing */}
+        <motion.div
+          className="text-center"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+        >
           <h2 className="text-2xl font-semibold text-gray-900 mb-3">
             Built for learners, by learners
           </h2>
@@ -69,7 +133,7 @@ const AboutUs = () => {
             Have ideas or feedback? Reach out any time and help shape the next
             version of HabitTracker.
           </p>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

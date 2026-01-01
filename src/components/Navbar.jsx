@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from "react";
-import { Link, useLocation } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { toast } from "react-hot-toast";
 import { ChevronDown, Sun, Moon } from "lucide-react";
 import { AuthContext } from "../context/AuthContext";
@@ -7,10 +7,10 @@ import { useTheme } from "../context/ThemeProvider";
 
 const Navbar = ({ mobileMenuOpen, setMobileMenuOpen }) => {
   const { user, signOutUser } = useContext(AuthContext);
-
   const { isDark, toggleTheme } = useTheme();
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
   const handleLogout = async () => {
     try {
@@ -18,6 +18,7 @@ const Navbar = ({ mobileMenuOpen, setMobileMenuOpen }) => {
       toast.success("Logged out successfully!");
       setDropdownOpen(false);
       if (setMobileMenuOpen) setMobileMenuOpen(false);
+      navigate("/");
     } catch {
       toast.error("Logout failed");
     }
@@ -26,7 +27,7 @@ const Navbar = ({ mobileMenuOpen, setMobileMenuOpen }) => {
   useEffect(() => {
     setDropdownOpen(false);
     if (setMobileMenuOpen) setMobileMenuOpen(false);
-  }, [setMobileMenuOpen]);
+  }, [location.pathname, setMobileMenuOpen]);
 
   const navLinks = [
     { to: "/", label: "Home" },
@@ -36,14 +37,25 @@ const Navbar = ({ mobileMenuOpen, setMobileMenuOpen }) => {
       ? [
           { to: "/add-habit", label: "Add Habit" },
           { to: "/my-habits", label: "My Habits" },
-          { to: "/analytics", label: "Analytics" },
         ]
       : []),
   ];
 
+  const handleProfileClick = () => {
+    setDropdownOpen(false);
+    if (setMobileMenuOpen) setMobileMenuOpen(false);
+    navigate("/profile");
+  };
+
+  const handleAnalyticsClick = () => {
+    setDropdownOpen(false);
+    if (setMobileMenuOpen) setMobileMenuOpen(false);
+    navigate("/analytics");
+  };
+
   return (
     <nav className="glass fixed top-0 z-50 w-full border-b transition-all duration-300 bg-base-100 border-neutral/20 dark:bg-base-300 dark:border-base-200 !backdrop-blur-sm">
-      <div className="max-w-[1400px] mx-auto    sm:px-6 lg:px-8">
+      <div className="max-w-[1400px] mx-auto sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16 lg:h-20">
           <Link
             to="/"
@@ -139,6 +151,18 @@ const Navbar = ({ mobileMenuOpen, setMobileMenuOpen }) => {
                     </div>
 
                     <div className="space-y-3">
+                      <button
+                        onClick={handleProfileClick}
+                        className="w-full btn btn-ghost justify-start rounded-xl h-10 text-sm font-medium"
+                      >
+                        Profile
+                      </button>
+                      <button
+                        onClick={handleAnalyticsClick}
+                        className="w-full btn btn-ghost justify-start rounded-xl h-10 text-sm font-medium"
+                      >
+                        Analytics
+                      </button>
                       <hr className="border-base-200/30" />
                       <button
                         onClick={handleLogout}
@@ -164,38 +188,41 @@ const Navbar = ({ mobileMenuOpen, setMobileMenuOpen }) => {
                 )}
               </div>
             ) : (
-              <Link
-                to="/login"
-                className="btn rounded-xl px-6 h-12 text-sm font-medium shadow-lg border-0  btn-primary  text-white bg-linear-to-r from-[#016B61] to-[#70B2B2]  hover:shadow-[#9ECFD4]/50 transition-all duration-300 overflow-hidden"
-              >
-                Login
-              </Link>
+              <div className="hidden md:block">
+                <Link
+                  to="/login"
+                  className="btn rounded-xl px-6 h-12 text-sm font-medium shadow-lg border-0 btn-primary text-white bg-linear-to-r from-[#016B61] to-[#70B2B2] hover:shadow-[#9ECFD4]/50 transition-all duration-300 overflow-hidden"
+                >
+                  Login
+                </Link>
+              </div>
             )}
-          </div>
-          <button
-            onClick={() =>
-              setMobileMenuOpen && setMobileMenuOpen(!mobileMenuOpen)
-            }
-            className="md:hidden px-7 md:p-2 rounded-xl hover:bg-base-200/50 dark:hover:bg-base-200/30 transition-all"
-          >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
+
+            <button
+              onClick={() =>
+                setMobileMenuOpen && setMobileMenuOpen(!mobileMenuOpen)
+              }
+              className="md:hidden pr-8 md:p-2 rounded-xl hover:bg-base-200/50 dark:hover:bg-base-200/30 transition-all "
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d={
-                  mobileMenuOpen
-                    ? "M6 18L18 6M6 6l12 12"
-                    : "M4 6h16M4 12h16M4 18h16"
-                }
-              />
-            </svg>
-          </button>
+              <svg
+                className="w-6 h-6 "
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d={
+                    mobileMenuOpen
+                      ? "M6 18L18 6M6 6l12 12"
+                      : "M4 6h16M4 12h16M4 18h16"
+                  }
+                />
+              </svg>
+            </button>
+          </div>
         </div>
 
         {mobileMenuOpen && (
@@ -214,6 +241,7 @@ const Navbar = ({ mobileMenuOpen, setMobileMenuOpen }) => {
                 {link.label}
               </Link>
             ))}
+
             {user ? (
               <div className="pt-3 border-t border-base-200">
                 <div className="flex items-center gap-3 px-4 py-3">
@@ -233,9 +261,24 @@ const Navbar = ({ mobileMenuOpen, setMobileMenuOpen }) => {
                     <p className="font-semibold text-sm text-base-content">
                       {user.displayName || user.email.split("@")[0]}
                     </p>
-                    <p className="text-xs text-base-content/60">{user.email}</p>
+                    <p className="text-xs text-base-content/60">
+                      {user.email}
+                    </p>
                   </div>
                 </div>
+
+                <button
+                  onClick={handleProfileClick}
+                  className="w-full mt-2 btn btn-ghost justify-start rounded-xl h-10 text-sm font-medium"
+                >
+                  Profile
+                </button>
+                <button
+                  onClick={handleAnalyticsClick}
+                  className="w-full mt-2 btn btn-ghost justify-start rounded-xl h-10 text-sm font-medium"
+                >
+                  Analytics
+                </button>
                 <button
                   onClick={handleLogout}
                   className="w-full mt-3 btn btn-outline btn-error btn-sm rounded-xl h-10 text-sm font-medium flex items-center gap-2"
@@ -260,15 +303,10 @@ const Navbar = ({ mobileMenuOpen, setMobileMenuOpen }) => {
               <div className="flex flex-col gap-2 pt-3 border-t border-base-200">
                 <Link
                   to="/login"
-                  className="text-white bg-linear-to-r from-[#016B61] to-[#70B2B2] rounded-full shadow-2xl hover:shadow-[#9ECFD4]/50 transition-all duration-300 overflow-hidden"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="btn rounded-full h-10 text-sm font-medium text-white bg-linear-to-r from-[#016B61] to-[#70B2B2] shadow-2xl hover:shadow-[#9ECFD4]/50 transition-all duration-300 overflow-hidden"
                 >
                   Login
-                </Link>
-                <Link
-                  to="/register"
-                  className="btn rounded-xl h-10 text-sm font-medium transition-all btn-primary hover:shadow-primary/20"
-                >
-                  Signup
                 </Link>
               </div>
             )}
