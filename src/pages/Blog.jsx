@@ -14,7 +14,7 @@ import {
   Brain,
   Heart,
 } from "lucide-react";
-
+motion;
 const Blogs = () => {
   const { isDark } = useTheme();
   const [searchQuery, setSearchQuery] = useState("");
