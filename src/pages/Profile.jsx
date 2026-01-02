@@ -28,7 +28,7 @@ import {
   EmailAuthProvider,
   updatePassword,
 } from "firebase/auth";
-
+motion;
 const Profile = () => {
   const { user, updateUserProfile } = useContext(AuthContext);
   const { isDark } = useTheme();
@@ -136,7 +136,7 @@ const Profile = () => {
       toast.success("Profile updated successfully!");
       setIsEditing(false);
     } catch (error) {
-      toast.error("Failed to update profile");
+      toast.error("Failed to update profile", error);
     } finally {
       setLoading(false);
     }

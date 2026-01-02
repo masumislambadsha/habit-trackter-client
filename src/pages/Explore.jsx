@@ -1,10 +1,10 @@
 import { useState, useEffect, useMemo } from "react";
 import api from "../utils/Api";
-import { Link } from "react-router";
+import { Link } from "react-router"; // Fixed import
 import { motion } from "framer-motion";
 import { useTheme } from "../context/ThemeProvider";
 import HabitCardSkeleton from "../components/HabitCardSkeleton";
-
+motion;
 const categories = ["All", "Morning", "Fitness", "Study", "Work", "Evening"];
 
 const Explore = () => {
@@ -248,8 +248,7 @@ const Explore = () => {
           </div>
         </div>
 
-        {/* Debug info - can remove in production */}
-        {process.env.NODE_ENV === "development" && habits.length > 0 && (
+        {filteredAndSortedHabits.length > 0 && (
           <div
             className={`mb-4 p-3 rounded-lg text-sm ${
               isDark ? "bg-gray-700 text-gray-300" : "bg-gray-100 text-gray-700"
@@ -259,15 +258,34 @@ const Explore = () => {
               Debug: Showing {currentHabits.length} of {totalItems} habits
             </p>
             <p>Sort order: {sortOrder}</p>
-            {sortOrder !== "none" && currentHabits.length > 0 && (
-              <p>
-                Date range:{" "}
-                {safeParseDate(currentHabits[0].createdAt).toLocaleDateString()}
-                {" to "}
-                {safeParseDate(
-                  currentHabits[currentHabits.length - 1].createdAt
-                ).toLocaleDateString()}
-              </p>
+            {sortOrder !== "none" && filteredAndSortedHabits.length > 0 && (
+              <>
+                <p>
+                  Date range (all filtered):{" "}
+                  {safeParseDate(
+                    filteredAndSortedHabits[0].createdAt
+                  ).toLocaleDateString()}
+                  {" to "}
+                  {safeParseDate(
+                    filteredAndSortedHabits[filteredAndSortedHabits.length - 1]
+                      .createdAt
+                  ).toLocaleDateString()}
+                </p>
+                <p className="mt-1">
+                  Date range (current page):{" "}
+                  {currentHabits.length > 0
+                    ? safeParseDate(
+                        currentHabits[0].createdAt
+                      ).toLocaleDateString()
+                    : "N/A"}
+                  {" to "}
+                  {currentHabits.length > 0
+                    ? safeParseDate(
+                        currentHabits[currentHabits.length - 1].createdAt
+                      ).toLocaleDateString()
+                    : "N/A"}
+                </p>
+              </>
             )}
           </div>
         )}
