@@ -23,7 +23,7 @@ import {
   Moon,
 } from "lucide-react";
 import { motion } from "framer-motion";
-import toast from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 motion;
 const DashboardLayout = () => {
   const { isDark, toggleTheme } = useTheme();
@@ -367,6 +367,19 @@ const DashboardLayout = () => {
             </div>
           </div>
         </header>
+
+      <Toaster
+        position="bottom-center"
+        toastOptions={{
+          duration: 2000,
+          style: {
+            background: isDark ? "#9ECFD4" : "#016B61",
+            color: "#fff",
+            fontFamily: "inherit",
+            borderRadius: "12px",
+          },
+        }}
+      />
 
         <main className="flex-1 overflow-y-auto p-6">
           <Outlet />
