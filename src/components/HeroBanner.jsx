@@ -128,7 +128,7 @@ const HeroBanner = () => {
                 >
                   <button
                     onClick={() => {
-                      window.location.href = "/add-habit";
+                      window.location.href = "dashboard/add-habit";
                     }}
                     className="group relative inline-flex items-center px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-[#016B61] to-[#70B2B2] rounded-full shadow-2xl hover:shadow-[#9ECFD4]/50 transition-all duration-300 overflow-hidden"
                   >
