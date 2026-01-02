@@ -11,7 +11,7 @@ import {
   Shield,
   Clock,
 } from "lucide-react";
-
+motion;
 const About = () => {
   const { isDark } = useTheme();
 
