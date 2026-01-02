@@ -28,9 +28,7 @@ const Home = () => {
       <ExtraSectionOne />
       <ExtraSectionTwo />
 
-      {/* এখান থেকে শুধু theme isDark দিয়ে control করা extra sections */}
       <div className="mt-28 space-y-24">
-        {/* 3. Categories */}
         <section
           className={`py-12 transition-colors duration-300 ${
             isDark ? "bg-gray-900" : "bg-[#F7FAEF]"
@@ -68,92 +66,6 @@ const Home = () => {
             </div>
           </div>
         </section>
-
-        {/* 4. Featured public habits */}
-        <section
-          className={`py-12 border-t transition-colors duration-300 ${
-            isDark
-              ? "bg-gray-900 border-gray-800"
-              : "bg-[#F7FAEF] border-[#DDE8D0]"
-          }`}
-        >
-          <div className="max-w-6xl mx-auto px-4">
-            <div className="flex items-center justify-between mb-6">
-              <div>
-                <h2
-                  className={`text-2xl md:text-3xl font-bold ${
-                    isDark ? "text-white" : "text-gray-900"
-                  }`}
-                >
-                  Featured public habits
-                </h2>
-                <p
-                  className={`text-xs md:text-sm mt-1 ${
-                    isDark ? "text-gray-300" : "text-gray-600"
-                  }`}
-                >
-                  Recently created habits from the community.
-                </p>
-              </div>
-              <Link
-                to="/browse"
-                className="text-sm font-medium bg-linear-to-r from-[#016B61] to-[#70B2B2] bg-clip-text text-transparent hover:underline"
-              >
-                View all
-              </Link>
-            </div>
-
-            <div className="grid md:grid-cols-3 gap-6">
-              {[1, 2, 3].map((i) => (
-                <div
-                  key={i}
-                  className={`rounded-2xl p-5 flex flex-col justify-between shadow-md transition border ${
-                    isDark
-                      ? "bg-gray-800 border-gray-700 hover:bg-gray-700"
-                      : "bg-white border-[#9ECFD4]/60 hover:border-[#016B61] hover:shadow-lg"
-                  }`}
-                >
-                  <div>
-                    <h3
-                      className={`font-semibold mb-1 ${
-                        isDark ? "text-[#9ECFD4]" : "text-[#016B61]"
-                      }`}
-                    >
-                      Sample Habit {i}
-                    </h3>
-                    <p
-                      className={`text-sm mb-3 ${
-                        isDark ? "text-gray-300" : "text-gray-700"
-                      }`}
-                    >
-                      Short description about how this habit helps you stay
-                      consistent every day.
-                    </p>
-                    <p
-                      className={`text-xs ${
-                        isDark ? "text-gray-400" : "text-gray-500"
-                      }`}
-                    >
-                      by <span className="font-medium">Demo User</span>
-                    </p>
-                  </div>
-                  <Link
-                    to="/auth/login"
-                    className={`mt-4 text-sm font-medium ${
-                      isDark
-                        ? "text-[#9ECFD4] hover:text-white"
-                        : "text-[#016B61] hover:text-[#014c45]"
-                    }`}
-                  >
-                    View details
-                  </Link>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* 5. Why build habits */}
         <section
           className={`py-12 transition-colors duration-300 ${
             isDark
@@ -204,7 +116,6 @@ const Home = () => {
           </div>
         </section>
 
-        {/* 6. Statistics */}
         <section
           className={`py-12 transition-colors duration-300 ${
             isDark ? "bg-gray-900" : "bg-[#F7FAEF]"
@@ -262,7 +173,6 @@ const Home = () => {
           </div>
         </section>
 
-        {/* 7. Testimonials */}
         <section
           className={`py-12 transition-colors duration-300 ${
             isDark
@@ -325,7 +235,6 @@ const Home = () => {
           </div>
         </section>
 
-        {/* 8. Blog / Tips */}
         <section
           className={`py-12 transition-colors duration-300 ${
             isDark ? "bg-gray-900" : "bg-[#F7FAEF]"
@@ -400,12 +309,11 @@ const Home = () => {
           </div>
         </section>
 
-        {/* 9. FAQ */}
         <section
           className={`py-12 transition-colors duration-300 ${
             isDark
               ? "bg-linear-to-b from-gray-900 to-gray-800"
-              : "bg-linear-to-b from-white to-[#E5E9C5]"
+              : "bg-linear-to-b from-[#E5E9C5] to-white"
           }`}
         >
           <div className="max-w-4xl mx-auto px-4">
@@ -470,7 +378,6 @@ const Home = () => {
           </div>
         </section>
 
-        {/* 10. Newsletter / Final CTA */}
         <section
           className={`py-12 transition-colors duration-300 ${
             isDark

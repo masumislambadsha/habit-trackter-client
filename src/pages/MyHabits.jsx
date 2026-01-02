@@ -55,7 +55,7 @@ const MyHabits = () => {
     }
   };
 
-  // Function to check if habit is completed today
+
   const isCompletedToday = (habit) => {
     if (!habit.completionHistory || !habit.completionHistory.length)
       return false;
@@ -72,7 +72,6 @@ const MyHabits = () => {
     const habit = habits.find((h) => h._id === id);
     if (!habit) return;
 
-    // Check if already completed today
     if (isCompletedToday(habit)) {
       toast.error(`${habitTitle} is already completed for today!`, {
         icon: "✅",
@@ -108,7 +107,6 @@ const MyHabits = () => {
         },
       });
     } catch (err) {
-      // Check if error is "Already completed today"
       if (
         err.response?.data?.error === "Already completed today" ||
         err.response?.data?.error?.includes("already completed")
@@ -121,7 +119,6 @@ const MyHabits = () => {
             color: isDark ? "#fff" : "#000",
           },
         });
-        // Update local state to reflect completion
         setHabits((prev) =>
           prev.map((h) =>
             h._id === id
@@ -181,13 +178,11 @@ const MyHabits = () => {
     }
   };
 
-  // Get unique categories
   const categories = [
     "All",
     ...new Set(habits.map((h) => h.category).filter(Boolean)),
   ];
 
-  // Filter and sort habits
   const filteredHabits = habits
     .filter((habit) => {
       const matchesSearch =
@@ -216,7 +211,6 @@ const MyHabits = () => {
       }
     });
 
-  // Calculate stats
   const stats = {
     totalHabits: habits.length,
     totalCompletions: habits.reduce(
@@ -252,7 +246,6 @@ const MyHabits = () => {
       }`}
     >
       <div className="max-w-7xl mx-auto p-6">
-        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -270,7 +263,6 @@ const MyHabits = () => {
           </p>
         </motion.div>
 
-        {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -433,7 +425,6 @@ const MyHabits = () => {
           </motion.div>
         </div>
 
-        {/* Actions Bar */}
         <div
           className={`rounded-2xl shadow-lg p-6 mb-8 ${
             isDark ? "bg-gray-800" : "bg-white"
@@ -523,7 +514,6 @@ const MyHabits = () => {
           </div>
         </div>
 
-        {/* Habits Grid */}
         {filteredHabits.length === 0 ? (
           <div
             className={`rounded-2xl shadow-lg p-12 text-center ${
@@ -609,7 +599,6 @@ const MyHabits = () => {
                       </div>
                     )}
 
-                    {/* Status Badges */}
                     <div className="absolute top-3 right-3 flex flex-col gap-1">
                       <span
                         className={`px-3 py-1 rounded-full text-xs font-bold ${
@@ -761,7 +750,6 @@ const MyHabits = () => {
                       </div>
                     </div>
 
-                    {/* Completion Section */}
                     <div
                       className={`p-3 rounded-lg mb-4 ${
                         completedToday
@@ -782,7 +770,7 @@ const MyHabits = () => {
                               handleComplete(habit._id, habit.title)
                             }
                             disabled
-                            className="px-3 py-1 rounded-lg text-sm font-medium text-black cursor-not-allowed opacity-50"
+                            className="px-3 py-1 rounded-lg text-sm font-medium text-black dark:text-white cursor-not-allowed opacity-50"
                           >
                             Completed
                           </button>
@@ -814,7 +802,6 @@ const MyHabits = () => {
                       )}
                     </div>
 
-                    {/* Actions */}
                     <div className="grid grid-cols-3 gap-2">
                       <Link
                         to={`/habit/${habit._id}`}
@@ -859,7 +846,6 @@ const MyHabits = () => {
           </div>
         )}
 
-        {/* Daily Completion Summary */}
         {habits.length > 0 && (
           <div className="mt-8">
             <motion.div
@@ -874,7 +860,7 @@ const MyHabits = () => {
                   isDark ? "text-white" : "text-gray-900"
                 }`}
               >
-                📊 Today's Completion Summary
+                Today's Completion Summary
               </h3>
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
@@ -914,7 +900,7 @@ const MyHabits = () => {
                   {stats.completedToday === stats.totalHabits ? (
                     <div className="flex items-center gap-2 text-green-600 dark:text-green-400">
                       <CheckCheck size={16} />
-                      <span>🎉 All habits completed! You're amazing!</span>
+                      <span>All habits completed! You're amazing!</span>
                     </div>
                   ) : stats.completedToday === 0 ? (
                     <div className="flex items-center gap-2 text-orange-600 dark:text-orange-400">
@@ -938,7 +924,6 @@ const MyHabits = () => {
           </div>
         )}
 
-        {/* Tips Section */}
         <div className="mt-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

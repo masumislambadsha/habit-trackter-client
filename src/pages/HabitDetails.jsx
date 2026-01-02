@@ -101,27 +101,6 @@ const HabitDetails = () => {
               />
             </div>
           )}
-          <Link
-            to="dashboard/my-habits"
-            className={`inline-flex items-center gap-2 hover:underline font-medium mb-6 text-sm ${
-              isDark ? "text-[#9ECFD4]" : "text-[#016B61]"
-            }`}
-          >
-            <svg
-              className="w-4 h-4"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M15 19l-7-7 7-7"
-              />
-            </svg>
-            Back to My Habits
-          </Link>
           <div className="grid md:grid-cols-2 gap-8">
             <div className="relative overflow-hidden rounded-2xl shadow-lg flex justify-center items-center">
               {habit.image ? (

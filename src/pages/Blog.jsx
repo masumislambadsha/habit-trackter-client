@@ -142,7 +142,6 @@ const Blogs = () => {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -155,7 +154,7 @@ const Blogs = () => {
                 isDark ? "text-[#70B2B2]" : "text-[#016B61]"
               }`}
             >
-              HabitFlow Blog
+              Habit Tracker Blog
             </span>
           </div>
 
@@ -180,7 +179,6 @@ const Blogs = () => {
           </p>
         </motion.div>
 
-        {/* Search and Filter */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -230,7 +228,6 @@ const Blogs = () => {
           </div>
         </motion.div>
 
-        {/* Featured Posts */}
         {blogPosts.filter((post) => post.featured).length > 0 && (
           <div className="mb-12">
             <h2
@@ -337,7 +334,6 @@ const Blogs = () => {
           </div>
         )}
 
-        {/* All Posts Grid */}
         <div className="mb-12">
           <div className="flex items-center justify-between mb-6">
             <h2
@@ -463,7 +459,6 @@ const Blogs = () => {
           )}
         </div>
 
-        {/* Featured Authors */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -512,7 +507,6 @@ const Blogs = () => {
           </div>
         </motion.div>
 
-        {/* Newsletter Signup */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

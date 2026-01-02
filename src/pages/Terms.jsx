@@ -11,7 +11,7 @@ const Terms = () => {
       icon: <BookOpen size={20} />,
       title: "Acceptance of Terms",
       description:
-        "By accessing and using HabitFlow, you accept and agree to be bound by these Terms.",
+        "By accessing and using Habit Tracker, you accept and agree to be bound by these Terms.",
     },
     {
       icon: <Shield size={20} />,
@@ -34,7 +34,7 @@ const Terms = () => {
       }`}
     >
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {/* Header */}
+
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -74,7 +74,7 @@ const Terms = () => {
             isDark ? "bg-gray-800" : "bg-white"
           } shadow-lg overflow-hidden`}
         >
-          {/* Key Points */}
+
           <div
             className={`p-8 border-b ${
               isDark ? "border-gray-700" : "border-gray-200"
@@ -134,7 +134,7 @@ const Terms = () => {
             </div>
           </div>
 
-          {/* Content */}
+    
           <div className="p-8">
             <div className="prose prose-lg max-w-none">
               <div className={`${isDark ? "prose-invert" : ""}`}>
@@ -142,7 +142,7 @@ const Terms = () => {
                   1. Agreement to Terms
                 </h2>
                 <p className={isDark ? "text-gray-300" : "text-gray-600"}>
-                  By accessing or using HabitFlow's services, websites, and
+                  By accessing or using Habit Tracker's services, websites, and
                   applications (collectively, the "Service"), you agree to be
                   bound by these Terms of Service ("Terms"). If you disagree
                   with any part of the terms, you may not access the Service.
@@ -154,7 +154,7 @@ const Terms = () => {
                   2. Description of Service
                 </h2>
                 <p className={isDark ? "text-gray-300" : "text-gray-600"}>
-                  HabitFlow provides a digital platform for tracking habits,
+                  Habit Tracker provides a digital platform for tracking habits,
                   setting goals, and monitoring personal development. The
                   Service includes features such as habit tracking, reminders,
                   analytics, and community features.
@@ -241,7 +241,7 @@ const Terms = () => {
                 </h2>
                 <p className={isDark ? "text-gray-300" : "text-gray-600"}>
                   The Service and its original content, features, and
-                  functionality are owned by HabitFlow and are protected by
+                  functionality are owned by Habit Tracker and are protected by
                   international copyright, trademark, patent, trade secret, and
                   other intellectual property laws.
                 </p>
@@ -264,7 +264,7 @@ const Terms = () => {
                   9. Limitation of Liability
                 </h2>
                 <p className={isDark ? "text-gray-300" : "text-gray-600"}>
-                  In no event shall HabitFlow, nor its directors, employees,
+                  In no event shall Habit Tracker, nor its directors, employees,
                   partners, agents, suppliers, or affiliates, be liable for any
                   indirect, incidental, special, consequential or punitive
                   damages, including without limitation, loss of profits, data,
@@ -322,13 +322,13 @@ const Terms = () => {
                   }`}
                 >
                   <p className={isDark ? "text-gray-300" : "text-gray-700"}>
-                    <strong>HabitFlow Inc.</strong>
+                    <strong>Habit Tracker Inc.</strong>
                     <br />
                     123 Habit Street, Suite 100
                     <br />
                     San Francisco, CA 94107
                     <br />
-                    legal@habitflow.com
+                    legal@Habit Tracker.com
                   </p>
                 </div>
 
@@ -352,9 +352,9 @@ const Terms = () => {
                           isDark ? "text-yellow-300" : "text-yellow-700"
                         }`}
                       >
-                        <strong>Disclaimer:</strong> HabitFlow is designed for
-                        personal development and habit tracking purposes only.
-                        It is not intended to replace professional medical
+                        <strong>Disclaimer:</strong> Habit Tracker is designed
+                        for personal development and habit tracking purposes
+                        only. It is not intended to replace professional medical
                         advice, diagnosis, or treatment. Always seek the advice
                         of qualified health providers with any questions you may
                         have regarding a medical condition.

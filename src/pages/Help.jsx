@@ -191,7 +191,6 @@ const Help = () => {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -225,11 +224,11 @@ const Help = () => {
               isDark ? "text-gray-300" : "text-gray-600"
             }`}
           >
-            Find answers, guides, and support for all your HabitFlow questions.
+            Find answers, guides, and support for all your Habit Tracker
+            questions.
           </p>
         </motion.div>
 
-        {/* Search Bar */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -264,7 +263,6 @@ const Help = () => {
           </p>
         </motion.div>
 
-        {/* Tabs */}
         <div className="flex border-b mb-8">
           <button
             onClick={() => setActiveTab("faq")}
@@ -343,7 +341,6 @@ const Help = () => {
               exit={{ opacity: 0, y: -20 }}
               className="space-y-8"
             >
-              {/* Search Results */}
               {searchQuery && (
                 <div>
                   <h2
@@ -439,7 +436,6 @@ const Help = () => {
                 </div>
               )}
 
-              {/* FAQ Categories */}
               <div className="space-y-8">
                 {faqCategories.map((category, categoryIndex) => (
                   <motion.div
@@ -528,7 +524,6 @@ const Help = () => {
               exit={{ opacity: 0, y: -20 }}
               className="space-y-8"
             >
-              {/* Support Channels */}
               <div className="grid md:grid-cols-3 gap-6">
                 {supportChannels.map((channel, index) => (
                   <motion.div
@@ -594,7 +589,6 @@ const Help = () => {
                 ))}
               </div>
 
-              {/* Status */}
               <div
                 className={`rounded-2xl p-6 ${
                   isDark ? "bg-gray-800" : "bg-white"
@@ -661,7 +655,6 @@ const Help = () => {
               exit={{ opacity: 0, y: -20 }}
               className="space-y-8"
             >
-              {/* Resources Grid */}
               <div className="grid md:grid-cols-3 gap-6">
                 {resources.map((resource, index) => (
                   <motion.div
@@ -728,7 +721,6 @@ const Help = () => {
                 ))}
               </div>
 
-              {/* Quick Links */}
               <div
                 className={`rounded-2xl p-8 ${
                   isDark ? "bg-gray-800" : "bg-white"

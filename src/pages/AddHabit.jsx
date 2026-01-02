@@ -72,9 +72,13 @@ const AddHabit = () => {
   ];
 
   return (
-    <div className={ `mt-20 min-h-screen transition-colors duration-300 ${isDark ? "bg-gray-900" : "bg-gray-50"}`}>
-      <div className="max-w-4xl mx-auto p-6">
-        {/* Header */}
+    <div
+      className={`-mt-6 min-h-screen transition-colors duration-300 ${
+        isDark ? "bg-gray-900" : "bg-gray-50"
+      }`}
+    >
+      <div className="max-w-6xl mx-auto p-6">
+        Heade
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -91,58 +95,96 @@ const AddHabit = () => {
                 <ArrowLeft size={20} />
                 Back to Dashboard
               </button>
-              <h1 className={`text-3xl font-bold ${isDark ? "text-white" : "text-gray-900"}`}>
+              <h1
+                className={`text-3xl font-bold ${
+                  isDark ? "text-white" : "text-gray-900"
+                }`}
+              >
                 Create New Habit
               </h1>
-              <p className={`mt-2 ${isDark ? "text-gray-400" : "text-gray-600"}`}>
+              <p
+                className={`mt-2 ${isDark ? "text-gray-400" : "text-gray-600"}`}
+              >
                 Build consistency, one day at a time
               </p>
             </div>
           </div>
         </motion.div>
-
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Left Column - Form */}
+          Left Column - For
           <div className="lg:col-span-2">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className={`rounded-2xl shadow-lg ${isDark ? "bg-gray-800" : "bg-white"}`}
+              className={`rounded-2xl shadow-lg ${
+                isDark ? "bg-gray-800" : "bg-white"
+              }`}
             >
               <div className="p-6 border-b border-gray-200 dark:border-gray-700">
-                <h2 className={`text-xl font-bold ${isDark ? "text-white" : "text-gray-900"}`}>
+                <h2
+                  className={`text-xl font-bold ${
+                    isDark ? "text-white" : "text-gray-900"
+                  }`}
+                >
                   Habit Details
                 </h2>
               </div>
 
               <form onSubmit={handleSubmit} className="p-6 space-y-6">
-                {/* User Info */}
+                User Inf
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <label className={`block text-sm font-medium mb-2 ${isDark ? "text-gray-300" : "text-gray-700"}`}>
+                    <label
+                      className={`block text-sm font-medium mb-2 ${
+                        isDark ? "text-gray-300" : "text-gray-700"
+                      }`}
+                    >
                       Creator
                     </label>
-                    <div className={`p-3 rounded-xl ${isDark ? "bg-gray-700" : "bg-gray-100"}`}>
-                      <p className={`font-medium ${isDark ? "text-white" : "text-gray-900"}`}>
+                    <div
+                      className={`p-3 rounded-xl ${
+                        isDark ? "bg-gray-700" : "bg-gray-100"
+                      }`}
+                    >
+                      <p
+                        className={`font-medium ${
+                          isDark ? "text-white" : "text-gray-900"
+                        }`}
+                      >
                         {user?.displayName || "Anonymous"}
                       </p>
                     </div>
                   </div>
                   <div>
-                    <label className={`block text-sm font-medium mb-2 ${isDark ? "text-gray-300" : "text-gray-700"}`}>
+                    <label
+                      className={`block text-sm font-medium mb-2 ${
+                        isDark ? "text-gray-300" : "text-gray-700"
+                      }`}
+                    >
                       Email
                     </label>
-                    <div className={`p-3 rounded-xl ${isDark ? "bg-gray-700" : "bg-gray-100"}`}>
-                      <p className={`${isDark ? "text-gray-300" : "text-gray-600"}`}>
+                    <div
+                      className={`p-3 rounded-xl ${
+                        isDark ? "bg-gray-700" : "bg-gray-100"
+                      }`}
+                    >
+                      <p
+                        className={`${
+                          isDark ? "text-gray-300" : "text-gray-600"
+                        }`}
+                      >
                         {user?.email}
                       </p>
                     </div>
                   </div>
                 </div>
-
                 <div>
-                  <label className={`block text font-semibold mb-2 ${isDark ? "text-gray-300" : "text-gray-700"}`}>
+                  <label
+                    className={`block text font-semibold mb-2 ${
+                      isDark ? "text-gray-300" : "text-gray-700"
+                    }`}
+                  >
                     Habit Title *
                   </label>
                   <input
@@ -160,18 +202,28 @@ const AddHabit = () => {
                     }`}
                   />
                   <div className="flex justify-between items-center mt-1">
-                    <p className={`text-xs ${isDark ? "text-gray-400" : "text-gray-500"}`}>
+                    <p
+                      className={`text-xs ${
+                        isDark ? "text-gray-400" : "text-gray-500"
+                      }`}
+                    >
                       Make it clear and actionable
                     </p>
-                    <p className={`text-xs ${isDark ? "text-gray-400" : "text-gray-500"}`}>
+                    <p
+                      className={`text-xs ${
+                        isDark ? "text-gray-400" : "text-gray-500"
+                      }`}
+                    >
                       {formData.title.length}/60
                     </p>
                   </div>
                 </div>
-
-                {/* Description */}
                 <div>
-                  <label className={`block text font-semibold mb-2 ${isDark ? "text-gray-300" : "text-gray-700"}`}>
+                  <label
+                    className={`block text font-semibold mb-2 ${
+                      isDark ? "text-gray-300" : "text-gray-700"
+                    }`}
+                  >
                     Description *
                   </label>
                   <textarea
@@ -189,18 +241,28 @@ const AddHabit = () => {
                     }`}
                   />
                   <div className="flex justify-between items-center mt-1">
-                    <p className={`text-xs ${isDark ? "text-gray-400" : "text-gray-500"}`}>
+                    <p
+                      className={`text-xs ${
+                        isDark ? "text-gray-400" : "text-gray-500"
+                      }`}
+                    >
                       Keep it motivational
                     </p>
-                    <p className={`text-xs ${isDark ? "text-gray-400" : "text-gray-500"}`}>
+                    <p
+                      className={`text-xs ${
+                        isDark ? "text-gray-400" : "text-gray-500"
+                      }`}
+                    >
                       {formData.description.length}/200
                     </p>
                   </div>
                 </div>
-
-                {/* Category Selection */}
                 <div>
-                  <label className={`block text font-semibold mb-2 ${isDark ? "text-gray-300" : "text-gray-700"}`}>
+                  <label
+                    className={`block text font-semibold mb-2 ${
+                      isDark ? "text-gray-300" : "text-gray-700"
+                    }`}
+                  >
                     Category *
                   </label>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
@@ -208,37 +270,59 @@ const AddHabit = () => {
                       <button
                         key={cat.value}
                         type="button"
-                        onClick={() => setFormData(prev => ({ ...prev, category: cat.value }))}
+                        onClick={() =>
+                          setFormData((prev) => ({
+                            ...prev,
+                            category: cat.value,
+                          }))
+                        }
                         className={`p-3 rounded-xl border transition-all duration-300 text-left ${
                           formData.category === cat.value
                             ? "ring-2 ring-opacity-50"
                             : "hover:scale-[1.02]"
                         }`}
                         style={{
-                          borderColor: formData.category === cat.value ? cat.color : isDark ? "#374151" : "#D1D5DB",
-                          backgroundColor: formData.category === cat.value
-                            ? isDark
-                              ? `${cat.color}20`
-                              : `${cat.color}10`
-                            : isDark
+                          borderColor:
+                            formData.category === cat.value
+                              ? cat.color
+                              : isDark
+                              ? "#374151"
+                              : "#D1D5DB",
+                          backgroundColor:
+                            formData.category === cat.value
+                              ? isDark
+                                ? `${cat.color}20`
+                                : `${cat.color}10`
+                              : isDark
                               ? "#374151"
                               : "#F3F4F6",
-                          boxShadow: formData.category === cat.value ? `0 0 0 2px ${cat.color}40` : 'none',
+                          boxShadow:
+                            formData.category === cat.value
+                              ? `0 0 0 2px ${cat.color}40`
+                              : "none",
                         }}
                       >
-                        <span className="block text-xl mb-1">{cat.label.split(" ")[0]}</span>
-                        <span className={`text-xs ${isDark ? "text-gray-300" : "text-gray-600"}`}>
+                        <span className="block text-xl mb-1">
+                          {cat.label.split(" ")[0]}
+                        </span>
+                        <span
+                          className={`text-xs ${
+                            isDark ? "text-gray-300" : "text-gray-600"
+                          }`}
+                        >
                           {cat.label.split(" ").slice(1).join(" ")}
                         </span>
                       </button>
                     ))}
                   </div>
                 </div>
-
-                {/* Reminder Time & Image URL */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label className={`block text-sm font-medium mb-2 ${isDark ? "text-gray-300" : "text-gray-700"}`}>
+                    <label
+                      className={`block text-sm font-medium mb-2 ${
+                        isDark ? "text-gray-300" : "text-gray-700"
+                      }`}
+                    >
                       Daily Reminder Time
                     </label>
                     <div className="relative">
@@ -254,13 +338,21 @@ const AddHabit = () => {
                         }`}
                       />
                     </div>
-                    <p className={`text-xs mt-1 ${isDark ? "text-gray-400" : "text-gray-500"}`}>
+                    <p
+                      className={`text-xs mt-1 ${
+                        isDark ? "text-gray-400" : "text-gray-500"
+                      }`}
+                    >
                       We'll remind you at this time
                     </p>
                   </div>
 
                   <div>
-                    <label className={`block text-sm font-medium mb-2 ${isDark ? "text-gray-300" : "text-gray-700"}`}>
+                    <label
+                      className={`block text-sm font-medium mb-2 ${
+                        isDark ? "text-gray-300" : "text-gray-700"
+                      }`}
+                    >
                       Cover Image URL
                     </label>
                     <div className="relative">
@@ -276,18 +368,29 @@ const AddHabit = () => {
                             : "border-gray-300 focus:ring-[#016B61] focus:border-[#016B61]"
                         }`}
                       />
-                      <Upload className={`absolute right-3 top-1/2 transform -translate-y-1/2 ${isDark ? "text-gray-400" : "text-gray-500"}`} size={20} />
+                      <Upload
+                        className={`absolute right-3 top-1/2 transform -translate-y-1/2 ${
+                          isDark ? "text-gray-400" : "text-gray-500"
+                        }`}
+                        size={20}
+                      />
                     </div>
-                    <p className={`text-xs mt-1 ${isDark ? "text-gray-400" : "text-gray-500"}`}>
+                    <p
+                      className={`text-xs mt-1 ${
+                        isDark ? "text-gray-400" : "text-gray-500"
+                      }`}
+                    >
                       Optional: Add a motivational image
                     </p>
                   </div>
                 </div>
-
-                {/* Image Preview */}
                 {formData.image && (
                   <div>
-                    <label className={`block text-sm font-medium mb-2 ${isDark ? "text-gray-300" : "text-gray-700"}`}>
+                    <label
+                      className={`block text-sm font-medium mb-2 ${
+                        isDark ? "text-gray-300" : "text-gray-700"
+                      }`}
+                    >
                       Image Preview
                     </label>
                     <div className="relative rounded-xl overflow-hidden border-2 border-dashed border-gray-300 dark:border-gray-600">
@@ -296,12 +399,15 @@ const AddHabit = () => {
                         alt="Preview"
                         className="w-full h-48 object-cover"
                         onError={(e) => {
-                          e.target.src = "https://via.placeholder.com/800x400/016B61/FFFFFF?text=Invalid+Image+URL";
+                          e.target.src =
+                            "https://via.placeholder.com/800x400/016B61/FFFFFF?text=Invalid+Image+URL";
                         }}
                       />
                       <button
                         type="button"
-                        onClick={() => setFormData(prev => ({ ...prev, image: "" }))}
+                        onClick={() =>
+                          setFormData((prev) => ({ ...prev, image: "" }))
+                        }
                         className="absolute top-2 right-2 p-2 bg-red-500 text-white rounded-full hover:bg-red-600 transition-colors"
                       >
                         ×
@@ -309,27 +415,50 @@ const AddHabit = () => {
                     </div>
                   </div>
                 )}
-
-                {/* Privacy Toggle */}
-                <div className={`p-4 rounded-xl ${isDark ? "bg-gray-700" : "bg-gray-100"}`}>
+                <div
+                  className={`p-4 rounded-xl ${
+                    isDark ? "bg-gray-700" : "bg-gray-100"
+                  }`}
+                >
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                      <div className={`p-2 rounded-lg ${isDark ? "bg-gray-600" : "bg-white"}`}>
+                      <div
+                        className={`p-2 rounded-lg ${
+                          isDark ? "bg-gray-600" : "bg-white"
+                        }`}
+                      >
                         {formData.public ? (
-                          <Globe className={isDark ? "text-[#9ECFD4]" : "text-[#016B61]"} size={20} />
+                          <Globe
+                            className={
+                              isDark ? "text-[#9ECFD4]" : "text-[#016B61]"
+                            }
+                            size={20}
+                          />
                         ) : (
-                          <Lock className={isDark ? "text-gray-400" : "text-gray-500"} size={20} />
+                          <Lock
+                            className={
+                              isDark ? "text-gray-400" : "text-gray-500"
+                            }
+                            size={20}
+                          />
                         )}
                       </div>
                       <div>
-                        <p className={`font-medium ${isDark ? "text-white" : "text-gray-900"}`}>
+                        <p
+                          className={`font-medium ${
+                            isDark ? "text-white" : "text-gray-900"
+                          }`}
+                        >
                           {formData.public ? "Public Habit" : "Private Habit"}
                         </p>
-                        <p className={`text-sm ${isDark ? "text-gray-400" : "text-gray-500"}`}>
+                        <p
+                          className={`text-sm ${
+                            isDark ? "text-gray-400" : "text-gray-500"
+                          }`}
+                        >
                           {formData.public
                             ? "Visible to the community"
-                            : "Only visible to you"
-                          }
+                            : "Only visible to you"}
                         </p>
                       </div>
                     </div>
@@ -341,18 +470,20 @@ const AddHabit = () => {
                         onChange={handleChange}
                         className="sr-only peer"
                       />
-                      <div className={`w-11 h-6 rounded-full peer peer-focus:outline-none peer-focus:ring-2 ${
-                        isDark
-                          ? 'bg-gray-600 peer-focus:ring-[#70B2B2] peer-checked:bg-[#70B2B2]'
-                          : 'bg-gray-300 peer-focus:ring-[#016B61] peer-checked:bg-[#016B61]'
-                      }`}>
-                        <div className={`absolute top-0.5 left-0.5 bg-white rounded-full h-5 w-5 transition-transform peer-checked:translate-x-full`} />
+                      <div
+                        className={`w-11 h-6 rounded-full peer peer-focus:outline-none peer-focus:ring-2 ${
+                          isDark
+                            ? "bg-gray-600 peer-focus:ring-[#70B2B2] peer-checked:bg-[#70B2B2]"
+                            : "bg-gray-300 peer-focus:ring-[#016B61] peer-checked:bg-[#016B61]"
+                        }`}
+                      >
+                        <div
+                          className={`absolute top-0.5 left-0.5 bg-white rounded-full h-5 w-5 transition-transform peer-checked:translate-x-full`}
+                        />
                       </div>
                     </label>
                   </div>
                 </div>
-
-                {/* Submit Button */}
                 <div className="pt-4">
                   <button
                     type="submit"
@@ -365,9 +496,25 @@ const AddHabit = () => {
                   >
                     {loading ? (
                       <span className="flex items-center justify-center">
-                        <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        <svg
+                          className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                        >
+                          <circle
+                            className="opacity-25"
+                            cx="12"
+                            cy="12"
+                            r="10"
+                            stroke="currentColor"
+                            strokeWidth="4"
+                          ></circle>
+                          <path
+                            className="opacity-75"
+                            fill="currentColor"
+                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                          ></path>
                         </svg>
                         Creating Habit...
                       </span>
@@ -390,72 +537,124 @@ const AddHabit = () => {
               </form>
             </motion.div>
           </div>
-
-          {/* Right Column - Tips */}
           <div className="space-y-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className={`rounded-2xl shadow-lg ${isDark ? "bg-gray-800" : "bg-white"}`}
+              className={`rounded-2xl shadow-lg ${
+                isDark ? "bg-gray-800" : "bg-white"
+              }`}
             >
               <div className="p-6 border-b border-gray-200 dark:border-gray-700">
-                <h3 className={`text-lg font-bold ${isDark ? "text-white" : "text-gray-900"}`}>
+                <h3
+                  className={`text-lg font-bold ${
+                    isDark ? "text-white" : "text-gray-900"
+                  }`}
+                >
                   💡 Tips for Success
                 </h3>
               </div>
               <div className="p-6 space-y-4">
                 <div className="flex items-start gap-3">
-                  <div className={`p-2 rounded-lg ${isDark ? "bg-gray-700" : "bg-gray-100"}`}>
+                  <div
+                    className={`p-2 rounded-lg ${
+                      isDark ? "bg-gray-700" : "bg-gray-100"
+                    }`}
+                  >
                     <span className="text-lg">🎯</span>
                   </div>
                   <div>
-                    <p className={`font-medium ${isDark ? "text-white" : "text-gray-900"}`}>
+                    <p
+                      className={`font-medium ${
+                        isDark ? "text-white" : "text-gray-900"
+                      }`}
+                    >
                       Start Small
                     </p>
-                    <p className={`text-sm ${isDark ? "text-gray-400" : "text-gray-500"}`}>
+                    <p
+                      className={`text-sm ${
+                        isDark ? "text-gray-400" : "text-gray-500"
+                      }`}
+                    >
                       Begin with 5-minute habits for better consistency.
                     </p>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-3">
-                  <div className={`p-2 rounded-lg ${isDark ? "bg-gray-700" : "bg-gray-100"}`}>
+                  <div
+                    className={`p-2 rounded-lg ${
+                      isDark ? "bg-gray-700" : "bg-gray-100"
+                    }`}
+                  >
                     <span className="text-lg">⏰</span>
                   </div>
                   <div>
-                    <p className={`font-medium ${isDark ? "text-white" : "text-gray-900"}`}>
+                    <p
+                      className={`font-medium ${
+                        isDark ? "text-white" : "text-gray-900"
+                      }`}
+                    >
                       Set Reminders
                     </p>
-                    <p className={`text-sm ${isDark ? "text-gray-400" : "text-gray-500"}`}>
+                    <p
+                      className={`text-sm ${
+                        isDark ? "text-gray-400" : "text-gray-500"
+                      }`}
+                    >
                       Choose a specific time that fits your routine.
                     </p>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-3">
-                  <div className={`p-2 rounded-lg ${isDark ? "bg-gray-700" : "bg-gray-100"}`}>
+                  <div
+                    className={`p-2 rounded-lg ${
+                      isDark ? "bg-gray-700" : "bg-gray-100"
+                    }`}
+                  >
                     <span className="text-lg">📈</span>
                   </div>
                   <div>
-                    <p className={`font-medium ${isDark ? "text-white" : "text-gray-900"}`}>
+                    <p
+                      className={`font-medium ${
+                        isDark ? "text-white" : "text-gray-900"
+                      }`}
+                    >
                       Track Progress
                     </p>
-                    <p className={`text-sm ${isDark ? "text-gray-400" : "text-gray-500"}`}>
+                    <p
+                      className={`text-sm ${
+                        isDark ? "text-gray-400" : "text-gray-500"
+                      }`}
+                    >
                       Daily streaks build momentum and motivation.
                     </p>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-3">
-                  <div className={`p-2 rounded-lg ${isDark ? "bg-gray-700" : "bg-gray-100"}`}>
+                  <div
+                    className={`p-2 rounded-lg ${
+                      isDark ? "bg-gray-700" : "bg-gray-100"
+                    }`}
+                  >
                     <span className="text-lg">🤝</span>
                   </div>
                   <div>
-                    <p className={`font-medium ${isDark ? "text-white" : "text-gray-900"}`}>
+                    <p
+                      className={`font-medium ${
+                        isDark ? "text-white" : "text-gray-900"
+                      }`}
+                    >
                       Share Publicly
                     </p>
-                    <p className={`text-sm ${isDark ? "text-gray-400" : "text-gray-500"}`}>
+                    <p
+                      className={`text-sm ${
+                        isDark ? "text-gray-400" : "text-gray-500"
+                      }`}
+                    >
                       Public habits get community support and accountability.
                     </p>
                   </div>
@@ -467,32 +666,10 @@ const AddHabit = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
-              className={`rounded-2xl shadow-lg ${isDark ? "bg-gray-800" : "bg-white"}`}
-            >
-              <div className="p-6 border-b border-gray-200 dark:border-gray-700">
-                <h3 className={`text-lg font-bold ${isDark ? "text-white" : "text-gray-900"}`}>
-                  📊 Your Stats
-                </h3>
-              </div>
-              <div className="p-6">
-                <div className={`p-4 rounded-xl mb-4 ${isDark ? "bg-gray-700" : "bg-gray-100"}`}>
-                  <p className={`text-sm mb-1 ${isDark ? "text-gray-400" : "text-gray-500"}`}>
-                    Habits Created
-                  </p>
-                  <p className={`text-2xl font-bold ${isDark ? "text-white" : "text-gray-900"}`}>
-                    Coming Soon
-                  </p>
-                </div>
-                <div className={`p-4 rounded-xl ${isDark ? "bg-gray-700" : "bg-gray-100"}`}>
-                  <p className={`text-sm mb-1 ${isDark ? "text-gray-400" : "text-gray-500"}`}>
-                    Current Streak
-                  </p>
-                  <p className={`text-2xl font-bold ${isDark ? "text-white" : "text-gray-900"}`}>
-                    0 days
-                  </p>
-                </div>
-              </div>
-            </motion.div>
+              className={`rounded-2xl shadow-lg ${
+                isDark ? "bg-gray-800" : "bg-white"
+              }`}
+            ></motion.div>
           </div>
         </div>
       </div>

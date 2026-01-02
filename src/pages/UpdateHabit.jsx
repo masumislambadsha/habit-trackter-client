@@ -234,7 +234,7 @@ const UpdateHabit = () => {
                 type="url"
                 value={form.image}
                 onChange={(e) => setForm({ ...form, image: e.target.value })}
-                placeholder="https://example.com/image.jpg"
+                placeholder="https://imageLink.com/image.jpg"
                 className={`w-full px-5 py-3 border rounded-xl focus:ring-2 focus:border-transparent transition-colors duration-300 ${
                   isDark
                     ? "bg-gray-700 border-gray-600 text-white placeholder-gray-400 focus:ring-[#9ECFD4] focus:border-[#9ECFD4]"

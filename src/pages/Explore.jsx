@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from "react";
 import api from "../utils/Api";
-import { Link } from "react-router"; // Fixed import
+import { Link } from "react-router"; 
 import { motion } from "framer-motion";
 import { useTheme } from "../context/ThemeProvider";
 import HabitCardSkeleton from "../components/HabitCardSkeleton";
@@ -43,17 +43,17 @@ const Explore = () => {
     setCurrentPage(1);
   }, [search, category, sortOrder]);
 
-  // Helper function to safely parse dates
+
   const safeParseDate = (dateString) => {
-    if (!dateString) return new Date(0); // Return epoch for undefined/null
+    if (!dateString) return new Date(0);
 
     try {
       const date = new Date(dateString);
-      // Check if date is valid
+
       return isNaN(date.getTime()) ? new Date(0) : date;
     } catch (error) {
       console.error("Error parsing date:", dateString, error);
-      return new Date(0); // Return epoch for invalid dates
+      return new Date(0);
     }
   };
 
@@ -69,18 +69,18 @@ const Explore = () => {
       return matchesSearch && matchesCategory;
     });
 
-    // Apply sorting
+
     if (sortOrder === "newest") {
       return filtered.sort((a, b) => {
         const dateA = safeParseDate(a.createdAt);
         const dateB = safeParseDate(b.createdAt);
-        return dateB.getTime() - dateA.getTime(); // Newest first
+        return dateB.getTime() - dateA.getTime();
       });
     } else if (sortOrder === "oldest") {
       return filtered.sort((a, b) => {
         const dateA = safeParseDate(a.createdAt);
         const dateB = safeParseDate(b.createdAt);
-        return dateA.getTime() - dateB.getTime(); // Oldest first
+        return dateA.getTime() - dateB.getTime();
       });
     }
 
@@ -101,7 +101,7 @@ const Explore = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  // Debug: Log some sample dates to verify sorting
+
   useEffect(() => {
     if (habits.length > 0 && sortOrder !== "none") {
       const sampleDates = habits.slice(0, 3).map((h) => ({
@@ -248,48 +248,6 @@ const Explore = () => {
           </div>
         </div>
 
-        {filteredAndSortedHabits.length > 0 && (
-          <div
-            className={`mb-4 p-3 rounded-lg text-sm ${
-              isDark ? "bg-gray-700 text-gray-300" : "bg-gray-100 text-gray-700"
-            }`}
-          >
-            <p>
-              Debug: Showing {currentHabits.length} of {totalItems} habits
-            </p>
-            <p>Sort order: {sortOrder}</p>
-            {sortOrder !== "none" && filteredAndSortedHabits.length > 0 && (
-              <>
-                <p>
-                  Date range (all filtered):{" "}
-                  {safeParseDate(
-                    filteredAndSortedHabits[0].createdAt
-                  ).toLocaleDateString()}
-                  {" to "}
-                  {safeParseDate(
-                    filteredAndSortedHabits[filteredAndSortedHabits.length - 1]
-                      .createdAt
-                  ).toLocaleDateString()}
-                </p>
-                <p className="mt-1">
-                  Date range (current page):{" "}
-                  {currentHabits.length > 0
-                    ? safeParseDate(
-                        currentHabits[0].createdAt
-                      ).toLocaleDateString()
-                    : "N/A"}
-                  {" to "}
-                  {currentHabits.length > 0
-                    ? safeParseDate(
-                        currentHabits[currentHabits.length - 1].createdAt
-                      ).toLocaleDateString()
-                    : "N/A"}
-                </p>
-              </>
-            )}
-          </div>
-        )}
-
         {totalItems === 0 ? (
           <motion.div
             initial={{ opacity: 0 }}
@@ -366,7 +324,6 @@ const Explore = () => {
                       {habit.description || "No description"}
                     </p>
 
-                    {/* Show date info */}
                     <div className="flex items-center gap-2 mb-3">
                       <span
                         className={`text-xs ${

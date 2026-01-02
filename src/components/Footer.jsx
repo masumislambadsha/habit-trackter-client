@@ -61,7 +61,17 @@ const Footer = () => {
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-10">
             <div>
-              <h4 className="text-white font-semibold mb-4">Habit Tracker</h4>
+              <Link
+                to="/"
+                className="flex items-center gap-3 md:pr-5 pr-1 group ml-2 md:ml-0"
+              >
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-linear-to-br from-[#016B61] to-[#70B2B2] flex items-center justify-center text-white font-bold text-xl sm:text-2xl shadow-lg group-hover:scale-110 transition-all duration-300">
+                  H
+                </div>
+                <span className="text-2xl lg:text-3xl font-bold bg-linear-to-r from-[#016B61] to-[#70B2B2] bg-clip-text text-transparent">
+                  HabitTracker
+                </span>
+              </Link>
               <p className="text-sm leading-relaxed text-gray-400">
                 Track daily habits, build streaks, and transform your life.
                 <br />
@@ -109,10 +119,10 @@ const Footer = () => {
                   Public Feed
                 </a>
                 <a
-                  href="/blogs"
+                  href="/contacts"
                   className="block hover:text-emerald-400 transition"
                 >
-                  Blogs
+                  Contacts
                 </a>
               </p>
             </div>
@@ -145,7 +155,6 @@ const Footer = () => {
                 </a>
               </p>
             </div>
-
           </div>
           <div className="flex gap-4 mb-10">
             <a

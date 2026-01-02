@@ -84,7 +84,7 @@ const About = () => {
                 isDark ? "text-[#70B2B2]" : "text-[#016B61]"
               }`}
             >
-              About HabitFlow
+              About Habit Tracker
             </span>
           </div>
 
@@ -109,7 +109,7 @@ const About = () => {
           </p>
         </motion.div>
 
-        {/* Story Section */}
+        
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -129,7 +129,7 @@ const About = () => {
               </h2>
               <div className="space-y-4">
                 <p className={isDark ? "text-gray-300" : "text-gray-600"}>
-                  HabitFlow was born from a simple observation: most people
+                  Habit Tracker was born from a simple observation: most people
                   struggle with consistency when trying to build new habits.
                   Traditional habit trackers were either too complex or too
                   simplistic.
@@ -173,7 +173,7 @@ const About = () => {
           </div>
         </motion.div>
 
-        {/* Values Section */}
+       
         <div className="mb-16">
           <h2
             className={`text-3xl font-bold text-center mb-10 ${
@@ -215,7 +215,7 @@ const About = () => {
           </div>
         </div>
 
-        {/* Team Section */}
+      
         <div>
           <h2
             className={`text-3xl font-bold text-center mb-10 ${
@@ -259,8 +259,7 @@ const About = () => {
             ))}
           </div>
         </div>
-
-        {/* Stats Section */}
+      
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

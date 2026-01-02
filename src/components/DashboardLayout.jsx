@@ -32,7 +32,6 @@ const DashboardLayout = () => {
   const location = useLocation();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [profileDropdownOpen, setProfileDropdownOpen] = useState(false);
-  // const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const handleLogout = async () => {
     try {
@@ -89,7 +88,6 @@ const DashboardLayout = () => {
         isDark ? "bg-gray-900" : "bg-gray-50"
       }`}
     >
-      {/* Sidebar for Desktop */}
       <aside
         className={`hidden lg:flex flex-col w-64 transition-colors duration-300 ${
           isDark
@@ -146,7 +144,6 @@ const DashboardLayout = () => {
         </div>
       </aside>
 
-      {/* Mobile Sidebar */}
       {sidebarOpen && (
         <div className="fixed inset-0 z-40 lg:hidden">
           <div
@@ -218,9 +215,7 @@ const DashboardLayout = () => {
         </div>
       )}
 
-      {/* Main Content */}
       <div className="flex-1 flex flex-col">
-        {/* Top Navbar */}
         <header
           className={`sticky top-0 z-30 border-b transition-colors duration-300 ${
             isDark ? "bg-gray-800 border-gray-700" : "bg-white border-gray-200"
@@ -258,7 +253,6 @@ const DashboardLayout = () => {
               </div>
 
               <div className="flex items-center gap-4">
-                {/* Theme Toggle Button */}
                 <button
                   onClick={toggleTheme}
                   className={`p-2 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors`}
@@ -282,7 +276,6 @@ const DashboardLayout = () => {
                   />
                 </button>
 
-                {/* Profile Dropdown */}
                 <div className="relative">
                   <button
                     onClick={() => setProfileDropdownOpen(!profileDropdownOpen)}
@@ -375,7 +368,6 @@ const DashboardLayout = () => {
           </div>
         </header>
 
-        {/* Main Content Area */}
         <main className="flex-1 overflow-y-auto p-6">
           <Outlet />
         </main>

@@ -49,21 +49,18 @@ const Profile = () => {
     publicProfile: true,
   });
 
-  // Password change state
   const [passwordData, setPasswordData] = useState({
     currentPassword: "",
     newPassword: "",
     confirmPassword: "",
   });
 
-  // Password visibility state
   const [showPasswords, setShowPasswords] = useState({
     current: false,
     new: false,
     confirm: false,
   });
 
-  // Delete data state
   const [deleteConfirmation, setDeleteConfirmation] = useState("");
 
   useEffect(() => {
@@ -81,7 +78,6 @@ const Profile = () => {
         0
       );
 
-      // Calculate current streak
       const today = new Date();
       today.setHours(0, 0, 0, 0);
       let currentStreak = 0;
@@ -169,7 +165,6 @@ const Profile = () => {
     }
   };
 
-  // Complete password change functionality with Firebase
   const handlePasswordChange = async () => {
     const { currentPassword, newPassword, confirmPassword } = passwordData;
 
@@ -190,26 +185,22 @@ const Profile = () => {
 
     setLoading(true);
     try {
-      // Re-authenticate user with current password
       const credential = EmailAuthProvider.credential(
         user.email,
         currentPassword
       );
       await reauthenticateWithCredential(user, credential);
 
-      // Update password
       await updatePassword(user, newPassword);
 
       toast.success("Password updated successfully!");
 
-      // Reset form
       setPasswordData({
         currentPassword: "",
         newPassword: "",
         confirmPassword: "",
       });
 
-      // Reset password visibility
       setShowPasswords({
         current: false,
         new: false,
@@ -240,7 +231,6 @@ const Profile = () => {
     }
   };
 
-  // Toggle password visibility
   const togglePasswordVisibility = (field) => {
     setShowPasswords((prev) => ({
       ...prev,
@@ -248,7 +238,6 @@ const Profile = () => {
     }));
   };
 
-  // Delete all data functionality
   const handleDeleteAllData = async () => {
     if (deleteConfirmation !== "DELETE") {
       toast.error("Please type 'DELETE' to confirm");
@@ -283,16 +272,13 @@ const Profile = () => {
     if (result.isConfirmed) {
       setLoading(true);
       try {
-        // Delete all habits
         const habitsRes = await api.get("/habits/my");
         const habits = habitsRes.data;
 
-        // Delete each habit
         for (const habit of habits) {
           await api.delete(`/habits/${habit._id}`);
         }
 
-        // Reset local state
         setStats({
           totalHabits: 0,
           currentStreak: 0,
@@ -329,7 +315,6 @@ const Profile = () => {
       }`}
     >
       <div className="max-w-6xl mx-auto p-6">
-        {/* Header */}
         <div className="mb-8">
           <h1
             className={`text-3xl font-bold mb-2 ${
@@ -344,9 +329,7 @@ const Profile = () => {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Left Column - Profile Info */}
           <div className="lg:col-span-2 space-y-6">
-            {/* Profile Card */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -394,10 +377,9 @@ const Profile = () => {
 
               <div className="p-6">
                 <div className="flex flex-col md:flex-row gap-6">
-                  {/* Profile Picture */}
                   <div className="flex flex-col items-center">
                     <div className="relative">
-                      <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-white dark:border-gray-700 shadow-lg">
+                      <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-white dark:border-[#016B61] shadow-lg">
                         {formData.photoURL ? (
                           <img
                             src={formData.photoURL}
@@ -439,7 +421,6 @@ const Profile = () => {
                     )}
                   </div>
 
-                  {/* Profile Form */}
                   <div className="flex-1 space-y-4">
                     <div>
                       <label
@@ -447,7 +428,7 @@ const Profile = () => {
                           isDark ? "text-gray-300" : "text-gray-700"
                         }`}
                       >
-                        Display Name
+                        Name
                       </label>
                       {isEditing ? (
                         <input
@@ -574,7 +555,6 @@ const Profile = () => {
               </div>
             </motion.div>
 
-            {/* Stats Cards */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -691,7 +671,6 @@ const Profile = () => {
               </motion.div>
             </div>
 
-            {/* Preferences */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -811,9 +790,7 @@ const Profile = () => {
             </motion.div>
           </div>
 
-          {/* Right Column - Account Security */}
           <div className="space-y-6">
-            {/* Account Security */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -832,7 +809,6 @@ const Profile = () => {
                 </h3>
               </div>
               <div className="p-6 space-y-6">
-                {/* Account Status */}
                 <div className="flex items-center gap-3 p-4 rounded-xl bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800">
                   <Shield
                     size={20}
@@ -856,7 +832,6 @@ const Profile = () => {
                   </div>
                 </div>
 
-                {/* Change Password */}
                 <div className="space-y-4">
                   <h4
                     className={`font-medium ${
@@ -866,7 +841,6 @@ const Profile = () => {
                     Change Password
                   </h4>
 
-                  {/* Current Password */}
                   <div className="relative">
                     <input
                       type={showPasswords.current ? "text" : "password"}
@@ -901,7 +875,6 @@ const Profile = () => {
                     </button>
                   </div>
 
-                  {/* New Password */}
                   <div className="relative">
                     <input
                       type={showPasswords.new ? "text" : "password"}
@@ -936,7 +909,6 @@ const Profile = () => {
                     </button>
                   </div>
 
-                  {/* Confirm New Password */}
                   <div className="relative">
                     <input
                       type={showPasswords.confirm ? "text" : "password"}
@@ -1010,7 +982,6 @@ const Profile = () => {
                   </button>
                 </div>
 
-                {/* Password Requirements */}
                 <div
                   className={`p-4 rounded-xl ${
                     isDark ? "bg-gray-700" : "bg-gray-100"
@@ -1036,7 +1007,6 @@ const Profile = () => {
               </div>
             </motion.div>
 
-            {/* Danger Zone */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}

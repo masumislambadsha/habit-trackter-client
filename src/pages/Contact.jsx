@@ -26,7 +26,7 @@ const Contact = () => {
     {
       icon: <Mail size={24} />,
       title: "Email",
-      details: "support@habitflow.com",
+      details: "support@Habit Tracker.com",
       description: "We'll respond within 24 hours",
     },
     {
@@ -53,7 +53,6 @@ const Contact = () => {
     e.preventDefault();
     setLoading(true);
 
-    // Simulate API call
     setTimeout(() => {
       setLoading(false);
       toast.success("Message sent successfully!");
@@ -80,7 +79,6 @@ const Contact = () => {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -107,7 +105,6 @@ const Contact = () => {
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-12">
-          {/* Contact Information */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -162,7 +159,6 @@ const Contact = () => {
               ))}
             </div>
 
-            {/* FAQ Preview */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -218,7 +214,6 @@ const Contact = () => {
             </motion.div>
           </motion.div>
 
-          {/* Contact Form */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
