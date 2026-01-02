@@ -67,11 +67,13 @@ const About = () => {
 
   return (
     <div
-      className={`mt-20 min-h-screen transition-colors duration-300 ${
-        isDark ? "bg-gray-900" : "bg-gray-50"
+      className={`pt-20 min-h-screen transition-colors duration-300  ${
+        isDark
+          ? "bg-linear-to-br from-gray-900 to-gray-800"
+          : "bg-linear-to-br from-[#E5E9C5] to-white"
       }`}
     >
-      <div className="dmax-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -109,7 +111,7 @@ const About = () => {
           </p>
         </motion.div>
 
-        
+
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -173,7 +175,7 @@ const About = () => {
           </div>
         </motion.div>
 
-       
+
         <div className="mb-16">
           <h2
             className={`text-3xl font-bold text-center mb-10 ${
@@ -215,7 +217,7 @@ const About = () => {
           </div>
         </div>
 
-      
+
         <div>
           <h2
             className={`text-3xl font-bold text-center mb-10 ${
@@ -259,7 +261,7 @@ const About = () => {
             ))}
           </div>
         </div>
-      
+
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

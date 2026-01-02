@@ -137,8 +137,10 @@ const Blogs = () => {
 
   return (
     <div
-      className={`mt-16 min-h-screen transition-colors duration-300 ${
-        isDark ? "bg-gray-900" : "bg-gray-50"
+      className={`pt-16 min-h-screen transition-colors duration-300  ${
+        isDark
+          ? "bg-linear-to-br from-gray-900 to-gray-800"
+          : "bg-linear-to-br from-[#E5E9C5] to-white"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -184,7 +186,7 @@ const Blogs = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
           className={`mb-8 p-6 rounded-2xl ${
-            isDark ? "bg-gray-800" : "bg-white"
+            isDark ? "bg-gray-800" : " "
           } shadow-lg`}
         >
           <div className="flex flex-col md:flex-row gap-4 justify-between items-center">
@@ -247,7 +249,7 @@ const Blogs = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.1 }}
                     className={`rounded-2xl overflow-hidden group cursor-pointer ${
-                      isDark ? "bg-gray-800" : "bg-white"
+                      isDark ? "bg-gray-800" : " "
                     } shadow-lg hover:shadow-xl transition-shadow`}
                   >
                     <div className="p-6">
@@ -351,7 +353,7 @@ const Blogs = () => {
           {filteredPosts.length === 0 ? (
             <div
               className={`text-center py-12 rounded-2xl ${
-                isDark ? "bg-gray-800" : "bg-white"
+                isDark ? "bg-gray-800" : " "
               } shadow-lg`}
             >
               <BookOpen className="mx-auto mb-4 text-gray-400" size={48} />
@@ -375,7 +377,7 @@ const Blogs = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.05 }}
                   className={`rounded-2xl overflow-hidden group cursor-pointer ${
-                    isDark ? "bg-gray-800" : "bg-white"
+                    isDark ? "bg-gray-800" : " "
                   } shadow-lg hover:shadow-xl transition-shadow`}
                 >
                   <div className="p-6">
@@ -464,7 +466,7 @@ const Blogs = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
           className={`rounded-2xl p-8 ${
-            isDark ? "bg-gray-800" : "bg-white"
+            isDark ? "bg-gray-800" : " "
           } shadow-lg`}
         >
           <h2
@@ -535,13 +537,13 @@ const Blogs = () => {
                 className={`flex-1 px-4 py-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-white ${
                   isDark
                     ? "bg-gray-700 text-white placeholder-gray-400"
-                    : "bg-white text-gray-900 placeholder-gray-500"
+                    : "  text-gray-900 placeholder-gray-500"
                 }`}
               />
               <button
                 className={`px-6 py-3 rounded-xl font-bold transition-colors ${
                   isDark
-                    ? "bg-white text-gray-900 hover:bg-gray-100"
+                    ? "  text-gray-900 hover:bg-gray-100"
                     : "bg-gray-900 text-white hover:bg-gray-800"
                 }`}
               >

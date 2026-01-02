@@ -74,8 +74,10 @@ const Contact = () => {
 
   return (
     <div
-      className={`mt-20 min-h-screen transition-colors duration-300 ${
-        isDark ? "bg-gray-900" : "bg-gray-50"
+      className={`pt-20 min-h-screen transition-colors duration-300  ${
+        isDark
+          ? "bg-linear-to-br from-gray-900 to-gray-800"
+          : "bg-linear-to-br from-[#E5E9C5] to-white"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -126,12 +128,12 @@ const Contact = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1 * index }}
                   className={`flex items-start gap-4 p-6 rounded-xl ${
-                    isDark ? "bg-gray-800" : "bg-white"
+                    isDark ? "bg-gray-800" : " "
                   } shadow-lg`}
                 >
                   <div
                     className={`p-3 rounded-lg ${
-                      isDark ? "bg-gray-700" : "bg-gray-100"
+                      isDark ? "bg-gray-700" : " "
                     }`}
                   >
                     <div className="text-[#016B61]">{item.icon}</div>
@@ -164,7 +166,7 @@ const Contact = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
               className={`mt-8 p-6 rounded-xl ${
-                isDark ? "bg-gray-800" : "bg-white"
+                isDark ? "bg-gray-800" : " "
               } shadow-lg`}
             >
               <div className="flex items-center gap-3 mb-4">
@@ -219,13 +221,13 @@ const Contact = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2 }}
             className={`rounded-2xl p-8 ${
-              isDark ? "bg-gray-800" : "bg-white"
+              isDark ? "bg-gray-800" : " "
             } shadow-xl`}
           >
             <div className="flex items-center gap-3 mb-6">
               <div
                 className={`p-2 rounded-lg ${
-                  isDark ? "bg-gray-700" : "bg-gray-100"
+                  isDark ? "bg-gray-700" : " "
                 }`}
               >
                 <Send className="text-[#016B61]" size={24} />

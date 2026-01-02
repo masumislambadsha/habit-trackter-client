@@ -8,8 +8,10 @@ const Privacy = () => {
 
   return (
     <div
-      className={`mt-20 min-h-screen transition-colors duration-300 ${
-        isDark ? "bg-gray-900" : "bg-gray-50"
+      className={`pt-20 min-h-screen transition-colors duration-300  ${
+        isDark
+          ? "bg-linear-to-br from-gray-900 to-gray-800"
+          : "bg-linear-to-br from-[#E5E9C5] to-white"
       }`}
     >
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">

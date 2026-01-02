@@ -78,7 +78,6 @@ const AddHabit = () => {
       }`}
     >
       <div className="max-w-6xl mx-auto p-6">
-        Heade
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -111,7 +110,7 @@ const AddHabit = () => {
           </div>
         </motion.div>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          Left Column - For
+
           <div className="lg:col-span-2">
             <motion.div
               initial={{ opacity: 0, y: 20 }}

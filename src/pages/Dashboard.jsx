@@ -209,7 +209,7 @@ const Dashboard = () => {
 
   return (
     <div
-      className={`min-h-screen transition-colors duration-300 ${
+      className={`mt-7 min-h-screen transition-colors duration-300 ${
         isDark ? "bg-gray-900" : "bg-gray-50"
       }`}
     >

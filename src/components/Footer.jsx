@@ -1,5 +1,5 @@
 import React from "react";
-import { Facebook, Linkedin, Youtube, Mail, Phone, MapPin } from "lucide-react";
+import { Facebook, Linkedin, Youtube, Mail, Phone, MapPin, Contact } from "lucide-react";
 import { useTheme } from "../context/ThemeProvider";
 import { Link } from "react-router";
 
@@ -59,7 +59,7 @@ const Footer = () => {
         } text-gray-300`}
       >
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-10">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
             <div>
               <Link
                 to="/"
@@ -95,37 +95,15 @@ const Footer = () => {
                 >
                   <MapPin className="w-4 h-4" /> habittracker.app
                 </a>
-              </p>
-            </div>
-            <div>
-              <h4 className="text-white font-semibold mb-4">Explore</h4>
-              <p className="text-sm leading-relaxed space-y-2 text-gray-400">
-                <a
-                  href="dashboard/my-habits"
-                  className="block hover:text-emerald-400 transition"
-                >
-                  My Habits
-                </a>
-                <a
-                  href="/analytics"
-                  className="block hover:text-emerald-400 transition"
-                >
-                  Analytics
-                </a>
-                <a
-                  href="/browse"
-                  className="block hover:text-emerald-400 transition"
-                >
-                  Public Feed
-                </a>
                 <a
                   href="/contacts"
-                  className="block hover:text-emerald-400 transition"
+                  className="hover:text-emerald-400 transition flex items-center gap-2 mt-2"
                 >
-                  Contacts
+                  <Contact className="w-4 h-4" /> Contacts
                 </a>
               </p>
             </div>
+
             <div>
               <h4 className="text-white font-semibold mb-4">Explore</h4>
               <p className="text-sm leading-relaxed space-y-2 text-gray-400">

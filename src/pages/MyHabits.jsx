@@ -770,7 +770,7 @@ const MyHabits = () => {
                               handleComplete(habit._id, habit.title)
                             }
                             disabled
-                            className="px-3 py-1 rounded-lg text-sm font-medium text-black dark:text-white cursor-not-allowed opacity-50"
+                            className={`px-3 py-1 rounded-lg text-sm font-medium text-black ${isDark ? "text-white" : "text-black"} cursor-not-allowed opacity-50`}
                           >
                             Completed
                           </button>
