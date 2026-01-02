@@ -24,7 +24,7 @@ import {
 } from "lucide-react";
 import { motion } from "framer-motion";
 import toast from "react-hot-toast";
-
+motion;
 const DashboardLayout = () => {
   const { isDark, toggleTheme } = useTheme();
   const { user, signOutUser } = useContext(AuthContext);
@@ -32,7 +32,7 @@ const DashboardLayout = () => {
   const location = useLocation();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [profileDropdownOpen, setProfileDropdownOpen] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  // const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const handleLogout = async () => {
     try {
@@ -40,7 +40,7 @@ const DashboardLayout = () => {
       toast.success("Logged out successfully!");
       navigate("/");
     } catch (error) {
-      toast.error("Logout failed");
+      toast.error("Logout failed", error);
     }
   };
 
@@ -81,7 +81,10 @@ const DashboardLayout = () => {
   };
 
   return (
-    <div
+    <div className={` ${
+        isDark ? "bg-gray-900" : "bg-gray-50"
+      }`}>
+      <div
       className={`container mx-auto min-h-screen transition-colors duration-300 flex ${
         isDark ? "bg-gray-900" : "bg-gray-50"
       }`}
@@ -377,6 +380,7 @@ const DashboardLayout = () => {
           <Outlet />
         </main>
       </div>
+    </div>
     </div>
   );
 };
