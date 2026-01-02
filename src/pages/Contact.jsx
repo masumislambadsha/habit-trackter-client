@@ -11,7 +11,7 @@ import {
   CheckCircle,
 } from "lucide-react";
 import { toast } from "react-hot-toast";
-
+motion;
 const Contact = () => {
   const { isDark } = useTheme();
   const [formData, setFormData] = useState({
