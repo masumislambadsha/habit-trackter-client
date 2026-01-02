@@ -35,22 +35,21 @@ const Navbar = ({ mobileMenuOpen, setMobileMenuOpen }) => {
     { to: "/about-us", label: "About Us" },
     ...(user
       ? [
-          { to: "/add-habit", label: "Add Habit" },
-          { to: "/my-habits", label: "My Habits" },
+          { to: "/dashboard/add-habit", label: "Add Habit" },
+          { to: "/dashboard/my-habits", label: "My Habits" },
         ]
       : []),
   ];
-
   const handleProfileClick = () => {
     setDropdownOpen(false);
     if (setMobileMenuOpen) setMobileMenuOpen(false);
-    navigate("/profile");
+    navigate("dashboard/profile");
   };
 
   const handleAnalyticsClick = () => {
     setDropdownOpen(false);
     if (setMobileMenuOpen) setMobileMenuOpen(false);
-    navigate("/analytics");
+    navigate("dashboard/analytics");
   };
 
   return (
@@ -151,6 +150,13 @@ const Navbar = ({ mobileMenuOpen, setMobileMenuOpen }) => {
                     </div>
 
                     <div className="space-y-3">
+                      <button
+                        className="w-full btn btn-ghost justify-start rounded-xl h-10 text-sm font-medium"
+                      >
+                        <a href="/dashboard">
+                        Dashboard
+                        </a>
+                      </button>
                       <button
                         onClick={handleProfileClick}
                         className="w-full btn btn-ghost justify-start rounded-xl h-10 text-sm font-medium"
@@ -261,9 +267,7 @@ const Navbar = ({ mobileMenuOpen, setMobileMenuOpen }) => {
                     <p className="font-semibold text-sm text-base-content">
                       {user.displayName || user.email.split("@")[0]}
                     </p>
-                    <p className="text-xs text-base-content/60">
-                      {user.email}
-                    </p>
+                    <p className="text-xs text-base-content/60">{user.email}</p>
                   </div>
                 </div>
 

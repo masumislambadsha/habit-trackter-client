@@ -1,142 +1,245 @@
 import React from "react";
+import { useTheme } from "../context/ThemeProvider";
 import { motion } from "framer-motion";
-motion;
-const AboutUs = () => {
-  const containerVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6, ease: "easeOut" },
-    },
-  };
+import {
+  Target,
+  Users,
+  Award,
+  Heart,
+  Globe,
+  TrendingUp,
+  Shield,
+  Clock
+} from "lucide-react";
 
-  const staggerContainer = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.15 },
-    },
-  };
+const About = () => {
+  const { isDark } = useTheme();
 
-  const cardVariants = {
-    hidden: { opacity: 0, y: 25 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-  };
+  const teamMembers = [
+    {
+      name: "Alex Johnson",
+      role: "Founder & CEO",
+      bio: "Passionate about behavioral psychology and habit formation.",
+      avatar: "AJ"
+    },
+    {
+      name: "Maria Chen",
+      role: "Lead Developer",
+      bio: "Full-stack developer with expertise in React and Node.js.",
+      avatar: "MC"
+    },
+    {
+      name: "David Kim",
+      role: "Product Designer",
+      bio: "Focused on creating intuitive and beautiful user experiences.",
+      avatar: "DK"
+    },
+    {
+      name: "Sarah Williams",
+      role: "Community Manager",
+      bio: "Dedicated to building supportive habit communities.",
+      avatar: "SW"
+    }
+  ];
+
+  const values = [
+    {
+      icon: <Heart size={24} />,
+      title: "User-Centered",
+      description: "We put our users' needs and experiences first."
+    },
+    {
+      icon: <Shield size={24} />,
+      title: "Privacy First",
+      description: "Your data is secure and always under your control."
+    },
+    {
+      icon: <TrendingUp size={24} />,
+      title: "Continuous Growth",
+      description: "We're constantly improving based on your feedback."
+    },
+    {
+      icon: <Globe size={24} />,
+      title: "Accessibility",
+      description: "Making habit tracking available to everyone."
+    }
+  ];
 
   return (
-    <section className="min-h-screen bg-gray-50 mt-15">
-      <div className="max-w-5xl mx-auto px-4 py-16">
-
+    <div className={`mt-20 min-h-screen transition-colors duration-300 ${isDark ? "bg-gray-900" : "bg-gray-50"}`}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <motion.div
-          className="text-center mb-12"
-          initial="hidden"
-          animate="visible"
-          variants={containerVariants}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-center mb-16"
         >
-          <motion.h1
-            className="text-4xl md:text-5xl font-bold text-gray-900 mb-4"
-            whileHover={{ scale: 1.02 }}
-          >
-            About <span className="text-[#016B61]">HabitTracker</span>
-          </motion.h1>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            HabitTracker is a daily companion that helps you build small,
-            consistent actions into lifelong habits so you can stay focused,
-            motivated, and accountable.
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-[#016B61]/10 to-[#70B2B2]/10 mb-6">
+            <Target className="text-[#016B61]" size={20} />
+            <span className={`font-medium ${isDark ? "text-[#70B2B2]" : "text-[#016B61]"}`}>
+              About HabitFlow
+            </span>
+          </div>
+
+          <h1 className={`text-4xl md:text-5xl font-bold mb-6 ${isDark ? "text-white" : "text-gray-900"}`}>
+            Transforming Lives Through <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#016B61] to-[#70B2B2]">Better Habits</span>
+          </h1>
+
+          <p className={`text-xl max-w-3xl mx-auto ${isDark ? "text-gray-300" : "text-gray-600"}`}>
+            We're on a mission to help people build lasting habits that lead to meaningful, positive change in their lives.
           </p>
         </motion.div>
 
-        {/* Mission & Vision */}
+        {/* Story Section */}
         <motion.div
-          className="grid md:grid-cols-2 gap-8 mb-12"
-          variants={staggerContainer}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.1 }}
+          className={`rounded-2xl p-8 mb-12 ${isDark ? "bg-gray-800" : "bg-white"} shadow-lg`}
         >
-          <motion.div
-            className="bg-white rounded-xl shadow-sm p-6 border border-gray-100"
-            variants={cardVariants}
-          >
-            <h2 className="text-2xl font-semibold text-gray-900 mb-3">
-              Our Mission
-            </h2>
-            <p className="text-gray-600">
-              Our mission is to make habit building feel simple and satisfying.
-              We design tools that remove friction, highlight progress, and help
-              you stick to the routines that matter most in your life.
-            </p>
-          </motion.div>
-
-          <motion.div
-            className="bg-white rounded-xl shadow-sm p-6 border border-gray-100"
-            variants={cardVariants}
-          >
-            <h2 className="text-2xl font-semibold text-gray-900 mb-3">
-              Our Vision
-            </h2>
-            <p className="text-gray-600">
-              We imagine a world where personal growth feels approachable for
-              everyone—where tracking habits is less about pressure and more
-              about clear feedback, gentle nudges, and celebrating small wins.
-            </p>
-          </motion.div>
+          <div className="grid md:grid-cols-2 gap-8 items-center">
+            <div>
+              <h2 className={`text-3xl font-bold mb-4 ${isDark ? "text-white" : "text-gray-900"}`}>
+                Our Story
+              </h2>
+              <div className="space-y-4">
+                <p className={isDark ? "text-gray-300" : "text-gray-600"}>
+                  HabitFlow was born from a simple observation: most people struggle with consistency when trying to build new habits. Traditional habit trackers were either too complex or too simplistic.
+                </p>
+                <p className={isDark ? "text-gray-300" : "text-gray-600"}>
+                  Founded in 2023 by a team of behavioral psychologists, developers, and designers, we set out to create a solution that combines scientific principles with beautiful, intuitive design.
+                </p>
+                <p className={isDark ? "text-gray-300" : "text-gray-600"}>
+                  Today, we've helped over 100,000 users build healthier, more productive lives through consistent habit formation.
+                </p>
+              </div>
+            </div>
+            <div className="flex justify-center">
+              <div className="relative w-64 h-64">
+                <div className="absolute inset-0 bg-gradient-to-br from-[#016B61] to-[#70B2B2] rounded-2xl transform rotate-6"></div>
+                <div className={`absolute inset-0 ${isDark ? "bg-gray-800" : "bg-white"} rounded-2xl shadow-xl flex items-center justify-center transform -rotate-6`}>
+                  <div className="text-center p-6">
+                    <Clock className="mx-auto mb-4 text-[#016B61]" size={48} />
+                    <h3 className={`text-xl font-bold mb-2 ${isDark ? "text-white" : "text-gray-900"}`}>
+                      Since 2023
+                    </h3>
+                    <p className={isDark ? "text-gray-400" : "text-gray-500"}>
+                      Helping people build better habits
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </motion.div>
 
-        {/* What We Offer */}
-        <motion.div
-          className="bg-white rounded-xl shadow-sm p-6 border border-gray-100 mb-12"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.25 }}
-        >
-          <h2 className="text-2xl font-semibold text-gray-900 mb-4">
-            What We Offer
+        {/* Values Section */}
+        <div className="mb-16">
+          <h2 className={`text-3xl font-bold text-center mb-10 ${isDark ? "text-white" : "text-gray-900"}`}>
+            Our Values
           </h2>
-          <motion.ul
-            className="space-y-3 text-gray-600 list-disc list-inside"
-            variants={staggerContainer}
-          >
-            {[
-              "Simple habit creation with flexible reminders.",
-              "Visual streaks that show how consistent you’ve been.",
-              "Public habits to get inspired by the community.",
-              "Private dashboards to track your own progress over time.",
-            ].map((item, index) => (
-              <motion.li key={index} variants={cardVariants}>
-                {item}
-              </motion.li>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {values.map((value, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                className={`p-6 rounded-xl ${isDark ? "bg-gray-800" : "bg-white"} shadow-lg`}
+              >
+                <div className={`w-12 h-12 rounded-lg flex items-center justify-center mb-4 ${
+                  isDark ? "bg-gray-700" : "bg-gray-100"
+                }`}>
+                  <div className="text-[#016B61]">
+                    {value.icon}
+                  </div>
+                </div>
+                <h3 className={`text-lg font-bold mb-2 ${isDark ? "text-white" : "text-gray-900"}`}>
+                  {value.title}
+                </h3>
+                <p className={isDark ? "text-gray-400" : "text-gray-500"}>
+                  {value.description}
+                </p>
+              </motion.div>
             ))}
-          </motion.ul>
-        </motion.div>
+          </div>
+        </div>
 
-        {/* Closing */}
-        <motion.div
-          className="text-center"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-        >
-          <h2 className="text-2xl font-semibold text-gray-900 mb-3">
-            Built for learners, by learners
+        {/* Team Section */}
+        <div>
+          <h2 className={`text-3xl font-bold text-center mb-10 ${isDark ? "text-white" : "text-gray-900"}`}>
+            Meet Our Team
           </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto mb-6">
-            HabitTracker started as a small side project to solve a personal
-            problem: keeping track of daily routines without feeling
-            overwhelmed. Today, it continues to grow with feedback from people
-            who want a calmer, more intentional way to work on themselves.
-          </p>
-          <p className="text-gray-500 text-sm">
-            Have ideas or feedback? Reach out any time and help shape the next
-            version of HabitTracker.
-          </p>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {teamMembers.map((member, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                className={`p-6 rounded-xl text-center ${isDark ? "bg-gray-800" : "bg-white"} shadow-lg`}
+              >
+                <div className="w-20 h-20 rounded-full bg-gradient-to-br from-[#016B61] to-[#70B2B2] flex items-center justify-center text-white text-2xl font-bold mx-auto mb-4">
+                  {member.avatar}
+                </div>
+                <h3 className={`text-lg font-bold mb-1 ${isDark ? "text-white" : "text-gray-900"}`}>
+                  {member.name}
+                </h3>
+                <p className={`text-sm font-medium mb-3 ${isDark ? "text-[#70B2B2]" : "text-[#016B61]"}`}>
+                  {member.role}
+                </p>
+                <p className={isDark ? "text-gray-400" : "text-gray-500"}>
+                  {member.bio}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        {/* Stats Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5 }}
+          className={`mt-16 rounded-2xl p-8 ${isDark ? "bg-gray-800" : "bg-white"} shadow-lg`}
+        >
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="text-center">
+              <div className={`text-4xl font-bold mb-2 ${isDark ? "text-white" : "text-gray-900"}`}>
+                100K+
+              </div>
+              <p className={isDark ? "text-gray-400" : "text-gray-500"}>
+                Active Users
+              </p>
+            </div>
+            <div className="text-center">
+              <div className={`text-4xl font-bold mb-2 ${isDark ? "text-white" : "text-gray-900"}`}>
+                5M+
+              </div>
+              <p className={isDark ? "text-gray-400" : "text-gray-500"}>
+                Habits Tracked
+              </p>
+            </div>
+            <div className="text-center">
+              <div className={`text-4xl font-bold mb-2 ${isDark ? "text-white" : "text-gray-900"}`}>
+                98%
+              </div>
+              <p className={isDark ? "text-gray-400" : "text-gray-500"}>
+                User Satisfaction
+              </p>
+            </div>
+            <div className="text-center">
+              <div className={`text-4xl font-bold mb-2 ${isDark ? "text-white" : "text-gray-900"}`}>
+                24/7
+              </div>
+              <p className={isDark ? "text-gray-400" : "text-gray-500"}>
+                Support Available
+              </p>
+            </div>
+          </div>
         </motion.div>
       </div>
-    </section>
+    </div>
   );
 };
 
-export default AboutUs;
+export default About;

@@ -38,7 +38,7 @@ const Footer = () => {
           </a>
         </div>
         <div>
-          <Link href="/add-habit">
+          <Link href="/dashboard/add-habit">
             <div
               className={`w-80 cursor-pointer h-48 rounded-xl shadow-lg flex items-center justify-center ${
                 isDark
@@ -89,7 +89,7 @@ const Footer = () => {
             </div>
             <div>
               <h4 className="text-white font-semibold mb-4">Explore</h4>
-              <p className="text-sm leading-relaxed text-gray-400">
+              <p className="text-sm leading-relaxed space-y-2 text-gray-400">
                 <a
                   href="/my-habits"
                   className="block hover:text-emerald-400 transition"
@@ -108,13 +108,44 @@ const Footer = () => {
                 >
                   Public Feed
                 </a>
+                <a
+                  href="/blogs"
+                  className="block hover:text-emerald-400 transition"
+                >
+                  Blogs
+                </a>
               </p>
             </div>
-            <div className="flex md:justify-end">
-              <button className="border border-emerald-500 text-emerald-400 px-5 py-2 rounded-md text-sm font-medium hover:bg-linear-to-br from-emerald-300 to-teal-400 hover:text-white  cursor-pointer transition ">
-                Give Feedback
-              </button>
+            <div>
+              <h4 className="text-white font-semibold mb-4">Explore</h4>
+              <p className="text-sm leading-relaxed space-y-2 text-gray-400">
+                <a
+                  href="/blogs"
+                  className="block hover:text-emerald-400 transition"
+                >
+                  Blogs
+                </a>
+                <a
+                  href="/helps"
+                  className="block hover:text-emerald-400 transition"
+                >
+                  Helps
+                </a>
+                <a
+                  href="/terms-and-conditions"
+                  className="block hover:text-emerald-400 transition"
+                >
+                  Terms And Conditions
+                </a>
+                <a
+                  href="/privacy-policy"
+                  className="block hover:text-emerald-400 transition"
+                >
+                  Privacy And Policy
+                </a>
+              </p>
             </div>
+
           </div>
           <div className="flex gap-4 mb-10">
             <a

@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from "react";
 import api from "../utils/Api";
-import { Link } from "react-router";
+import { Link } from "react-router"; 
 import { motion } from "framer-motion";
 import { useTheme } from "../context/ThemeProvider";
 import HabitCardSkeleton from "../components/HabitCardSkeleton";
@@ -43,6 +43,20 @@ const Explore = () => {
     setCurrentPage(1);
   }, [search, category, sortOrder]);
 
+  // Helper function to safely parse dates
+  const safeParseDate = (dateString) => {
+    if (!dateString) return new Date(0); // Return epoch for undefined/null
+
+    try {
+      const date = new Date(dateString);
+      // Check if date is valid
+      return isNaN(date.getTime()) ? new Date(0) : date;
+    } catch (error) {
+      console.error("Error parsing date:", dateString, error);
+      return new Date(0); // Return epoch for invalid dates
+    }
+  };
+
   const filteredAndSortedHabits = useMemo(() => {
     const query = search.trim().toLowerCase();
     const selected = category.toLowerCase();
@@ -55,23 +69,22 @@ const Explore = () => {
       return matchesSearch && matchesCategory;
     });
 
-    const sorted = [...filtered];
-
+    // Apply sorting
     if (sortOrder === "newest") {
-      return sorted.sort(
-        (a, b) =>
-          new Date(b.createdAt || 0).getTime() -
-          new Date(a.createdAt || 0).getTime()
-      );
+      return filtered.sort((a, b) => {
+        const dateA = safeParseDate(a.createdAt);
+        const dateB = safeParseDate(b.createdAt);
+        return dateB.getTime() - dateA.getTime(); // Newest first
+      });
     } else if (sortOrder === "oldest") {
-      return sorted.sort(
-        (a, b) =>
-          new Date(a.createdAt || 0).getTime() -
-          new Date(b.createdAt || 0).getTime()
-      );
+      return filtered.sort((a, b) => {
+        const dateA = safeParseDate(a.createdAt);
+        const dateB = safeParseDate(b.createdAt);
+        return dateA.getTime() - dateB.getTime(); // Oldest first
+      });
     }
 
-    return sorted;
+    return filtered;
   }, [habits, search, category, sortOrder]);
 
   const totalItems = filteredAndSortedHabits.length;
@@ -88,13 +101,25 @@ const Explore = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  // Debug: Log some sample dates to verify sorting
+  useEffect(() => {
+    if (habits.length > 0 && sortOrder !== "none") {
+      const sampleDates = habits.slice(0, 3).map(h => ({
+        title: h.title,
+        createdAt: h.createdAt,
+        parsed: safeParseDate(h.createdAt).toISOString()
+      }));
+      console.log("Sample dates for sorting:", sampleDates);
+    }
+  }, [habits, sortOrder]);
+
   if (loading) {
     return (
       <section
         className={`py-20 transition-colors duration-300 ${
           isDark
-            ? "bg-linear-to-b from-gray-800 to-gray-900"
-            : "bg-linear-to-b from-[#E5E9C5] to-white"
+            ? "bg-gradient-to-b from-gray-800 to-gray-900"
+            : "bg-gradient-to-b from-[#E5E9C5] to-white"
         }`}
       >
         <div className="max-w-7xl mx-auto px-4">
@@ -223,6 +248,21 @@ const Explore = () => {
           </div>
         </div>
 
+        {/* Debug info - can remove in production */}
+        {process.env.NODE_ENV === "development" && habits.length > 0 && (
+          <div className={`mb-4 p-3 rounded-lg text-sm ${isDark ? "bg-gray-700 text-gray-300" : "bg-gray-100 text-gray-700"}`}>
+            <p>Debug: Showing {currentHabits.length} of {totalItems} habits</p>
+            <p>Sort order: {sortOrder}</p>
+            {sortOrder !== "none" && currentHabits.length > 0 && (
+              <p>
+                Date range: {safeParseDate(currentHabits[0].createdAt).toLocaleDateString()}
+                {" to "}
+                {safeParseDate(currentHabits[currentHabits.length - 1].createdAt).toLocaleDateString()}
+              </p>
+            )}
+          </div>
+        )}
+
         {totalItems === 0 ? (
           <motion.div
             initial={{ opacity: 0 }}
@@ -302,6 +342,14 @@ const Explore = () => {
                     >
                       {habit.description || "No description"}
                     </p>
+
+                    {/* Show date info */}
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className={`text-xs ${isDark ? "text-gray-400" : "text-gray-500"}`}>
+                        Created: {habit.createdAt ? safeParseDate(habit.createdAt).toLocaleDateString() : "Unknown"}
+                      </span>
+                    </div>
+
                     <div className="flex justify-between items-center">
                       <span
                         className={`text-xs px-3 py-1 rounded-full font-medium border ${

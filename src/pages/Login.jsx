@@ -53,7 +53,7 @@ const Login = () => {
   const handleDemoFill = () => {
     setFormData({
       email: "john@doe.com",
-      password: "123Aa!",
+      password: "1234Aa!@",
     });
   };
 
