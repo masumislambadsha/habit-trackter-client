@@ -9,57 +9,70 @@ import "swiper/css/navigation";
 
 const slides = [
   {
-    image: "https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YnJlYWtmYXN0fGVufDB8fDB8fHww&fm=jpg&q=60&w=3000",
+    image:
+      "https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YnJlYWtmYXN0fGVufDB8fDB8fHww&fm=jpg&q=60&w=3000",
     quote: '"FUEL FOR BODY. FOUNDATION FOR DAY."',
     title: "Healthy Breakfast",
-    description: "Oats, fruits, nuts, eggs — start strong. A balanced breakfast powers your brain and body. Skip the rush. Eat with intention.",
+    description:
+      "Oats, fruits, nuts, eggs — start strong. A balanced breakfast powers your brain and body. Skip the rush. Eat with intention.",
   },
   {
-    image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80",
+    image:
+      "https://images.unsplash.com/photo-1506126613408-eca07ce68773?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80",
     quote: '"MIST ME SOFTLY. EMBRACE THE SHADE."',
     title: "Morning Meditation",
-    description: "Start your day with calm. A quiet 10-minute session sets the tone for clarity, focus, and peace. Breathe deeply. Let go of yesterday. Welcome today.",
+    description:
+      "Start your day with calm. A quiet 10-minute session sets the tone for clarity, focus, and peace. Breathe deeply. Let go of yesterday. Welcome today.",
   },
   {
-    image: "https://c1.wallpaperflare.com/preview/332/788/4/beach-sand-sea-summer.jpg",
+    image:
+      "https://c1.wallpaperflare.com/preview/332/788/4/beach-sand-sea-summer.jpg",
     quote: '"STEP BY STEP. BREATH BY BREATH."',
     title: "Afternoon Walk",
-    description: "Step outside. Feel the sun on your skin. A 20-minute walk boosts mood, energy, and creativity. No destination needed — just movement and fresh air.",
+    description:
+      "Step outside. Feel the sun on your skin. A 20-minute walk boosts mood, energy, and creativity. No destination needed — just movement and fresh air.",
   },
   {
-    image: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80",
+    image:
+      "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80",
     quote: '"WORDS THAT SHAPE THE SOUL."',
     title: "Reading Books",
-    description: "Open a book. Enter a new world. 15 pages a day builds knowledge, empathy, and imagination. Track your streak — watch your mind grow.",
+    description:
+      "Open a book. Enter a new world. 15 pages a day builds knowledge, empathy, and imagination. Track your streak — watch your mind grow.",
   },
   {
-    image: "https://images.pexels.com/photos/175753/pexels-photo-175753.jpeg?cs=srgb&dl=pexels-conojeghuo-175753.jpg&fm=jpg",
+    image:
+      "https://images.pexels.com/photos/175753/pexels-photo-175753.jpeg?cs=srgb&dl=pexels-conojeghuo-175753.jpg&fm=jpg",
     quote: '"HANDS IN DOUGH. HEART IN HOME."',
     title: "Cooking Practice",
-    description: "Chop, stir, taste. Cooking is love made visible. Try one new recipe weekly. Build confidence in the kitchen — and nourish body and soul.",
+    description:
+      "Chop, stir, taste. Cooking is love made visible. Try one new recipe weekly. Build confidence in the kitchen — and nourish body and soul.",
   },
   {
-    image: "https://images.unsplash.com/photo-1605296867304-46d5465a13f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80",
+    image:
+      "https://images.unsplash.com/photo-1605296867304-46d5465a13f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80",
     quote: '"FLEXIBILITY IN BODY. FREEDOM IN MIND."',
     title: "Stretching Exercises",
-    description: "Roll out your mat. Stretch for 10 minutes daily. Loosen tight muscles, improve posture, and release stress. Your body will thank you.",
+    description:
+      "Roll out your mat. Stretch for 10 minutes daily. Loosen tight muscles, improve posture, and release stress. Your body will thank you.",
   },
   {
-    image: "https://watermark.lovepik.com/photo/20211121/large/lovepik-business-team-work-together-to-sign-a-contract-picture_500592054.jpg",
+    image:
+      "https://watermark.lovepik.com/photo/20211121/large/lovepik-business-team-work-together-to-sign-a-contract-picture_500592054.jpg",
     quote: '"FOCUS BUILDS EMPIRES."',
     title: "Project Work",
-    description: "One task at a time. 25 minutes of deep work = progress. Track your sessions. Watch small efforts compound into big results.",
+    description:
+      "One task at a time. 25 minutes of deep work = progress. Track your sessions. Watch small efforts compound into big results.",
   },
-
 ];
 
 const HeroBanner = () => {
   return (
-    <section className="relative h-[70vh] md:h-[98vh] overflow-hidden bg-gradient-to-br from-[#016B61] via-[#70B2B2] to-[#9ECFD4] -mt-20">
+    <section className="relative h-[70vh] md:h-[98vh] overflow-hidden bg-linear-to-br from-[#016B61] via-[#70B2B2] to-[#9ECFD4] -mt-20">
       <div className="absolute inset-0 bg-black/20 dark:bg-black/40 z-0" />
 
       <div className="absolute inset-0 opacity-10">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.15)_0%,transparent_60%)]" />
+        <div className="absolute inset-0 bg-[radial-linear(circle_at_center,rgba(255,255,255,0.15)_0%,transparent_60%)]" />
       </div>
 
       <Swiper
@@ -80,7 +93,7 @@ const HeroBanner = () => {
               className="absolute inset-0 bg-cover bg-center bg-no-repeat"
               style={{
                 backgroundImage: `
-                  linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.75)),
+                  linear-linear(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.75)),
                   url(${slide.image})
                 `.trim(),
               }}
@@ -130,11 +143,13 @@ const HeroBanner = () => {
                     onClick={() => {
                       window.location.href = "/add-habit";
                     }}
-                    className="group relative inline-flex items-center px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-[#016B61] to-[#70B2B2] rounded-full shadow-2xl hover:shadow-[#9ECFD4]/50 transition-all duration-300 overflow-hidden"
+                    className="group relative inline-flex items-center px-8 py-4 text-lg font-bold text-white bg-linear-to-r from-[#016B61] to-[#70B2B2] rounded-full shadow-2xl hover:shadow-[#9ECFD4]/50 transition-all duration-300 overflow-hidden"
                   >
-                    <span className="relative z-10 cursor-pointer">Start This Habit</span>
+                    <span className="relative z-10 cursor-pointer">
+                      Start This Habit
+                    </span>
                     <ChevronRight className="ml-2 h-6 w-6 group-hover:translate-x-1 transition-transform" />
-                    <div className="absolute inset-0 bg-gradient-to-r from-[#70B2B2] to-[#9ECFD4] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <div className="absolute inset-0 bg-linear-to-r from-[#70B2B2] to-[#9ECFD4] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   </button>
                 </motion.div>
               </motion.div>

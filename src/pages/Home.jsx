@@ -97,7 +97,7 @@ const Home = () => {
               </div>
               <Link
                 to="/browse"
-                className="text-sm font-medium bg-gradient-to-r from-[#016B61] to-[#70B2B2] bg-clip-text text-transparent hover:underline"
+                className="text-sm font-medium bg-linear-to-r from-[#016B61] to-[#70B2B2] bg-clip-text text-transparent hover:underline"
               >
                 View all
               </Link>
@@ -228,9 +228,15 @@ const Home = () => {
             </p>
             <div className="grid md:grid-cols-3 gap-6">
               {[
-                { label: "active users tracking their daily routines", value: "120+" },
+                {
+                  label: "active users tracking their daily routines",
+                  value: "120+",
+                },
                 { label: "habits created and completed", value: "5K+" },
-                { label: "users keep a 7‑day streak once they start", value: "80%" },
+                {
+                  label: "users keep a 7‑day streak once they start",
+                  value: "80%",
+                },
               ].map((item) => (
                 <div
                   key={item.label}
@@ -240,7 +246,7 @@ const Home = () => {
                       : "bg-[#E5E9C5] border-[#9ECFD4]/60"
                   }`}
                 >
-                  <p className="text-3xl md:text-4xl font-extrabold bg-gradient-to-r from-[#016B61] to-[#70B2B2] bg-clip-text text-transparent">
+                  <p className="text-3xl md:text-4xl font-extrabold bg-linear-to-r from-[#016B61] to-[#70B2B2] bg-clip-text text-transparent">
                     {item.value}
                   </p>
                   <p
@@ -265,7 +271,7 @@ const Home = () => {
           }`}
         >
           <div className="max-w-6xl mx-auto px-4">
-            <h2 className="text-2xl md:text-3xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-[#016B61] to-[#70B2B2]">
+            <h2 className="text-2xl md:text-3xl font-bold mb-2 bg-clip-text text-transparent bg-linear-to-r from-[#016B61] to-[#70B2B2]">
               What people say about HabitTracker
             </h2>
             <p

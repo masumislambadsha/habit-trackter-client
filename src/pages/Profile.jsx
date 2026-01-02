@@ -18,7 +18,7 @@ import {
   Trash2,
   AlertCircle,
   Eye,
-  EyeOff
+  EyeOff,
 } from "lucide-react";
 import { toast } from "react-hot-toast";
 import api from "../utils/Api";
@@ -26,7 +26,7 @@ import Swal from "sweetalert2";
 import {
   reauthenticateWithCredential,
   EmailAuthProvider,
-  updatePassword
+  updatePassword,
 } from "firebase/auth";
 
 const Profile = () => {
@@ -38,7 +38,7 @@ const Profile = () => {
     totalHabits: 0,
     currentStreak: 0,
     totalCompletions: 0,
-    joinedDate: ""
+    joinedDate: "",
   });
 
   const [formData, setFormData] = useState({
@@ -46,21 +46,21 @@ const Profile = () => {
     email: user?.email || "",
     photoURL: user?.photoURL || "",
     notifications: true,
-    publicProfile: true
+    publicProfile: true,
   });
 
   // Password change state
   const [passwordData, setPasswordData] = useState({
     currentPassword: "",
     newPassword: "",
-    confirmPassword: ""
+    confirmPassword: "",
   });
 
   // Password visibility state
   const [showPasswords, setShowPasswords] = useState({
     current: false,
     new: false,
-    confirm: false
+    confirm: false,
   });
 
   // Delete data state
@@ -76,7 +76,10 @@ const Profile = () => {
       const habits = habitsRes.data;
 
       const totalHabits = habits.length;
-      const totalCompletions = habits.reduce((sum, habit) => sum + (habit.completionHistory?.length || 0), 0);
+      const totalCompletions = habits.reduce(
+        (sum, habit) => sum + (habit.completionHistory?.length || 0),
+        0
+      );
 
       // Calculate current streak
       const today = new Date();
@@ -85,12 +88,12 @@ const Profile = () => {
       let checkDate = new Date(today);
 
       while (true) {
-        const dateStr = checkDate.toISOString().split('T')[0];
-        const hasCompletion = habits.some(habit =>
-          habit.completionHistory?.some(completion => {
+        const dateStr = checkDate.toISOString().split("T")[0];
+        const hasCompletion = habits.some((habit) =>
+          habit.completionHistory?.some((completion) => {
             const compDate = new Date(completion);
             compDate.setHours(0, 0, 0, 0);
-            return compDate.toISOString().split('T')[0] === dateStr;
+            return compDate.toISOString().split("T")[0] === dateStr;
           })
         );
 
@@ -103,10 +106,10 @@ const Profile = () => {
       }
 
       const joinedDate = user?.metadata?.creationTime
-        ? new Date(user.metadata.creationTime).toLocaleDateString('en-US', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric'
+        ? new Date(user.metadata.creationTime).toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
           })
         : "Not available";
 
@@ -114,7 +117,7 @@ const Profile = () => {
         totalHabits,
         currentStreak,
         totalCompletions,
-        joinedDate
+        joinedDate,
       });
     } catch (error) {
       console.error("Error fetching user stats:", error);
@@ -145,7 +148,7 @@ const Profile = () => {
       email: user?.email || "",
       photoURL: user?.photoURL || "",
       notifications: true,
-      publicProfile: true
+      publicProfile: true,
     });
     setIsEditing(false);
   };
@@ -160,7 +163,7 @@ const Profile = () => {
 
       const reader = new FileReader();
       reader.onload = (event) => {
-        setFormData(prev => ({ ...prev, photoURL: event.target.result }));
+        setFormData((prev) => ({ ...prev, photoURL: event.target.result }));
       };
       reader.readAsDataURL(file);
     }
@@ -188,7 +191,10 @@ const Profile = () => {
     setLoading(true);
     try {
       // Re-authenticate user with current password
-      const credential = EmailAuthProvider.credential(user.email, currentPassword);
+      const credential = EmailAuthProvider.credential(
+        user.email,
+        currentPassword
+      );
       await reauthenticateWithCredential(user, credential);
 
       // Update password
@@ -200,27 +206,28 @@ const Profile = () => {
       setPasswordData({
         currentPassword: "",
         newPassword: "",
-        confirmPassword: ""
+        confirmPassword: "",
       });
 
       // Reset password visibility
       setShowPasswords({
         current: false,
         new: false,
-        confirm: false
+        confirm: false,
       });
     } catch (error) {
       console.error("Password change error:", error);
       let errorMessage = "Failed to change password. Please try again.";
 
       switch (error.code) {
-        case 'auth/wrong-password':
+        case "auth/wrong-password":
           errorMessage = "Current password is incorrect.";
           break;
-        case 'auth/weak-password':
-          errorMessage = "New password is too weak. Please choose a stronger password.";
+        case "auth/weak-password":
+          errorMessage =
+            "New password is too weak. Please choose a stronger password.";
           break;
-        case 'auth/requires-recent-login':
+        case "auth/requires-recent-login":
           errorMessage = "Please log in again and try changing your password.";
           break;
         default:
@@ -235,9 +242,9 @@ const Profile = () => {
 
   // Toggle password visibility
   const togglePasswordVisibility = (field) => {
-    setShowPasswords(prev => ({
+    setShowPasswords((prev) => ({
       ...prev,
-      [field]: !prev[field]
+      [field]: !prev[field],
     }));
   };
 
@@ -290,7 +297,7 @@ const Profile = () => {
           totalHabits: 0,
           currentStreak: 0,
           totalCompletions: 0,
-          joinedDate: stats.joinedDate
+          joinedDate: stats.joinedDate,
         });
 
         setDeleteConfirmation("");
@@ -316,11 +323,19 @@ const Profile = () => {
   };
 
   return (
-    <div className={`min-h-screen transition-colors duration-300 ${isDark ? "bg-gray-900" : "bg-gray-50"}`}>
+    <div
+      className={`min-h-screen transition-colors duration-300 ${
+        isDark ? "bg-gray-900" : "bg-gray-50"
+      }`}
+    >
       <div className="max-w-6xl mx-auto p-6">
         {/* Header */}
         <div className="mb-8">
-          <h1 className={`text-3xl font-bold mb-2 ${isDark ? "text-white" : "text-gray-900"}`}>
+          <h1
+            className={`text-3xl font-bold mb-2 ${
+              isDark ? "text-white" : "text-gray-900"
+            }`}
+          >
             Profile Settings
           </h1>
           <p className={`${isDark ? "text-gray-400" : "text-gray-600"}`}>
@@ -335,15 +350,23 @@ const Profile = () => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className={`rounded-2xl shadow-lg ${isDark ? "bg-gray-800" : "bg-white"}`}
+              className={`rounded-2xl shadow-lg ${
+                isDark ? "bg-gray-800" : "bg-white"
+              }`}
             >
               <div className="p-6 border-b border-gray-200 dark:border-gray-700">
                 <div className="flex items-center justify-between">
-                  <h3 className={`text-xl font-bold ${isDark ? "text-white" : "text-gray-900"}`}>
+                  <h3
+                    className={`text-xl font-bold ${
+                      isDark ? "text-white" : "text-gray-900"
+                    }`}
+                  >
                     Profile Information
                   </h3>
                   <button
-                    onClick={() => isEditing ? handleCancel() : setIsEditing(true)}
+                    onClick={() =>
+                      isEditing ? handleCancel() : setIsEditing(true)
+                    }
                     className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium ${
                       isEditing
                         ? isDark
@@ -382,7 +405,7 @@ const Profile = () => {
                             className="w-full h-full object-cover"
                           />
                         ) : (
-                          <div className="w-full h-full bg-gradient-to-br from-[#016B61] to-[#70B2B2] flex items-center justify-center">
+                          <div className="w-full h-full bg-linear-to-br from-[#016B61] to-[#70B2B2] flex items-center justify-center">
                             <span className="text-4xl font-bold text-white">
                               {formData.displayName?.[0]?.toUpperCase() || "U"}
                             </span>
@@ -392,7 +415,7 @@ const Profile = () => {
 
                       {isEditing && (
                         <label className="absolute bottom-0 right-0 cursor-pointer">
-                          <div className="w-10 h-10 rounded-full bg-gradient-to-r from-[#016B61] to-[#70B2B2] flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow">
+                          <div className="w-10 h-10 rounded-full bg-linear-to-r from-[#016B61] to-[#70B2B2] flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow">
                             <Camera size={20} className="text-white" />
                           </div>
                           <input
@@ -406,7 +429,11 @@ const Profile = () => {
                     </div>
 
                     {isEditing && (
-                      <p className={`text-xs mt-2 ${isDark ? "text-gray-400" : "text-gray-500"}`}>
+                      <p
+                        className={`text-xs mt-2 ${
+                          isDark ? "text-gray-400" : "text-gray-500"
+                        }`}
+                      >
                         Click camera icon to upload new photo
                       </p>
                     )}
@@ -415,14 +442,23 @@ const Profile = () => {
                   {/* Profile Form */}
                   <div className="flex-1 space-y-4">
                     <div>
-                      <label className={`block text-sm font-medium mb-2 ${isDark ? "text-gray-300" : "text-gray-700"}`}>
+                      <label
+                        className={`block text-sm font-medium mb-2 ${
+                          isDark ? "text-gray-300" : "text-gray-700"
+                        }`}
+                      >
                         Display Name
                       </label>
                       {isEditing ? (
                         <input
                           type="text"
                           value={formData.displayName}
-                          onChange={(e) => setFormData(prev => ({ ...prev, displayName: e.target.value }))}
+                          onChange={(e) =>
+                            setFormData((prev) => ({
+                              ...prev,
+                              displayName: e.target.value,
+                            }))
+                          }
                           className={`w-full px-4 py-3 rounded-xl border transition-colors duration-300 ${
                             isDark
                               ? "bg-gray-700 border-gray-600 text-white placeholder-gray-400 focus:ring-2 focus:ring-[#9ECFD4] focus:border-transparent"
@@ -431,31 +467,59 @@ const Profile = () => {
                           placeholder="Enter your name"
                         />
                       ) : (
-                        <p className={`px-4 py-3 rounded-xl ${isDark ? "bg-gray-700 text-white" : "bg-gray-100 text-gray-900"}`}>
+                        <p
+                          className={`px-4 py-3 rounded-xl ${
+                            isDark
+                              ? "bg-gray-700 text-white"
+                              : "bg-gray-100 text-gray-900"
+                          }`}
+                        >
                           {formData.displayName}
                         </p>
                       )}
                     </div>
 
                     <div>
-                      <label className={`block text-sm font-medium mb-2 ${isDark ? "text-gray-300" : "text-gray-700"}`}>
+                      <label
+                        className={`block text-sm font-medium mb-2 ${
+                          isDark ? "text-gray-300" : "text-gray-700"
+                        }`}
+                      >
                         Email Address
                       </label>
                       <div className="flex items-center gap-3">
-                        <Mail size={18} className={isDark ? "text-gray-400" : "text-gray-500"} />
-                        <p className={`${isDark ? "text-gray-300" : "text-gray-700"}`}>
+                        <Mail
+                          size={18}
+                          className={isDark ? "text-gray-400" : "text-gray-500"}
+                        />
+                        <p
+                          className={`${
+                            isDark ? "text-gray-300" : "text-gray-700"
+                          }`}
+                        >
                           {formData.email}
                         </p>
                       </div>
                     </div>
 
                     <div>
-                      <label className={`block text-sm font-medium mb-2 ${isDark ? "text-gray-300" : "text-gray-700"}`}>
+                      <label
+                        className={`block text-sm font-medium mb-2 ${
+                          isDark ? "text-gray-300" : "text-gray-700"
+                        }`}
+                      >
                         Member Since
                       </label>
                       <div className="flex items-center gap-3">
-                        <Calendar size={18} className={isDark ? "text-gray-400" : "text-gray-500"} />
-                        <p className={`${isDark ? "text-gray-300" : "text-gray-700"}`}>
+                        <Calendar
+                          size={18}
+                          className={isDark ? "text-gray-400" : "text-gray-500"}
+                        />
+                        <p
+                          className={`${
+                            isDark ? "text-gray-300" : "text-gray-700"
+                          }`}
+                        >
                           {stats.joinedDate}
                         </p>
                       </div>
@@ -469,14 +533,30 @@ const Profile = () => {
                           className={`w-full py-3 rounded-xl font-bold text-white transition-all ${
                             loading
                               ? "bg-gray-400 cursor-not-allowed"
-                              : "bg-gradient-to-r from-[#016B61] to-[#70B2B2] hover:shadow-lg"
+                              : "bg-linear-to-r from-[#016B61] to-[#70B2B2] hover:shadow-lg"
                           }`}
                         >
                           {loading ? (
                             <span className="flex items-center justify-center">
-                              <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                              <svg
+                                className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                              >
+                                <circle
+                                  className="opacity-25"
+                                  cx="12"
+                                  cy="12"
+                                  r="10"
+                                  stroke="currentColor"
+                                  strokeWidth="4"
+                                ></circle>
+                                <path
+                                  className="opacity-75"
+                                  fill="currentColor"
+                                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                                ></path>
                               </svg>
                               Saving...
                             </span>
@@ -500,17 +580,34 @@ const Profile = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 }}
-                className={`rounded-2xl p-6 ${isDark ? "bg-gray-800" : "bg-white"} shadow-lg`}
+                className={`rounded-2xl p-6 ${
+                  isDark ? "bg-gray-800" : "bg-white"
+                } shadow-lg`}
               >
                 <div className="flex items-center gap-4">
-                  <div className={`p-3 rounded-xl ${isDark ? "bg-gray-700" : "bg-gray-100"}`}>
-                    <Target className={isDark ? "text-[#9ECFD4]" : "text-[#016B61]"} size={24} />
+                  <div
+                    className={`p-3 rounded-xl ${
+                      isDark ? "bg-gray-700" : "bg-gray-100"
+                    }`}
+                  >
+                    <Target
+                      className={isDark ? "text-[#9ECFD4]" : "text-[#016B61]"}
+                      size={24}
+                    />
                   </div>
                   <div>
-                    <h4 className={`text-2xl font-bold mb-1 ${isDark ? "text-white" : "text-gray-900"}`}>
+                    <h4
+                      className={`text-2xl font-bold mb-1 ${
+                        isDark ? "text-white" : "text-gray-900"
+                      }`}
+                    >
                       {stats.totalHabits}
                     </h4>
-                    <p className={`text-sm ${isDark ? "text-gray-400" : "text-gray-500"}`}>
+                    <p
+                      className={`text-sm ${
+                        isDark ? "text-gray-400" : "text-gray-500"
+                      }`}
+                    >
                       Total Habits
                     </p>
                   </div>
@@ -521,17 +618,34 @@ const Profile = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
-                className={`rounded-2xl p-6 ${isDark ? "bg-gray-800" : "bg-white"} shadow-lg`}
+                className={`rounded-2xl p-6 ${
+                  isDark ? "bg-gray-800" : "bg-white"
+                } shadow-lg`}
               >
                 <div className="flex items-center gap-4">
-                  <div className={`p-3 rounded-xl ${isDark ? "bg-gray-700" : "bg-gray-100"}`}>
-                    <Award className={isDark ? "text-[#70B2B2]" : "text-[#70B2B2]"} size={24} />
+                  <div
+                    className={`p-3 rounded-xl ${
+                      isDark ? "bg-gray-700" : "bg-gray-100"
+                    }`}
+                  >
+                    <Award
+                      className={isDark ? "text-[#70B2B2]" : "text-[#70B2B2]"}
+                      size={24}
+                    />
                   </div>
                   <div>
-                    <h4 className={`text-2xl font-bold mb-1 ${isDark ? "text-white" : "text-gray-900"}`}>
+                    <h4
+                      className={`text-2xl font-bold mb-1 ${
+                        isDark ? "text-white" : "text-gray-900"
+                      }`}
+                    >
                       {stats.currentStreak}
                     </h4>
-                    <p className={`text-sm ${isDark ? "text-gray-400" : "text-gray-500"}`}>
+                    <p
+                      className={`text-sm ${
+                        isDark ? "text-gray-400" : "text-gray-500"
+                      }`}
+                    >
                       Day Streak
                     </p>
                   </div>
@@ -542,17 +656,34 @@ const Profile = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
-                className={`rounded-2xl p-6 ${isDark ? "bg-gray-800" : "bg-white"} shadow-lg`}
+                className={`rounded-2xl p-6 ${
+                  isDark ? "bg-gray-800" : "bg-white"
+                } shadow-lg`}
               >
                 <div className="flex items-center gap-4">
-                  <div className={`p-3 rounded-xl ${isDark ? "bg-gray-700" : "bg-gray-100"}`}>
-                    <User className={isDark ? "text-[#E5E9C5]" : "text-[#9ECFD4]"} size={24} />
+                  <div
+                    className={`p-3 rounded-xl ${
+                      isDark ? "bg-gray-700" : "bg-gray-100"
+                    }`}
+                  >
+                    <User
+                      className={isDark ? "text-[#E5E9C5]" : "text-[#9ECFD4]"}
+                      size={24}
+                    />
                   </div>
                   <div>
-                    <h4 className={`text-2xl font-bold mb-1 ${isDark ? "text-white" : "text-gray-900"}`}>
+                    <h4
+                      className={`text-2xl font-bold mb-1 ${
+                        isDark ? "text-white" : "text-gray-900"
+                      }`}
+                    >
                       {stats.totalCompletions}
                     </h4>
-                    <p className={`text-sm ${isDark ? "text-gray-400" : "text-gray-500"}`}>
+                    <p
+                      className={`text-sm ${
+                        isDark ? "text-gray-400" : "text-gray-500"
+                      }`}
+                    >
                       Completions
                     </p>
                   </div>
@@ -565,22 +696,39 @@ const Profile = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
-              className={`rounded-2xl shadow-lg ${isDark ? "bg-gray-800" : "bg-white"}`}
+              className={`rounded-2xl shadow-lg ${
+                isDark ? "bg-gray-800" : "bg-white"
+              }`}
             >
               <div className="p-6 border-b border-gray-200 dark:border-gray-700">
-                <h3 className={`text-xl font-bold ${isDark ? "text-white" : "text-gray-900"}`}>
+                <h3
+                  className={`text-xl font-bold ${
+                    isDark ? "text-white" : "text-gray-900"
+                  }`}
+                >
                   Preferences
                 </h3>
               </div>
               <div className="p-6 space-y-4">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <Bell size={20} className={isDark ? "text-gray-400" : "text-gray-500"} />
+                    <Bell
+                      size={20}
+                      className={isDark ? "text-gray-400" : "text-gray-500"}
+                    />
                     <div>
-                      <p className={`font-medium ${isDark ? "text-white" : "text-gray-900"}`}>
+                      <p
+                        className={`font-medium ${
+                          isDark ? "text-white" : "text-gray-900"
+                        }`}
+                      >
                         Email Notifications
                       </p>
-                      <p className={`text-sm ${isDark ? "text-gray-400" : "text-gray-500"}`}>
+                      <p
+                        className={`text-sm ${
+                          isDark ? "text-gray-400" : "text-gray-500"
+                        }`}
+                      >
                         Receive updates about your habits
                       </p>
                     </div>
@@ -589,27 +737,47 @@ const Profile = () => {
                     <input
                       type="checkbox"
                       checked={formData.notifications}
-                      onChange={(e) => setFormData(prev => ({ ...prev, notifications: e.target.checked }))}
+                      onChange={(e) =>
+                        setFormData((prev) => ({
+                          ...prev,
+                          notifications: e.target.checked,
+                        }))
+                      }
                       className="sr-only peer"
                     />
-                    <div className={`w-11 h-6 rounded-full peer peer-focus:outline-none peer-focus:ring-2 ${
-                      isDark
-                        ? 'bg-gray-600 peer-focus:ring-[#70B2B2] peer-checked:bg-[#70B2B2]'
-                        : 'bg-gray-300 peer-focus:ring-[#016B61] peer-checked:bg-[#016B61]'
-                    }`}>
-                      <div className={`absolute top-0.5 left-0.5 bg-white rounded-full h-5 w-5 transition-transform peer-checked:translate-x-full`} />
+                    <div
+                      className={`w-11 h-6 rounded-full peer peer-focus:outline-none peer-focus:ring-2 ${
+                        isDark
+                          ? "bg-gray-600 peer-focus:ring-[#70B2B2] peer-checked:bg-[#70B2B2]"
+                          : "bg-gray-300 peer-focus:ring-[#016B61] peer-checked:bg-[#016B61]"
+                      }`}
+                    >
+                      <div
+                        className={`absolute top-0.5 left-0.5 bg-white rounded-full h-5 w-5 transition-transform peer-checked:translate-x-full`}
+                      />
                     </div>
                   </label>
                 </div>
 
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <Globe size={20} className={isDark ? "text-gray-400" : "text-gray-500"} />
+                    <Globe
+                      size={20}
+                      className={isDark ? "text-gray-400" : "text-gray-500"}
+                    />
                     <div>
-                      <p className={`font-medium ${isDark ? "text-white" : "text-gray-900"}`}>
+                      <p
+                        className={`font-medium ${
+                          isDark ? "text-white" : "text-gray-900"
+                        }`}
+                      >
                         Public Profile
                       </p>
-                      <p className={`text-sm ${isDark ? "text-gray-400" : "text-gray-500"}`}>
+                      <p
+                        className={`text-sm ${
+                          isDark ? "text-gray-400" : "text-gray-500"
+                        }`}
+                      >
                         Show your habits to the community
                       </p>
                     </div>
@@ -618,15 +786,24 @@ const Profile = () => {
                     <input
                       type="checkbox"
                       checked={formData.publicProfile}
-                      onChange={(e) => setFormData(prev => ({ ...prev, publicProfile: e.target.checked }))}
+                      onChange={(e) =>
+                        setFormData((prev) => ({
+                          ...prev,
+                          publicProfile: e.target.checked,
+                        }))
+                      }
                       className="sr-only peer"
                     />
-                    <div className={`w-11 h-6 rounded-full peer peer-focus:outline-none peer-focus:ring-2 ${
-                      isDark
-                        ? 'bg-gray-600 peer-focus:ring-[#70B2B2] peer-checked:bg-[#70B2B2]'
-                        : 'bg-gray-300 peer-focus:ring-[#016B61] peer-checked:bg-[#016B61]'
-                    }`}>
-                      <div className={`absolute top-0.5 left-0.5 bg-white rounded-full h-5 w-5 transition-transform peer-checked:translate-x-full`} />
+                    <div
+                      className={`w-11 h-6 rounded-full peer peer-focus:outline-none peer-focus:ring-2 ${
+                        isDark
+                          ? "bg-gray-600 peer-focus:ring-[#70B2B2] peer-checked:bg-[#70B2B2]"
+                          : "bg-gray-300 peer-focus:ring-[#016B61] peer-checked:bg-[#016B61]"
+                      }`}
+                    >
+                      <div
+                        className={`absolute top-0.5 left-0.5 bg-white rounded-full h-5 w-5 transition-transform peer-checked:translate-x-full`}
+                      />
                     </div>
                   </label>
                 </div>
@@ -641,22 +818,39 @@ const Profile = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5 }}
-              className={`rounded-2xl shadow-lg ${isDark ? "bg-gray-800" : "bg-white"}`}
+              className={`rounded-2xl shadow-lg ${
+                isDark ? "bg-gray-800" : "bg-white"
+              }`}
             >
               <div className="p-6 border-b border-gray-200 dark:border-gray-700">
-                <h3 className={`text-xl font-bold ${isDark ? "text-white" : "text-gray-900"}`}>
+                <h3
+                  className={`text-xl font-bold ${
+                    isDark ? "text-white" : "text-gray-900"
+                  }`}
+                >
                   Account Security
                 </h3>
               </div>
               <div className="p-6 space-y-6">
                 {/* Account Status */}
                 <div className="flex items-center gap-3 p-4 rounded-xl bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800">
-                  <Shield size={20} className="text-green-600 dark:text-green-400" />
+                  <Shield
+                    size={20}
+                    className="text-green-600 dark:text-green-400"
+                  />
                   <div>
-                    <p className={`font-medium ${isDark ? "text-white" : "text-gray-900"}`}>
+                    <p
+                      className={`font-medium ${
+                        isDark ? "text-white" : "text-gray-900"
+                      }`}
+                    >
                       Account Status
                     </p>
-                    <p className={`text-sm ${isDark ? "text-gray-300" : "text-gray-600"}`}>
+                    <p
+                      className={`text-sm ${
+                        isDark ? "text-gray-300" : "text-gray-600"
+                      }`}
+                    >
                       Your account is secure
                     </p>
                   </div>
@@ -664,7 +858,11 @@ const Profile = () => {
 
                 {/* Change Password */}
                 <div className="space-y-4">
-                  <h4 className={`font-medium ${isDark ? "text-white" : "text-gray-900"}`}>
+                  <h4
+                    className={`font-medium ${
+                      isDark ? "text-white" : "text-gray-900"
+                    }`}
+                  >
                     Change Password
                   </h4>
 
@@ -674,7 +872,12 @@ const Profile = () => {
                       type={showPasswords.current ? "text" : "password"}
                       placeholder="Current Password"
                       value={passwordData.currentPassword}
-                      onChange={(e) => setPasswordData(prev => ({ ...prev, currentPassword: e.target.value }))}
+                      onChange={(e) =>
+                        setPasswordData((prev) => ({
+                          ...prev,
+                          currentPassword: e.target.value,
+                        }))
+                      }
                       className={`w-full px-4 py-3 pr-12 rounded-xl border transition-colors duration-300 ${
                         isDark
                           ? "bg-gray-700 border-gray-600 text-white placeholder-gray-400"
@@ -685,7 +888,9 @@ const Profile = () => {
                       type="button"
                       onClick={() => togglePasswordVisibility("current")}
                       className={`absolute right-3 top-1/2 transform -translate-y-1/2 p-1 ${
-                        isDark ? "text-gray-400 hover:text-gray-300" : "text-gray-500 hover:text-gray-700"
+                        isDark
+                          ? "text-gray-400 hover:text-gray-300"
+                          : "text-gray-500 hover:text-gray-700"
                       }`}
                     >
                       {showPasswords.current ? (
@@ -702,7 +907,12 @@ const Profile = () => {
                       type={showPasswords.new ? "text" : "password"}
                       placeholder="New Password"
                       value={passwordData.newPassword}
-                      onChange={(e) => setPasswordData(prev => ({ ...prev, newPassword: e.target.value }))}
+                      onChange={(e) =>
+                        setPasswordData((prev) => ({
+                          ...prev,
+                          newPassword: e.target.value,
+                        }))
+                      }
                       className={`w-full px-4 py-3 pr-12 rounded-xl border transition-colors duration-300 ${
                         isDark
                           ? "bg-gray-700 border-gray-600 text-white placeholder-gray-400"
@@ -713,7 +923,9 @@ const Profile = () => {
                       type="button"
                       onClick={() => togglePasswordVisibility("new")}
                       className={`absolute right-3 top-1/2 transform -translate-y-1/2 p-1 ${
-                        isDark ? "text-gray-400 hover:text-gray-300" : "text-gray-500 hover:text-gray-700"
+                        isDark
+                          ? "text-gray-400 hover:text-gray-300"
+                          : "text-gray-500 hover:text-gray-700"
                       }`}
                     >
                       {showPasswords.new ? (
@@ -730,7 +942,12 @@ const Profile = () => {
                       type={showPasswords.confirm ? "text" : "password"}
                       placeholder="Confirm New Password"
                       value={passwordData.confirmPassword}
-                      onChange={(e) => setPasswordData(prev => ({ ...prev, confirmPassword: e.target.value }))}
+                      onChange={(e) =>
+                        setPasswordData((prev) => ({
+                          ...prev,
+                          confirmPassword: e.target.value,
+                        }))
+                      }
                       className={`w-full px-4 py-3 pr-12 rounded-xl border transition-colors duration-300 ${
                         isDark
                           ? "bg-gray-700 border-gray-600 text-white placeholder-gray-400"
@@ -741,7 +958,9 @@ const Profile = () => {
                       type="button"
                       onClick={() => togglePasswordVisibility("confirm")}
                       className={`absolute right-3 top-1/2 transform -translate-y-1/2 p-1 ${
-                        isDark ? "text-gray-400 hover:text-gray-300" : "text-gray-500 hover:text-gray-700"
+                        isDark
+                          ? "text-gray-400 hover:text-gray-300"
+                          : "text-gray-500 hover:text-gray-700"
                       }`}
                     >
                       {showPasswords.confirm ? (
@@ -758,14 +977,30 @@ const Profile = () => {
                     className={`w-full py-3 rounded-xl font-medium transition-colors ${
                       loading
                         ? "bg-gray-400 cursor-not-allowed"
-                        : "bg-gradient-to-r from-[#016B61] to-[#70B2B2] text-white hover:shadow-md"
+                        : "bg-linear-to-r from-[#016B61] to-[#70B2B2] text-white hover:shadow-md"
                     }`}
                   >
                     {loading ? (
                       <span className="flex items-center justify-center">
-                        <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        <svg
+                          className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                        >
+                          <circle
+                            className="opacity-25"
+                            cx="12"
+                            cy="12"
+                            r="10"
+                            stroke="currentColor"
+                            strokeWidth="4"
+                          ></circle>
+                          <path
+                            className="opacity-75"
+                            fill="currentColor"
+                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                          ></path>
                         </svg>
                         Updating...
                       </span>
@@ -776,11 +1011,23 @@ const Profile = () => {
                 </div>
 
                 {/* Password Requirements */}
-                <div className={`p-4 rounded-xl ${isDark ? "bg-gray-700" : "bg-gray-100"}`}>
-                  <p className={`text-sm font-medium mb-2 ${isDark ? "text-gray-300" : "text-gray-700"}`}>
+                <div
+                  className={`p-4 rounded-xl ${
+                    isDark ? "bg-gray-700" : "bg-gray-100"
+                  }`}
+                >
+                  <p
+                    className={`text-sm font-medium mb-2 ${
+                      isDark ? "text-gray-300" : "text-gray-700"
+                    }`}
+                  >
                     Password Requirements:
                   </p>
-                  <ul className={`text-xs space-y-1 ${isDark ? "text-gray-400" : "text-gray-600"}`}>
+                  <ul
+                    className={`text-xs space-y-1 ${
+                      isDark ? "text-gray-400" : "text-gray-600"
+                    }`}
+                  >
                     <li>• At least 6 characters long</li>
                     <li>• Should not match your current password</li>
                     <li>• Use a mix of letters, numbers, and symbols</li>
@@ -794,23 +1041,38 @@ const Profile = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6 }}
-              className={`rounded-2xl shadow-lg border border-red-200 dark:border-red-800 ${isDark ? "bg-gray-800" : "bg-white"}`}
+              className={`rounded-2xl shadow-lg border border-red-200 dark:border-red-800 ${
+                isDark ? "bg-gray-800" : "bg-white"
+              }`}
             >
               <div className="p-6 border-b border-red-200 dark:border-red-800">
                 <div className="flex items-center gap-2">
                   <AlertCircle className="text-red-500" size={20} />
-                  <h3 className={`text-xl font-bold ${isDark ? "text-red-400" : "text-red-600"}`}>
+                  <h3
+                    className={`text-xl font-bold ${
+                      isDark ? "text-red-400" : "text-red-600"
+                    }`}
+                  >
                     Danger Zone
                   </h3>
                 </div>
               </div>
               <div className="p-6 space-y-4">
                 <div>
-                  <p className={`text-sm mb-3 ${isDark ? "text-gray-400" : "text-gray-600"}`}>
-                    This will permanently delete all your habits, streaks, and analytics data.
+                  <p
+                    className={`text-sm mb-3 ${
+                      isDark ? "text-gray-400" : "text-gray-600"
+                    }`}
+                  >
+                    This will permanently delete all your habits, streaks, and
+                    analytics data.
                   </p>
                   <div className="space-y-2">
-                    <p className={`text-sm font-medium ${isDark ? "text-gray-300" : "text-gray-700"}`}>
+                    <p
+                      className={`text-sm font-medium ${
+                        isDark ? "text-gray-300" : "text-gray-700"
+                      }`}
+                    >
                       Type "DELETE" to confirm:
                     </p>
                     <input
@@ -840,7 +1102,11 @@ const Profile = () => {
                   <Trash2 size={18} />
                   Delete All Data
                 </button>
-                <p className={`text-xs ${isDark ? "text-gray-500" : "text-gray-500"}`}>
+                <p
+                  className={`text-xs ${
+                    isDark ? "text-gray-500" : "text-gray-500"
+                  }`}
+                >
                   This action cannot be undone.
                 </p>
               </div>

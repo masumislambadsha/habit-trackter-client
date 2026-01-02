@@ -299,7 +299,7 @@ const MyHabits = () => {
                 Total Habits
               </span>
             </div>
-            <h3 className="text-3xl font-bold mb-1 bg-gradient-to-r from-[#016B61] to-[#70B2B2] bg-clip-text text-transparent">
+            <h3 className="text-3xl font-bold mb-1 bg-linear-to-r from-[#016B61] to-[#70B2B2] bg-clip-text text-transparent">
               {stats.totalHabits}
             </h3>
             <p
@@ -338,7 +338,7 @@ const MyHabits = () => {
                 Completed Today
               </span>
             </div>
-            <h3 className="text-3xl font-bold mb-1 bg-gradient-to-r from-green-500 to-green-400 bg-clip-text text-transparent">
+            <h3 className="text-3xl font-bold mb-1 bg-linear-to-r from-green-500 to-green-400 bg-clip-text text-transparent">
               {stats.completedToday}/{stats.totalHabits}
             </h3>
             <p
@@ -381,7 +381,7 @@ const MyHabits = () => {
                 Average Streak
               </span>
             </div>
-            <h3 className="text-3xl font-bold mb-1 bg-gradient-to-r from-[#FF6B6B] to-[#FFA8A8] bg-clip-text text-transparent">
+            <h3 className="text-3xl font-bold mb-1 bg-linear-to-r from-[#FF6B6B] to-[#FFA8A8] bg-clip-text text-transparent">
               {stats.averageStreak} days
             </h3>
             <p
@@ -420,7 +420,7 @@ const MyHabits = () => {
                 Success Rate
               </span>
             </div>
-            <h3 className="text-3xl font-bold mb-1 bg-gradient-to-r from-[#9ECFD4] to-[#E5E9C5] bg-clip-text text-transparent">
+            <h3 className="text-3xl font-bold mb-1 bg-linear-to-r from-[#9ECFD4] to-[#E5E9C5] bg-clip-text text-transparent">
               {stats.completionRate}%
             </h3>
             <p
@@ -514,7 +514,7 @@ const MyHabits = () => {
 
               <button
                 onClick={() => navigate("/dashboard/add-habit")}
-                className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[#016B61] to-[#70B2B2] text-white rounded-xl font-bold hover:shadow-lg transition-shadow"
+                className="flex items-center gap-2 px-6 py-3 bg-linear-to-r from-[#016B61] to-[#70B2B2] text-white rounded-xl font-bold hover:shadow-lg transition-shadow"
               >
                 <PlusCircle size={20} />
                 Add Habit
@@ -557,7 +557,7 @@ const MyHabits = () => {
               </p>
               <button
                 onClick={() => navigate("/dashboard/add-habit")}
-                className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[#016B61] to-[#70B2B2] text-white rounded-xl font-bold hover:shadow-lg transition-shadow"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-linear-to-r from-[#016B61] to-[#70B2B2] text-white rounded-xl font-bold hover:shadow-lg transition-shadow"
               >
                 <PlusCircle size={20} />
                 Create Your First Habit
@@ -596,8 +596,8 @@ const MyHabits = () => {
                       <div
                         className={`w-full h-full flex items-center justify-center ${
                           isDark
-                            ? "bg-gradient-to-br from-gray-700 to-gray-600"
-                            : "bg-gradient-to-br from-[#E5E9C5] to-[#9ECFD4]"
+                            ? "bg-linear-to-br from-gray-700 to-gray-600"
+                            : "bg-linear-to-br from-[#E5E9C5] to-[#9ECFD4]"
                         }`}
                       >
                         <Target
@@ -803,7 +803,7 @@ const MyHabits = () => {
                             className={`px-4 py-2 rounded-lg font-medium text-sm transition-all ${
                               completingId === habit._id
                                 ? "bg-green-500 text-white cursor-not-allowed"
-                                : "bg-gradient-to-r from-[#016B61] to-[#70B2B2] text-white hover:shadow-md"
+                                : "bg-linear-to-r from-[#016B61] to-[#70B2B2] text-white hover:shadow-md"
                             }`}
                           >
                             {completingId === habit._id
@@ -899,7 +899,7 @@ const MyHabits = () => {
 
                 <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
                   <div
-                    className="bg-gradient-to-r from-green-400 to-green-600 h-2.5 rounded-full transition-all duration-500"
+                    className="bg-linear-to-r from-green-400 to-green-600 h-2.5 rounded-full transition-all duration-500"
                     style={{
                       width: `${
                         stats.totalHabits > 0

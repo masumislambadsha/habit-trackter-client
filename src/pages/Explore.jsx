@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from "react";
 import api from "../utils/Api";
-import { Link } from "react-router"; 
+import { Link } from "react-router";
 import { motion } from "framer-motion";
 import { useTheme } from "../context/ThemeProvider";
 import HabitCardSkeleton from "../components/HabitCardSkeleton";
@@ -104,10 +104,10 @@ const Explore = () => {
   // Debug: Log some sample dates to verify sorting
   useEffect(() => {
     if (habits.length > 0 && sortOrder !== "none") {
-      const sampleDates = habits.slice(0, 3).map(h => ({
+      const sampleDates = habits.slice(0, 3).map((h) => ({
         title: h.title,
         createdAt: h.createdAt,
-        parsed: safeParseDate(h.createdAt).toISOString()
+        parsed: safeParseDate(h.createdAt).toISOString(),
       }));
       console.log("Sample dates for sorting:", sampleDates);
     }
@@ -118,8 +118,8 @@ const Explore = () => {
       <section
         className={`py-20 transition-colors duration-300 ${
           isDark
-            ? "bg-gradient-to-b from-gray-800 to-gray-900"
-            : "bg-gradient-to-b from-[#E5E9C5] to-white"
+            ? "bg-linear-to-b from-gray-800 to-gray-900"
+            : "bg-linear-to-b from-[#E5E9C5] to-white"
         }`}
       >
         <div className="max-w-7xl mx-auto px-4">
@@ -137,8 +137,8 @@ const Explore = () => {
     <div
       className={`min-h-screen py-12 px-4 transition-colors duration-300 pt-25 ${
         isDark
-          ? "bg-gradient-to-br from-gray-900 to-gray-800"
-          : "bg-gradient-to-br from-[#E5E9C5] to-[#9ECFD4]"
+          ? "bg-linear-to-br from-gray-900 to-gray-800"
+          : "bg-linear-to-br from-[#E5E9C5] to-[#9ECFD4]"
       }`}
     >
       <div className="max-w-7xl mx-auto">
@@ -154,7 +154,7 @@ const Explore = () => {
 
         <div className="flex flex-col items-start md:items-center md:flex-row justify-between gap-6 mb-10">
           <div className="flex items-center gap-4">
-            <div className="w-2 h-12 bg-gradient-to-b from-[#016B61] to-[#70B2B2] rounded-full" />
+            <div className="w-2 h-12 bg-linear-to-b from-[#016B61] to-[#70B2B2] rounded-full" />
             <div>
               <h2
                 className={`text-4xl font-bold ${
@@ -250,14 +250,23 @@ const Explore = () => {
 
         {/* Debug info - can remove in production */}
         {process.env.NODE_ENV === "development" && habits.length > 0 && (
-          <div className={`mb-4 p-3 rounded-lg text-sm ${isDark ? "bg-gray-700 text-gray-300" : "bg-gray-100 text-gray-700"}`}>
-            <p>Debug: Showing {currentHabits.length} of {totalItems} habits</p>
+          <div
+            className={`mb-4 p-3 rounded-lg text-sm ${
+              isDark ? "bg-gray-700 text-gray-300" : "bg-gray-100 text-gray-700"
+            }`}
+          >
+            <p>
+              Debug: Showing {currentHabits.length} of {totalItems} habits
+            </p>
             <p>Sort order: {sortOrder}</p>
             {sortOrder !== "none" && currentHabits.length > 0 && (
               <p>
-                Date range: {safeParseDate(currentHabits[0].createdAt).toLocaleDateString()}
+                Date range:{" "}
+                {safeParseDate(currentHabits[0].createdAt).toLocaleDateString()}
                 {" to "}
-                {safeParseDate(currentHabits[currentHabits.length - 1].createdAt).toLocaleDateString()}
+                {safeParseDate(
+                  currentHabits[currentHabits.length - 1].createdAt
+                ).toLocaleDateString()}
               </p>
             )}
           </div>
@@ -276,13 +285,9 @@ const Explore = () => {
             >
               No habits found matching your filters.
             </p>
-            <p
-              className={`mt-2 ${
-                isDark ? "text-gray-400" : "text-gray-600"
-              }`}
-            >
-              Try adjusting your search or category. (Total loaded: {habits.length}
-              )
+            <p className={`mt-2 ${isDark ? "text-gray-400" : "text-gray-600"}`}>
+              Try adjusting your search or category. (Total loaded:{" "}
+              {habits.length})
             </p>
           </motion.div>
         ) : (
@@ -314,8 +319,8 @@ const Explore = () => {
                     <div
                       className={`h-48 flex items-center justify-center ${
                         isDark
-                          ? "bg-gradient-to-br from-gray-700 to-gray-600"
-                          : "bg-gradient-to-br from-[#E5E9C5] to-[#9ECFD4]"
+                          ? "bg-linear-to-br from-gray-700 to-gray-600"
+                          : "bg-linear-to-br from-[#E5E9C5] to-[#9ECFD4]"
                       }`}
                     >
                       <span
@@ -345,8 +350,15 @@ const Explore = () => {
 
                     {/* Show date info */}
                     <div className="flex items-center gap-2 mb-3">
-                      <span className={`text-xs ${isDark ? "text-gray-400" : "text-gray-500"}`}>
-                        Created: {habit.createdAt ? safeParseDate(habit.createdAt).toLocaleDateString() : "Unknown"}
+                      <span
+                        className={`text-xs ${
+                          isDark ? "text-gray-400" : "text-gray-500"
+                        }`}
+                      >
+                        Created:{" "}
+                        {habit.createdAt
+                          ? safeParseDate(habit.createdAt).toLocaleDateString()
+                          : "Unknown"}
                       </span>
                     </div>
 
@@ -409,7 +421,7 @@ const Explore = () => {
                     onClick={() => handlePageChange(page)}
                     className={`w-8 h-8 rounded-full text-sm font-medium border flex items-center justify-center ${
                       isActive
-                        ? "bg-gradient-to-r from-[#016B61] to-[#70B2B2] text-white border-transparent"
+                        ? "bg-linear-to-r from-[#016B61] to-[#70B2B2] text-white border-transparent"
                         : isDark
                         ? "border-gray-600 text-gray-200 hover:bg-gray-800"
                         : "border-[#9ECFD4] text-[#016B61] hover:bg-[#E5E9C5]"
