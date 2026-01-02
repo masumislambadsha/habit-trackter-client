@@ -72,7 +72,7 @@ const AddHabit = () => {
   ];
 
   return (
-    <div className={`min-h-screen transition-colors duration-300 ${isDark ? "bg-gray-900" : "bg-gray-50"}`}>
+    <div className={ `mt-20 min-h-screen transition-colors duration-300 ${isDark ? "bg-gray-900" : "bg-gray-50"}`}>
       <div className="max-w-4xl mx-auto p-6">
         {/* Header */}
         <motion.div

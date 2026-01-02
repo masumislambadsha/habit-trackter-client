@@ -91,7 +91,7 @@ const Footer = () => {
               <h4 className="text-white font-semibold mb-4">Explore</h4>
               <p className="text-sm leading-relaxed space-y-2 text-gray-400">
                 <a
-                  href="/my-habits"
+                  href="dashboard/my-habits"
                   className="block hover:text-emerald-400 transition"
                 >
                   My Habits

@@ -37,7 +37,7 @@ const UpdateHabit = () => {
         });
       } catch {
         toast.error("Failed");
-        navigate("/my-habits");
+        navigate("dashboard/my-habits");
       } finally {
         setLoading(false);
       }
@@ -61,7 +61,7 @@ const UpdateHabit = () => {
     try {
       await api.patch(`/habits/${id}`, payload);
       toast.success("Habit updated successfully!");
-      navigate("/my-habits");
+      navigate("dashboard/my-habits");
     } catch (err) {
       toast.error(err.response?.data?.error || "Update failed");
     }
@@ -294,7 +294,7 @@ const UpdateHabit = () => {
               </button>
               <button
                 type="button"
-                onClick={() => navigate("/my-habits")}
+                onClick={() => navigate("dashboard/my-habits")}
                 className={`flex-1 py-4 rounded-xl font-bold border-2 bg-white hover:scale-[1.02] active:scale-95 transition-all ${
                   isDark
                     ? "border-[#70B2B2] text-[#9ECFD4] hover:bg-gray-700"

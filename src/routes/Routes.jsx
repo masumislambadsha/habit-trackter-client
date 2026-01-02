@@ -70,6 +70,22 @@ export const router = createBrowserRouter([
         path: "habit/:id",
         element: <HabitDetails />,
       },
+      {
+        path: "add-habit",
+        element: (
+          <PrivateRoute>
+            <AddHabit />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "my-habits",
+        element: (
+          <PrivateRoute>
+            <MyHabits />
+          </PrivateRoute>
+        ),
+      },
       { path: "*", element: <NotFound /> },
     ],
   },

@@ -85,7 +85,7 @@ const DashboardLayout = () => {
         isDark ? "bg-gray-900" : "bg-gray-50"
       }`}>
       <div
-      className={`container mx-auto min-h-screen transition-colors duration-300 flex ${
+      className={`lg:container mx-auto min-h-screen transition-colors duration-300 flex ${
         isDark ? "bg-gray-900" : "bg-gray-50"
       }`}
     >

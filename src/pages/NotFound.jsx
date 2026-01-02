@@ -158,7 +158,7 @@ const NotFound = () => {
               Create New Habit
             </Link>
             <Link
-              to="/my-habits"
+              to="dashboard/my-habits"
               className={`text-sm hover:underline transition-colors duration-300 ${
                 isDark
                   ? "text-gray-400 hover:text-[#9ECFD4]"

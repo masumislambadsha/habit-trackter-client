@@ -102,7 +102,7 @@ const HabitDetails = () => {
             </div>
           )}
           <Link
-            to="/my-habits"
+            to="dashboard/my-habits"
             className={`inline-flex items-center gap-2 hover:underline font-medium mb-6 text-sm ${
               isDark ? "text-[#9ECFD4]" : "text-[#016B61]"
             }`}

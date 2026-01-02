@@ -505,7 +505,7 @@ const Home = () => {
               Or jump in now:
               <div className="mt-3 flex flex-wrap gap-2">
                 <Link
-                  to="/add-habit"
+                  to="dashboard/add-habit"
                   className="btn btn-sm rounded-full bg-white text-[#016B61] border-0"
                 >
                   Add a habit
